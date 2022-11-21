@@ -1,24 +1,38 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## 開発言語
+- Ruby 3.0.1
+- Rails 6.1.7
 
-Things you may want to cover:
+## 就業Termの技術
+- devise
+- Ajaxを使ったコメント機能
 
-* Ruby version
+## カリキュラム外の技術
+- gem/chartkick
+- gem/devise/invitable
 
-* System dependencies
+## 実行手順
+$ git clone https://github.com/Asumi8/TOPPA.git
+$ cd TOPPA
+$ bundle install
+$ rails db:create && rails db:migrate
+$ rails s
 
-* Configuration
+## チェックシート
+https://docs.google.com/spreadsheets/d/1yeCun6xliH7EAC6EPs_U1IBQXarmhQUshdeRfbPkAaY/edit?usp=sharing
 
-* Database creation
+## カタログ設計
+https://docs.google.com/spreadsheets/d/1yeCun6xliH7EAC6EPs_U1IBQXarmhQUshdeRfbPkAaY/edit?usp=sharing
 
-* Database initialization
+## テーブル定義書
+https://docs.google.com/spreadsheets/d/1yeCun6xliH7EAC6EPs_U1IBQXarmhQUshdeRfbPkAaY/edit?usp=sharing
 
-* How to run the test suite
+## ワイヤーフレーム
+https://www.figma.com/file/Srmf7LUgjEvhlCxgRo3E3r/Untitled?node-id=0%3A1&t=W0msj45hUh7XIkCA-1
 
-* Services (job queues, cache servers, search engines, etc.)
+## ER図
+![ER図](img/ER図.png)
 
-* Deployment instructions
-
-* ...
+## 画面遷移図
+![画面遷移図](img/画面遷移図.png)
