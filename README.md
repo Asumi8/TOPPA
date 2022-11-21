@@ -13,11 +13,13 @@
 - gem/devise/invitable
 
 ## 実行手順
+````
 $ git clone https://github.com/Asumi8/TOPPA.git
 $ cd TOPPA
 $ bundle install
 $ rails db:create && rails db:migrate
 $ rails s
+````
 
 ## チェックシート
 https://docs.google.com/spreadsheets/d/1yeCun6xliH7EAC6EPs_U1IBQXarmhQUshdeRfbPkAaY/edit?usp=sharing
