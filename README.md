@@ -34,7 +34,7 @@ https://docs.google.com/spreadsheets/d/1yeCun6xliH7EAC6EPs_U1IBQXarmhQUshdeRfbPk
 https://www.figma.com/file/Srmf7LUgjEvhlCxgRo3E3r/Untitled?node-id=0%3A1&t=W0msj45hUh7XIkCA-1
 
 ## ER図
-![ER図](img/.png)
+![ER図](img/ER図.png)
 
 ## 画面遷移図
 ![画面遷移図](img/画面遷移図.png)
