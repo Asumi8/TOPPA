@@ -58,3 +58,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise' #追加
 gem 'rexml' #追加
 gem 'devise-i18n' #追加
+gem 'devise_invitable' #追加
