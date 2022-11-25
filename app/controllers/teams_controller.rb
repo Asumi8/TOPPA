@@ -22,16 +22,11 @@ class TeamsController < ApplicationController
 
   # POST /teams or /teams.json
   def create
-    @team = Team.new(team_params)
-
-    respond_to do |format|
-      if @team.save
-        format.html { redirect_to team_url(@team), notice: "Team was successfully created." }
-        format.json { render :show, status: :created, location: @team }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @team.errors, status: :unprocessable_entity }
-      end
+    current_user.teams.build(team_params)
+    if current_user.save
+      redirect_to team_path(current_user), notice: "作成しました"
+    else
+      render 'new'
     end
   end
 
