@@ -22,16 +22,11 @@ class TeamsController < ApplicationController
 
   # POST /teams or /teams.json
   def create
-    @team = Team.new(team_params)
-
-    respond_to do |format|
-      if @team.save
-        format.html { redirect_to team_url(@team), notice: "Team was successfully created." }
-        format.json { render :show, status: :created, location: @team }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @team.errors, status: :unprocessable_entity }
-      end
+    current_user.team_members.build(team_params) #変更
+    if current_user.save #変更
+      redirect_to team_path(current_user), notice: "作成しました"
+    else
+      render 'new'
     end
   end
 
@@ -66,6 +61,6 @@ class TeamsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def team_params
-      params.require(:team).permit(:name, :reward, :period)
+      params.require(:team).permit(:name, :reward, :period, :user_id, :owner_id)
     end
 end

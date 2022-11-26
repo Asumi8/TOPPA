@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
-  devise_for :users
-  root 'teams#index'
   resources :teams
+
+  root 'teams#index'
+
+  devise_for :users, controllers: {
+    invitations: 'users/invitations'
+  }
+  resources :users, only: :show
 
   # letter_opener
   if Rails.env.development?
