@@ -9,3 +9,18 @@
 </p>
 
 <hr />
+
+<% if current_user.team_members.first.present? %>
+<p>
+    <strong>チーム名</strong>
+    <% current_user.team_members.each do |team| %> <!--所属するチーム名を全て表示-->
+        <p>
+            <%= team.name %>
+            <%= link_to "このチームに招待する", new_user_invitation_path(id: current_user.id, team: team.id) %>
+        </p>
+    <% end %>
+</p>
+<% else %>
+<%= link_to "チームに所属する", new_team_path%><br>
+<% end %>
+

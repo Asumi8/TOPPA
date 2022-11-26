@@ -7,6 +7,7 @@
     <div class="field">
       <%= f.label field %><br />
       <%= f.text_field field %>
+      <%= f.hidden_field :team_id, :value => params[:team] %> <!--同じメンバーを招待する-->
     </div>
   <% end -%>
 

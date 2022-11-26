@@ -22,8 +22,8 @@ class TeamsController < ApplicationController
 
   # POST /teams or /teams.json
   def create
-    current_user.teams.build(team_params)
-    if current_user.save
+    current_user.team_members.build(team_params) #変更
+    if current_user.save #変更
       redirect_to team_path(current_user), notice: "作成しました"
     else
       render 'new'
@@ -61,6 +61,6 @@ class TeamsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def team_params
-      params.require(:team).permit(:name, :reward, :period)
+      params.require(:team).permit(:name, :reward, :period, :user_id, :owner_id)
     end
 end

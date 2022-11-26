@@ -5,6 +5,7 @@ class User < ApplicationRecord
         :recoverable, :rememberable, :validatable
 
   has_many :assigns, dependent: :destroy
-  has_many :teams, through: :assigns, source: :team
-  has_many :teams, foreign_key: :owner_id
+  has_many :team_members, through: :assigns, source: :team
+
+  attr_accessor :team_id
 end
