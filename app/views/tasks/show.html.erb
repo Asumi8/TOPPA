@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @task.category %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @task.name %>
+</p>
+
+<p>
+  <strong>Expired at:</strong>
+  <%= @task.expired_at %>
+</p>
+
+<p>
+  <strong>Remarks:</strong>
+  <%= @task.remarks %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= @task.image %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @task.status %>
+</p>
+
+<p>
+  <strong>Repeat:</strong>
+  <%= @task.repeat %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @task.user_id %>
+</p>
+
+<p>
+  <strong>Team:</strong>
+  <%= @task.team_id %>
+</p>
+
+<%= link_to 'Edit', edit_task_path(id:@task.id, team_id:@task.team_id) %> |
+<%= link_to 'Back', team_tasks_path(@task.team_id) %>
