@@ -11,10 +11,18 @@
   </thead>
 
   <tbody>
-    <% @teams.each do |team| %>
+    <% current_user.teams.each do |team| %>
       <tr>
         <td><%= team.name %></td>
-        <td><%= link_to 'チームの詳細', team %></td>
+        <td><%= link_to 'チームの詳細', team_path(team.id) %></td>
+        <td><%= team.tasks.name %></td>
+        <td><%= link_to 'チームのタスク', team_tasks_path(team.id) %></td>
+      </tr>
+    <% end %>
+    <% current_user.team_members.each do |team| %>
+      <tr>
+        <td><%= team.name %></td>
+        <td><%= link_to 'チームの詳細', team_path(team.id) %></td>
         <td><%= team.tasks.name %></td>
         <td><%= link_to 'チームのタスク', team_tasks_path(team.id) %></td>
       </tr>

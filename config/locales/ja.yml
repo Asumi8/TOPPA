@@ -27,6 +27,10 @@ ja:
   activerecord:
     errors:
       models:
+        team:
+          attributes:
+            user:
+              required: ""
         task:
           attributes:
             team:

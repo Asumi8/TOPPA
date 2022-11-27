@@ -26,7 +26,7 @@ class TasksController < ApplicationController
 
   # POST /tasks or /tasks.json
   def create
-    @task = Task.new(task_params)
+    # @task = Task.new(task_params)
     @task = current_user.tasks.build(task_params)
     @task.team_id = params[:task][:team_id]
 
