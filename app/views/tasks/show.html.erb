@@ -22,7 +22,7 @@
 
 <p>
   <strong>Image:</strong>
-  <%= @task.image %>
+  <%= image_tag @task.image.url %>
 </p>
 
 <p>
@@ -35,15 +35,6 @@
   <%= @task.repeat %>
 </p>
 
-<p>
-  <strong>User:</strong>
-  <%= @task.user_id %>
-</p>
-
-<p>
-  <strong>Team:</strong>
-  <%= @task.team_id %>
-</p>
 
 <%= link_to 'Edit', edit_task_path(id:@task.id, team_id:@task.team_id) %> |
 <%= link_to 'Back', team_tasks_path(@task.team_id) %>
