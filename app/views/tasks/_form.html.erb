@@ -46,16 +46,7 @@
     <%= form.check_box :repeat %>
   </div>
 
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :team_id %>
-    <%= form.text_field :team_id %>
-  </div>
-    <%= form.hidden_field :team_id, :value => params[:team_id] %>
+  <%= form.hidden_field :team_id, :value => params[:team_id] %>
 
   <div class="actions">
     <%= form.submit %>

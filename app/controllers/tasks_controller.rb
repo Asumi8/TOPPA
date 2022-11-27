@@ -4,6 +4,11 @@ class TasksController < ApplicationController
   # GET /tasks or /tasks.json
   def index
     @tasks = Team.find(params[:team_id]).tasks
+
+    @tasks = @tasks.created_order if params[:sort_status].present?
+    @tasks = @tasks.expired_order if params[:sort_expired].present?
+    @tasks = @tasks.created_order if params[:sort_created].present?
+
   end
 
   # GET /tasks/1 or /tasks/1.json
