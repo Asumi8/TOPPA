@@ -1,4 +1,10 @@
 class Task < ApplicationRecord
+  validates :category, presence: true
+  validates :name, presence: true, length: { maximum: 30 }
+  validates :expired_at, presence: true
+  validates :remarks, length: { maximum: 300 }
+
+
   mount_uploader :image, ImageUploader
 
   belongs_to :user
