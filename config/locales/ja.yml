@@ -25,6 +25,16 @@ ja:
     pm: "午後"
 
   activerecord:
+    errors:
+      models:
+        team:
+          attributes:
+            user:
+              required: ""
+        task:
+          attributes:
+            team:
+              required: ""
     attributes:
       user:
         confirmation_sent_at: パスワード確認送信時刻

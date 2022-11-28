@@ -22,8 +22,12 @@ class TeamsController < ApplicationController
 
   # POST /teams or /teams.json
   def create
-    current_user.team_members.build(team_params) #変更
-    if current_user.save #変更
+
+    @team = current_user.teams.build(team_params)
+
+    # current_user.team_members.build(team_params) #変更
+
+    if @team.save #変更
       redirect_to team_path(current_user), notice: "作成しました"
     else
       render 'new'

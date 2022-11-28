@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  resources :teams
+  resources :tasks
+  resources :teams do
+    resources :tasks, shallow: true
+  end
 
   root 'teams#index'
 
