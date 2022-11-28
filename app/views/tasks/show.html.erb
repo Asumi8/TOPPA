@@ -2,7 +2,7 @@
 
 <p>
   <strong>Category:</strong>
-  <%= @task.category %>
+  <%= @task.category.name %>
 </p>
 
 <p>
@@ -15,15 +15,19 @@
   <%= @task.expired_at %>
 </p>
 
-<p>
-  <strong>Remarks:</strong>
-  <%= @task.remarks %>
-</p>
+<% if @task.remarks != "" %>
+  <p>
+    <strong>Remarks:</strong>
+    <%= @task.remarks %>
+  </p>
+<% end %>
 
-<p>
-  <strong>Image:</strong>
-  <%= image_tag @task.image.url %>
-</p>
+<% if @task.image.url != nil %>
+  <p>
+    <strong>Image:</strong>
+    <%= image_tag @task.image.url %>
+  </p>
+<% end %>
 
 <p>
   <strong>Status:</strong>

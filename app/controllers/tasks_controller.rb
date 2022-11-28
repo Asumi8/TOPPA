@@ -20,10 +20,12 @@ class TasksController < ApplicationController
   # GET /tasks/new
   def new
     @task = Task.new
+    @categories = Team.find(params[:team_id]).categories
   end
 
   # GET /tasks/1/edit
   def edit
+    @categories = Team.find(params[:team_id]).categories
   end
 
   # POST /tasks or /tasks.json
@@ -87,6 +89,6 @@ class TasksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def task_params
-      params.require(:task).permit(:category, :name, :expired_at, :remarks, :image, :image_cache, :status, :repeat, :user_id, :team_id)
+      params.require(:task).permit(:category_id, :name, :expired_at, :remarks, :image, :image_cache, :status, :repeat, :user_id, :team_id)
     end
 end
