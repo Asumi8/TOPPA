@@ -25,6 +25,7 @@ class TasksController < ApplicationController
 
   # GET /tasks/1/edit
   def edit
+    @categories = Team.find(params[:team_id]).categories
   end
 
   # POST /tasks or /tasks.json
