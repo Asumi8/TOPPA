@@ -26,7 +26,13 @@
         <td><%= task.status %></td>
         <td><%= task.category %></td>
         <td><%= task.name %></td>
-        <td><%= task.expired_at %></td>
+        <% if (task.expired_at - @date).to_i < 14 %>
+            <td class="urgent">
+              <span class="urgent"><%= task.expired_at %></span>
+            </td>
+          <% else %>
+            <td><%= task.expired_at %></td>
+        <% end %>
         <td><%= task.created_at %></td>
         <td><%= link_to 'Show', task %></td>
         <td><%= link_to 'Edit', edit_task_path(id:task.id, team_id:task.team_id) %></td>
@@ -39,3 +45,9 @@
 <br>
 
 <%= link_to 'New Task',  new_team_task_path(params[:team_id]) %>
+
+<style>
+.urgent{
+  color: red;
+}
+</style>

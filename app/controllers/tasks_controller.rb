@@ -10,6 +10,7 @@ class TasksController < ApplicationController
     @tasks = @tasks.expired_order if params[:sort_expired].present?
     @tasks = @tasks.created_order if params[:sort_created].present?
 
+    @date = Date.current()
   end
 
   # GET /tasks/1 or /tasks/1.json
