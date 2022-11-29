@@ -9,7 +9,8 @@ Rails.application.routes.draw do
   root 'teams#index'
 
   devise_for :users, controllers: {
-    invitations: 'users/invitations'
+    invitations: 'users/invitations',
+    registrations: 'users/registrations'
   }
   resources :users, only: :show
 

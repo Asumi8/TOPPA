@@ -1,5 +1,9 @@
 <h2>Profile</h2>
 <p>
+    <strong>アイコン</strong>
+    <%= @user.icon %>
+</p>
+<p>
     <strong>ユーザー名</strong>
     <%= @user.name %>
 </p>
@@ -8,6 +12,7 @@
     <%= @user.email %>
 </p>
 
+<%= link_to "Profileを編集する", edit_user_registration_path(@user) %>
 
 <hr />
 
