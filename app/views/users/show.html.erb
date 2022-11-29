@@ -26,13 +26,11 @@
   <% current_user.teams.each do |team| %> <!--所属するチーム名を全て表示-->
     <p>
       <%= team.name %>
-      <%#= link_to "このチームに招待する", new_user_invitation_path(id: current_user.id, team_id: team.id) %>
     </p>
   <% end %>
   <% current_user.team_members.each do |team| %> <!--所属するチーム名を全て表示-->
     <p>
       <%= team.name %>
-      <%#= link_to "このチームに招待する", new_user_invitation_path(id: current_user.id, team_id: team.id) %>
     </p>
     <% end %>
 </p>
