@@ -42,3 +42,15 @@
 
 <%= link_to 'Edit', edit_task_path(id:@task.id, team_id:@task.team_id) %> |
 <%= link_to 'Back', team_tasks_path(@task.team_id) %>
+
+<hr />
+<p>コメント一覧</p>
+
+  <!-- このcomments_areaというHTMLのidを取得して、そのdivの部分だけを更新する -->
+  <div id="comments_area">
+    <!-- 投稿されたコメント一覧をブログの詳細ページに表示するためのrender -->
+    <%= render partial: 'comments/index', locals: { comments: @comments, task: @task } %>
+  </div>
+
+  <!-- コメント入力欄をブログの詳細ページに表示するためのrender -->
+  <%= render partial: 'comments/form', locals: { comment: @comment, task: @task } %>

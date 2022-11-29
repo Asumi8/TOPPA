@@ -12,6 +12,7 @@ class User < ApplicationRecord
   has_many :team_members, through: :assigns, source: :team
   has_many :teams
   has_many :tasks
+  has_many :comments, dependent: :destroy
 
   attr_accessor :team_id
 end
