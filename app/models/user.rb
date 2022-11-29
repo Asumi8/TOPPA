@@ -2,7 +2,6 @@ class User < ApplicationRecord
   validates :name, presence: true, length: { maximum: 30 }
   validates :email, presence: true, length: { maximum: 255 }
 
-
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :invitable, :database_authenticatable, :registerable,
@@ -13,6 +12,8 @@ class User < ApplicationRecord
   has_many :teams
   has_many :tasks
   has_many :comments, dependent: :destroy
+
+  mount_uploader :icon, ImageUploader
 
   attr_accessor :team_id
 end

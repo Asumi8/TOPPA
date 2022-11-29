@@ -7,6 +7,6 @@ class UsersController < ApplicationController
   end
 
   def user_params #今後追加する
-    params.require(:user).permit(:name, :email, :icon)
+    params.require(:user).permit(:name, :email, :icon, :icon_cache)
   end
 end

@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: %i[ show edit update destroy ]
+  before_action :set_task, only: %i[show edit update destroy]
   before_action :authenticate_user!
 
   # GET /tasks or /tasks.json
@@ -35,7 +35,7 @@ class TasksController < ApplicationController
     # @task = Task.new(task_params)
     @task = current_user.tasks.build(task_params)
     @task.team_id = params[:task][:team_id]
-
+    @categories = Team.find(params[:task][:team_id]).categories
     if @task.save
       redirect_to team_tasks_path(params[:task][:team_id])
     else
@@ -55,6 +55,7 @@ class TasksController < ApplicationController
 
   # PATCH/PUT /tasks/1 or /tasks/1.json
   def update
+    @categories = Team.find(params[:task][:team_id]).categories
     if @task.update(task_params)
       redirect_to team_tasks_path(params[:task][:team_id])
     else

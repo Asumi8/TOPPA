@@ -1,8 +1,12 @@
 <h2>Profile</h2>
-<p>
-    <strong>アイコン</strong>
-    <%= @user.icon %>
-</p>
+
+<% if @user.icon? %>
+  <p>
+    <label class = "icon"><%= image_tag @user.icon.url %></label>
+<% else %>
+    <label class = "icon"><%= image_tag ("default_icon.png")  %></label>
+  </p>
+<% end %>
 <p>
     <strong>ユーザー名</strong>
     <%= @user.name %>
@@ -19,19 +23,20 @@
 <strong>所属しているチーム</strong> <!--自分がつくったチームもしくは所属しているチームがあれば-->
 <% if current_user.teams.first.present? || current_user.team_members.first.present? %>
 <p>
-    <% current_user.teams.each do |team| %> <!--所属するチーム名を全て表示-->
-        <p>
-            <%= team.name %>
-            <%#= link_to "このチームに招待する", new_user_invitation_path(id: current_user.id, team_id: team.id) %>
-        </p>
-    <% end %>
-    <% current_user.team_members.each do |team| %> <!--所属するチーム名を全て表示-->
-        <p>
-            <%= team.name %>
-            <%#= link_to "このチームに招待する", new_user_invitation_path(id: current_user.id, team_id: team.id) %>
-        </p>
+  <% current_user.teams.each do |team| %> <!--所属するチーム名を全て表示-->
+    <p>
+      <%= team.name %>
+      <%#= link_to "このチームに招待する", new_user_invitation_path(id: current_user.id, team_id: team.id) %>
+    </p>
+  <% end %>
+  <% current_user.team_members.each do |team| %> <!--所属するチーム名を全て表示-->
+    <p>
+      <%= team.name %>
+      <%#= link_to "このチームに招待する", new_user_invitation_path(id: current_user.id, team_id: team.id) %>
+    </p>
     <% end %>
 </p>
 <% else %>
 <%= link_to "チームに所属する", new_team_path%><br>
 <% end %>
+
