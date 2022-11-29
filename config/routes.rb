@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
-  resources :tasks
-  resources :teams, shallow: true do
-    resources :tasks
-    resources :categories, only: %i[new create]
+  resources :teams do
+    resources :categories, only: %i[new create], shallow: true
+    resources :tasks, shallow: true do
+      resources :comments, only: %i[create destroy]
+    end
   end
 
   root 'teams#index'

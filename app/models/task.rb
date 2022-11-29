@@ -6,6 +6,8 @@ class Task < ApplicationRecord
 
   mount_uploader :image, ImageUploader
 
+  has_many :comments, dependent: :destroy
+
   belongs_to :user
   belongs_to :team
   belongs_to :category
