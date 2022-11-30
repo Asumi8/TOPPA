@@ -20,7 +20,7 @@ class TeamsController < ApplicationController
     @team = current_user.teams.build(team_params)
 
     if @team.save
-      redirect_to team_path(current_user), notice: "作成しました"
+      redirect_to teams_path(current_user), notice: "チームを作成しました！"
     else
       render 'new'
     end

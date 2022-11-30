@@ -3,6 +3,11 @@
     <% if comment.id.present? %>
       <li>
         <div class="comment-content" id ="this_comment_<%= comment.id %>"></div>
+        <% if comment.user.icon? %>
+          <label class = "icon_comment"><%= image_tag comment.user.icon.url %></label>
+        <% else %>
+          <label class = "icon_comment"><%= image_tag ("default_icon.png") %></label>
+        <% end %>
         <p><%= comment.user.name %>さん</p>
         <p><%= comment.content %></p>
         <p> <%= comment.created_at.strftime('%Y/%m/%d %H:%M:%S') %></p>
