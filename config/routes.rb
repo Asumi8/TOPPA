@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     end
   end
 
-  root 'teams#index'
+  root 'top#index'
 
   devise_for :users, controllers: {
     invitations: 'users/invitations',
