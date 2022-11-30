@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   resources :teams do
     resources :categories, only: %i[new create], shallow: true
     resources :tasks, shallow: true do
