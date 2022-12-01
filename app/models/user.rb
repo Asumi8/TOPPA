@@ -16,4 +16,8 @@ class User < ApplicationRecord
   mount_uploader :icon, ImageUploader
 
   attr_accessor :team_id
+
+  def self.guest
+    find_or_create_by!(email: 'guest@example.com')
+  end
 end
