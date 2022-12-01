@@ -58,3 +58,31 @@
   name: '発表用の資料の作成',
   expired_at: '2023-03-15'
 )
+
+# ゲスト管理者ユーザー
+@admin_user = User.create!(
+  name: 'ゲスト管理者',
+  email: 'admin@example.com',
+  password: SecureRandom.urlsafe_base64,
+  admin: true
+)
+
+@admin_team = Team.create!(
+  user_id: @admin_user.id,
+  name: 'ゲスト管理者チーム',
+  reward: '管理者チームで打ち上げしよう',
+  period: '2023-03-31'
+)
+
+@admin_team_category1 = Category.create!(
+  team_id: @admin_team.id,
+  name: '買い出し'
+)
+
+@task1 = Task.create!(
+  team_id: @admin_team.id,
+  user_id: @admin_user.id,
+  category_id: @admin_team_category1.id,
+  name: '食材を買う',
+  expired_at: '2023-03-05'
+)

@@ -20,4 +20,8 @@ class User < ApplicationRecord
   def self.guest
     find_or_create_by!(email: 'guest@example.com')
   end
+
+  def self.admin
+    find_or_create_by!(email: 'admin@example.com')
+  end
 end
