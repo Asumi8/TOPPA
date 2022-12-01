@@ -21,6 +21,7 @@
     <% else %>
       <%= link_to 'ログイン', new_user_session_path %>
       <%= link_to 'ゲストログイン', users_guest_sign_in_path, method: :post %>
+      <%= link_to 'ゲスト管理者ログイン', users_admin_sign_in_path, method: :post %>
       <%= link_to 'サインアップ', new_user_registration_path %>
     <% end %>
 
