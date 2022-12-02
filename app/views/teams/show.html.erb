@@ -11,7 +11,15 @@
 <p>
   <strong>期限</strong>
   <%= @team.period %>
+</p>
 
+<p>
+  <strong>チームメンバー</strong><br />
+  <%= @team.user.name %> <br />
+  <% @team.users.each do |user| %>
+  <%= user.name%><br />
+  <% end %>
+</p>
 
 <p>
 <strong>チームのタスク実行状況</strong>
