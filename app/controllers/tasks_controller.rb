@@ -41,6 +41,7 @@ class TasksController < ApplicationController
 
   def update
     @categories = Team.find(params[:task][:team_id]).categories
+    @task.user_id = current_user.id
     if @task.update(task_params)
       redirect_to team_tasks_path(params[:task][:team_id])
     else
