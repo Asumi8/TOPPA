@@ -7,6 +7,8 @@ class TeamsController < ApplicationController
   end
 
   def show
+    has_completed_tasks = @team.tasks.where(status: true).pluck(:user_id)
+    @completed_tasks_count = has_completed_tasks.group_by(&:itself).map { |key, value| [User.find(key).name, value.count] }.to_h
   end
 
   def new
