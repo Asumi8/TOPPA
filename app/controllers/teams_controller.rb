@@ -1,5 +1,5 @@
 class TeamsController < ApplicationController
-  before_action :set_team, only: %i[ show edit update destroy ]
+  before_action :set_team, only: %i[show edit update destroy mvp]
   before_action :authenticate_user!
 
   def index
@@ -7,8 +7,8 @@ class TeamsController < ApplicationController
   end
 
   def show
-    has_completed_tasks = @team.tasks.where(status: true).pluck(:user_id)
-    @completed_tasks_count = has_completed_tasks.group_by(&:itself).map { |key, value| [User.find(key).name, value.count] }.to_h
+    completed_users = @team.tasks.where(status: true).pluck(:user_id)
+    @completed_count = completed_users.group_by(&:itself).map { |key, value| [User.find(key).name, value.count] }.to_h
   end
 
   def new
@@ -47,6 +47,14 @@ class TeamsController < ApplicationController
       format.html { redirect_to teams_url, notice: "Team was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  def mvp
+    completed_users = @team.tasks.where(status: true).pluck(:user_id)
+    completed_count = completed_users.group_by(&:itself).map { |key, value| [User.find(key).name, value.count] }.to_h
+    max_value = completed_count.values.max
+    bests = completed_count.select{|k,v| v == max_value}
+    @maximum_completed_user = bests.keys
   end
 
   private

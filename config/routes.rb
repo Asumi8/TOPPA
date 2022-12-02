@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   resources :teams do
+    member do
+      get 'mvp'
+    end
     resources :categories, only: %i[new create], shallow: true
     resources :tasks, shallow: true do
       resources :comments, only: %i[create destroy]
