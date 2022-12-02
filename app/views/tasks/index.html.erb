@@ -26,7 +26,7 @@
         <td><%= task.status %></td>
         <td><%= task.category.name %></td>
         <td><%= task.name %></td>
-        <% if (task.expired_at - @date).to_i < 14 %>
+        <% if (task.expired_at - @date).to_i < 7 %>
             <td class="urgent">
               <span class="urgent"><%= task.expired_at %></span>
             </td>
@@ -34,6 +34,17 @@
             <td><%= task.expired_at %></td>
         <% end %>
         <td><%= task.created_at.strftime('%Y-%m-%d') %></td>
+        <% count = (task.expired_at - task.created_at.to_date).to_i %>
+        <% today = (task.expired_at - @date.tomorrow).to_i %>
+        <% if count > 0 || today > 0 %>
+          <% @expired_at_count = today*100/count %>
+        <% else %>
+          <% @expired_at_count = 0 %>
+        <% end %>
+        <td>
+          <label for="file">リミット:</label>
+          <progress id="file" max="100" value=<%= @expired_at_count %>></progress>
+        </td>
         <td><%= link_to 'Show', task %></td>
         <td><%= link_to 'Edit', edit_task_path(id:task.id, team_id:task.team_id) %></td>
         <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -50,4 +61,17 @@
 .urgent{
   color: red;
 }
+label {
+    padding-right: 10px;
+    font-size: 1rem;
+}
+  progress {
+    -webkit-appearance: none;
+  }
+  ::-webkit-progress-bar {
+    background-color: #dadce0 ;
+  }
+  ::-webkit-progress-value {
+    background-color: #4E889A ;
+  }
 </style>
