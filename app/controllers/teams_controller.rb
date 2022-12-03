@@ -1,5 +1,5 @@
 class TeamsController < ApplicationController
-  before_action :set_team, only: %i[show edit update destroy mvp]
+  before_action :set_team, only: %i[show edit update destroy mvp mvp_delete]
   before_action :authenticate_user!
 
   def index
@@ -57,12 +57,18 @@ class TeamsController < ApplicationController
     @maximum_completed_user = bests.keys
   end
 
-  private
-    def set_team
-      @team = Team.find(params[:id])
-    end
+  def mvp_delete
+    @team.tasks.where(status: true).where(repeat: false).destroy_all
+    redirect_to team_tasks_path(params[:id]), notice: '実行済みのタスクを削除しました'
+  end
 
-    def team_params
-      params.require(:team).permit(:name, :reward, :period, :user_id, :owner_id)
-    end
+  private
+
+  def set_team
+    @team = Team.find(params[:id])
+  end
+
+  def team_params
+    params.require(:team).permit(:name, :reward, :period, :user_id, :owner_id)
+  end
 end

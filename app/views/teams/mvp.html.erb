@@ -15,4 +15,4 @@
   <label><%= user %>さん</label>
 <% end %>
 
-
+<%= button_to '完了したタスクを削除する', mvp_delete_team_path(@team), method: :delete, data: { confirm: 'Are you sure?' } %>

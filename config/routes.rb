@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :teams do
     member do
       get 'mvp'
+      delete 'mvp_delete'
     end
     resources :categories, only: %i[new create], shallow: true
     resources :tasks, shallow: true do
