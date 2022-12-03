@@ -29,24 +29,16 @@ class TeamsController < ApplicationController
   end
 
   def update
-    respond_to do |format|
-      if @team.update(team_params)
-        format.html { redirect_to team_url(@team), notice: "Team was successfully updated." }
-        format.json { render :show, status: :ok, location: @team }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @team.errors, status: :unprocessable_entity }
-      end
+    if @team.update(team_params)
+      redirect_to teams_path(params[:team_id])
+    else
+      render :edit
     end
   end
 
   def destroy
     @team.destroy
-
-    respond_to do |format|
-      format.html { redirect_to teams_url, notice: "Team was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    redirect_to teams_path(params[:team_id])
   end
 
   def mvp
