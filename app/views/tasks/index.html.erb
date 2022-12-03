@@ -1,6 +1,7 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Tasks</h1>
+
+<strong>チームのMVP</strong>
+<%= button_to 'mvpを決める！', mvp_team_path(params[:team_id]), method: :get %>
 
 <table>
   <thead>
@@ -10,6 +11,7 @@
       </th>
       <th>カテゴリー</th>
       <th>タスク名</th>
+      <th>繰り返し</th>
       <th>
         <%= link_to "期限", team_tasks_path(sort_expired: "true") %>
       </th>
@@ -23,9 +25,22 @@
   <tbody>
     <% @tasks.each do |task| %>
       <tr>
-        <td><%= task.status %></td>
+        <td>
+          <% if task.status == true  %>
+            <label>✅</label>
+          <% else %>
+            <label>🟩</label>
+          <% end %>
+        </td>
         <td><%= task.category.name %></td>
         <td><%= task.name %></td>
+        <td>
+          <% if task.repeat == true %>
+          <label>🔄</label>
+          <% else %>
+            <label></label>
+          <% end %>
+        </td>
         <% if (task.expired_at - @date).to_i < 7 %>
             <td class="urgent">
               <span class="urgent"><%= task.expired_at %></span>

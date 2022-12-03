@@ -1,5 +1,5 @@
 class TeamsController < ApplicationController
-  before_action :set_team, only: %i[ show edit update destroy ]
+  before_action :set_team, only: %i[show edit update destroy mvp mvp_delete]
   before_action :authenticate_user!
 
   def index
@@ -7,8 +7,8 @@ class TeamsController < ApplicationController
   end
 
   def show
-    has_completed_tasks = @team.tasks.where(status: true).pluck(:user_id)
-    @completed_tasks_count = has_completed_tasks.group_by(&:itself).map { |key, value| [User.find(key).name, value.count] }.to_h
+    completed_users = @team.tasks.where(status: true).pluck(:user_id)
+    @completed_count = completed_users.group_by(&:itself).map { |key, value| [User.find(key).name, value.count] }.to_h
   end
 
   def new
@@ -29,32 +29,38 @@ class TeamsController < ApplicationController
   end
 
   def update
-    respond_to do |format|
-      if @team.update(team_params)
-        format.html { redirect_to team_url(@team), notice: "Team was successfully updated." }
-        format.json { render :show, status: :ok, location: @team }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @team.errors, status: :unprocessable_entity }
-      end
+    if @team.update(team_params)
+      redirect_to teams_path(params[:team_id])
+    else
+      render :edit
     end
   end
 
   def destroy
     @team.destroy
+    redirect_to teams_path(params[:team_id])
+  end
 
-    respond_to do |format|
-      format.html { redirect_to teams_url, notice: "Team was successfully destroyed." }
-      format.json { head :no_content }
-    end
+  def mvp
+    completed_users = @team.tasks.where(status: true).pluck(:user_id)
+    completed_count = completed_users.group_by(&:itself).map { |key, value| [User.find(key).name, value.count] }.to_h
+    max_value = completed_count.values.max
+    bests = completed_count.select{|k,v| v == max_value}
+    @maximum_completed_user = bests.keys
+  end
+
+  def mvp_delete
+    @team.tasks.where(status: true).where(repeat: false).destroy_all
+    redirect_to team_tasks_path(params[:id]), notice: '実行済みのタスクを削除しました'
   end
 
   private
-    def set_team
-      @team = Team.find(params[:id])
-    end
 
-    def team_params
-      params.require(:team).permit(:name, :reward, :period, :user_id, :owner_id)
-    end
+  def set_team
+    @team = Team.find(params[:id])
+  end
+
+  def team_params
+    params.require(:team).permit(:name, :reward, :period, :user_id, :owner_id)
+  end
 end

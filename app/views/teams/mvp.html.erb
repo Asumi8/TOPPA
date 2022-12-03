@@ -1,0 +1,18 @@
+<h1>team#mvp</h1>
+
+<h2>🎉Congratulations!!🎉</h2>
+
+<p>
+  <% @maximum_completed_user.each do|user| %>
+    <label><%= user %>さん</label>
+  <% end %>
+  <label>にご褒美を渡しましょう！</label>
+</p>
+<br />
+
+<label>最もチームに貢献した人</label>
+<% @maximum_completed_user.each do|user| %>
+  <label><%= user %>さん</label>
+<% end %>
+
+<%= button_to '完了したタスクを削除する', mvp_delete_team_path(@team), method: :delete, data: { confirm: 'Are you sure?' } %>

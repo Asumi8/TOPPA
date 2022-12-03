@@ -22,8 +22,13 @@
 </p>
 
 <p>
+<strong>チームのMVP</strong>
+<%= button_to 'mvpを決める！', mvp_team_path, method: :get %>
+</p>
+
+<p>
 <strong>チームのタスク実行状況</strong>
-  <%= bar_chart @completed_tasks_count, id: "users-chart", width: "800px", height: "300px",  colors: ["#F3A5A3","#4E889A"], xtitle: "タスク実行数", ytitle: "チームメンバー" , min: 0%>
+  <%= bar_chart @completed_count, id: "users-chart", width: "800px", height: "300px",  colors: ["#F3A5A3","#4E889A"], xtitle: "タスク実行数", ytitle: "チームメンバー" , min: 0%>
 </p>
 
 <%= link_to "メンバーを招待する", new_user_invitation_path(id: current_user.id, team: @team.id) %>
