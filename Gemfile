@@ -64,3 +64,4 @@ gem 'mini_magick'
 gem 'rails_admin', '~> 3.0'
 gem 'cancancan'
 gem "chartkick"
+gem 'whenever', require: false
