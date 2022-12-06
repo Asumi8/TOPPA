@@ -13,7 +13,11 @@ module TOPPA
     # config.i18n.default_locale = :ja
     config.time_zone = 'Tokyo'
     # Configuration for the application, engines, and railties goes here.
-    #
+    config.generators do |g|
+      g.assets false
+      g.helper false
+      g.jbuilder false
+    end
     # These settings can be overridden in specific environments using the files
     # in config/environments, which are processed later.
     #
