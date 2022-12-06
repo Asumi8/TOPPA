@@ -1,0 +1,22 @@
+<h3>タスク管理アプリ「TOPPA」</h3>
+<h1>期限が近づいているタスクのお知らせ</h1>
+
+<p><small>※このメールは、対象の方に向けて週に一度配信されます。</small></p>
+
+<strong><%= @team.name %>チームの、期限が2週間以内に迫っているタスクの一覧です。</strong>
+<br />
+<label>期限内にとっぱできるよう、チーム内の役割を見直してみましょう！</label>
+
+<hr />
+<h4>【期限が2週間以内に迫っているタスクの一覧】</h4>
+<% @team.tasks.each do |task| %>
+  <% if task.status == false && (task.expired_at - @today).to_i < 14 %>
+  <ul>
+    <li>
+      カテゴリー：<strong><%= task.category.name %></strong> |
+      タスク名：<strong><%= task.name %></strong> |
+      期限：<strong><%= task.expired_at %></strong>
+    </li>
+  </ul>
+  <% end %>
+<% end %>
