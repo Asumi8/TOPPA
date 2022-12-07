@@ -1,5 +1,5 @@
 class TeamsController < ApplicationController
-  before_action :set_team, only: %i[show edit update destroy mvp mvp_delete]
+  before_action :set_team, only: %i[show edit update destroy mvp mvp_delete assign_delete]
   before_action :authenticate_user!
 
   def index
@@ -41,6 +41,12 @@ class TeamsController < ApplicationController
 
   def destroy
     @team.destroy
+    redirect_to teams_path(params[:team_id])
+  end
+
+  def assign_delete
+    assign_delete = @team.assigns.where(user_id: current_user.id)
+    assign_delete[0].destroy
     redirect_to teams_path(params[:team_id])
   end
 

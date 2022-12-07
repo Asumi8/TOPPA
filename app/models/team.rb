@@ -4,7 +4,7 @@ class Team < ApplicationRecord
 
   has_many :assigns, dependent: :destroy
   has_many :users, through: :assigns, source: :user
-  has_many :tasks
+  has_many :tasks, dependent: :destroy
   has_many :categories, dependent: :destroy
 
   belongs_to :user
