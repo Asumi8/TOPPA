@@ -23,11 +23,6 @@
 <strong>所属しているチーム</strong> <!--自分がつくったチームもしくは所属しているチームがあれば-->
 <% if current_user.teams.first.present? || current_user.team_members.first.present? %>
 <p>
-  <% current_user.teams.each do |team| %> <!--所属するチーム名を全て表示-->
-    <p>
-      <%= team.name %>
-    </p>
-  <% end %>
   <% current_user.team_members.each do |team| %> <!--所属するチーム名を全て表示-->
     <p>
       <%= team.name %>

@@ -20,6 +20,11 @@
   period: '2023-03-31'
 )
 
+Assign.create!(
+  user_id: @user.id,
+  team_id: @user_team.id
+)
+
 @user_team_category1 = Category.create!(
   team_id: @user_team.id,
   name: '事前準備'
@@ -72,6 +77,11 @@
   name: 'ゲスト管理者チーム',
   reward: '管理者チームで打ち上げしよう',
   period: '2023-03-31'
+)
+
+Assign.create!(
+  user_id: @admin_user.id,
+  team_id: @admin_team.id
 )
 
 @admin_team_category1 = Category.create!(

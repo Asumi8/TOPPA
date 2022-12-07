@@ -20,8 +20,11 @@ class TeamsController < ApplicationController
 
   def create
     @team = current_user.teams.build(team_params)
-
     if @team.save
+      @assign = Assign.new
+      @assign.user_id = current_user.id
+      @assign.team_id = @team.id
+      @assign.save
       redirect_to teams_path(current_user), notice: "チームを作成しました！"
     else
       render 'new'
