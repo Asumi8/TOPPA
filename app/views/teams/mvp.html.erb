@@ -1,5 +1,11 @@
 <h1>team#mvp</h1>
 
+<% if @completed_count.empty? %>
+  <p>
+    まだひとつもタスクを実行していません😢<br />
+    チームで分担して実行していきましょう!!🤝
+  </p>
+<% else %>
 <h2>🎉Congratulations!!🎉</h2>
 
 <p>
@@ -16,3 +22,4 @@
 <% end %>
 
 <%= button_to '完了したタスクを削除する', mvp_delete_team_path(@team), method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>

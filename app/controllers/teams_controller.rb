@@ -1,5 +1,5 @@
 class TeamsController < ApplicationController
-  before_action :set_team, only: %i[show edit update destroy mvp mvp_delete]
+  before_action :set_team, only: %i[show edit update destroy mvp mvp_delete assign_delete]
   before_action :authenticate_user!
 
   def index
@@ -20,8 +20,11 @@ class TeamsController < ApplicationController
 
   def create
     @team = current_user.teams.build(team_params)
-
     if @team.save
+      @assign = Assign.new
+      @assign.user_id = current_user.id
+      @assign.team_id = @team.id
+      @assign.save
       redirect_to teams_path(current_user), notice: "チームを作成しました！"
     else
       render 'new'
@@ -41,11 +44,17 @@ class TeamsController < ApplicationController
     redirect_to teams_path(params[:team_id])
   end
 
+  def assign_delete
+    assign_delete = @team.assigns.where(user_id: current_user.id)
+    assign_delete[0].destroy
+    redirect_to teams_path(params[:team_id])
+  end
+
   def mvp
     completed_users = @team.tasks.where(status: true).pluck(:user_id)
-    completed_count = completed_users.group_by(&:itself).map { |key, value| [User.find(key).name, value.count] }.to_h
-    max_value = completed_count.values.max
-    bests = completed_count.select{|k,v| v == max_value}
+    @completed_count = completed_users.group_by(&:itself).map { |key, value| [User.find(key).name, value.count] }.to_h
+    max_value = @completed_count.values.max
+    bests = @completed_count.select{|k,v| v == max_value}
     @maximum_completed_user = bests.keys
   end
 

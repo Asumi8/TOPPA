@@ -27,6 +27,15 @@ ja:
   activerecord:
     errors:
       models:
+        user:
+          attributes:
+            name:
+              blank: ：名前が空白です。
+            email:
+              blank: ：メールアドレスが空白です。
+              invalid: ：メールアドレスを正しく入力してください。
+            password:
+              blank: ：パスワードが空白です。
         team:
           attributes:
             user:
@@ -62,6 +71,12 @@ ja:
         updated_at: 更新日
     models:
       user: ユーザー
+      team: チーム
+      task: タスク
+      comment: コメント
+      category: カテゴリー
+      assign: アサイン
+
   devise:
     confirmations:
       confirmed: メールアドレスが確認できました。

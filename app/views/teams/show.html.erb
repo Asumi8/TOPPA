@@ -15,12 +15,13 @@
 
 <p>
   <strong>チームメンバー</strong><br />
-  <%= @team.user.name %> <br />
   <% @team.users.each do |user| %>
   <%= user.name%><br />
   <% end %>
 </p>
-
+<%= link_to 'メンバーを招待する', new_user_invitation_path(id: current_user.id, team: @team.id) %>
+<br />
+<%= link_to 'このチームを抜ける', assign_delete_team_path(@team), method: :delete, data: { confirm: 'Are you sure?' } %>
 <p>
 <strong>チームのMVP</strong>
 <%= button_to 'mvpを決める！', mvp_team_path, method: :get %>
@@ -31,7 +32,9 @@
   <%= bar_chart @completed_count, id: "users-chart", width: "800px", height: "300px",  colors: ["#F3A5A3","#4E889A"], xtitle: "タスク実行数", ytitle: "チームメンバー" , min: 0%>
 </p>
 
-<%= link_to "メンバーを招待する", new_user_invitation_path(id: current_user.id, team: @team.id) %>
+<% if @team.user == current_user %>
+  <%= link_to 'このチームを削除する', team_path(@team), method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>
 
 <hr />
 

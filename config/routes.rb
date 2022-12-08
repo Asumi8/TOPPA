@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     member do
       get 'mvp'
       delete 'mvp_delete'
+      delete 'assign_delete'
     end
     resources :categories, only: %i[new create], shallow: true
     resources :tasks, shallow: true do

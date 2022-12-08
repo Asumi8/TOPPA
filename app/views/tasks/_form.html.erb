@@ -12,38 +12,38 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :category %>
+    <%= form.label 'カテゴリー＊' %>
     <%= form.collection_select :category_id, @categories, :id, :name, :include_blank => "カテゴリを選択してください" %>
     <%= link_to "新しいカテゴリを追加する", new_team_category_path(params[:team_id]) %>
   </div>
 
   <div class="field">
-    <%= form.label :name %>
+    <%= form.label 'タスク名＊' %>
     <%= form.text_field :name %>
   </div>
 
   <div class="field">
-    <%= form.label :expired_at %>
+    <%= form.label '期限＊' %>
     <%= form.date_field :expired_at %>
   </div>
 
   <div class="field">
-    <%= form.label :remarks %>
+    <%= form.label '補足' %>
     <%= form.text_area :remarks %>
   </div>
 
   <div class="field">
-    <%= form.label :image %>
+    <%= form.label '画像' %>
     <%= form.file_field :image %>
   </div>
 
   <div class="field">
-    <%= form.label :status %>
+    <%= form.label '状況' %>
     <%= form.check_box :status %>
   </div>
 
   <div class="field">
-    <%= form.label :repeat %>
+    <%= form.label '繰り返し' %>
     <%= form.check_box :repeat %>
   </div>
 
