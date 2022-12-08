@@ -15,7 +15,6 @@
       <tr>
         <td><%= team.name %></td>
         <td><%= link_to 'チームの詳細', team_path(team.id) %></td>
-        <td><%= team.tasks.name %></td>
         <td><%= link_to 'チームのタスク', team_tasks_path(team.id) %></td>
       </tr>
     <% end %>
