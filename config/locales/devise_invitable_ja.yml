@@ -14,7 +14,9 @@ ja:
         submit_button: '招待メールを送る'
       edit:
         header: 'パスワードを設定する'
+        header_2: 'パスワードを再設定してログインする'
         submit_button: 'パスワードを設定する'
+        submit_button_2: 'パスワードを再設定する'
     mailer:
       invitation_instructions:
         subject: '招待を承認するには'
@@ -22,7 +24,7 @@ ja:
         someone_invited_you: '%{url}に招待されました。以下のリンクから承認できます。'
         accept: '招待を承認する'
         accept_until: 'この招待は%{due_date}まで有効です。'
-        ignore: '招待を承認しない場合は、このメールを無視してください。<br />あなたのアカウントは上記のリンク先にアクセスしパスワードを設定するまでは作成されません。'
+        ignore: '招待を承認しない場合は、このメールを無視してください。あなたのアカウントは上記のリンク先にアクセスしパスワードを設定するまでは作成されません。'
   time:
     formats:
       devise:

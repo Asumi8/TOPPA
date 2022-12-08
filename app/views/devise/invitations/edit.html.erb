@@ -1,4 +1,8 @@
-<h2><%= t "devise.invitations.edit.header" %></h2>
+<% if resource.name.present? %>
+  <h2><%= t "devise.invitations.edit.header_2" %></h2>
+<% else%>
+  <h2><%= t "devise.invitations.edit.header" %></h2>
+<% end %>
 
 <%= form_for(resource, as: resource_name, url: invitation_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
@@ -22,6 +26,10 @@
   <% end %>
 
   <div class="actions">
-    <%= f.submit t("devise.invitations.edit.submit_button") %>
+    <% if resource.name.present? %>
+      <%= f.submit t("devise.invitations.edit.submit_button_2") %>
+    <% else %>
+      <%= f.submit t("devise.invitations.edit.submit_button") %>
+    <% end %>
   </div>
 <% end %>
