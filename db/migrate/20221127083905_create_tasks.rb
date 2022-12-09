@@ -7,7 +7,7 @@ class CreateTasks < ActiveRecord::Migration[6.1]
       t.text :remarks
       t.string :image
       t.boolean :status, null: false, default: false
-      t.boolean :repeat
+      t.boolean :repeat, default: false
       t.references :user, null: false, foreign_key: true
       t.references :team, null: false, foreign_key: true
 

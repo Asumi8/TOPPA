@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 2022_12_08_090653) do
     t.text "remarks"
     t.string "image"
     t.boolean "status", default: false, null: false
-    t.boolean "repeat"
+    t.boolean "repeat", default: false
     t.bigint "user_id", null: false
     t.bigint "team_id", null: false
     t.datetime "created_at", precision: 6, null: false

@@ -59,8 +59,13 @@ class TeamsController < ApplicationController
   end
 
   def mvp_delete
-    @team.tasks.where(status: true).where(repeat: false).destroy_all
-    redirect_to team_tasks_path(params[:id]), notice: '実行済みのタスクを削除しました'
+    completed_not_repeat_task = @team.tasks.where(status: true).where(repeat: false)
+    if completed_not_repeat_task.present?
+      completed_not_repeat_task.destroy_all
+      redirect_to team_tasks_path(params[:id]), notice: '実行済みのタスクを削除しました'
+    else
+      redirect_to team_tasks_path(params[:id]), notice: '削除できるタスクがありません'
+    end
   end
 
   private
