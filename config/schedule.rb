@@ -6,6 +6,10 @@ rails_env = ENV['RAILS_ENV'] || :development
 set :output, "#{Rails.root}/log/cron.log"
 set :environment, rails_env
 
-every :sunday, at: '9:00 am' do # Many shortcuts available: :hour, :day, :month, :year, :reboot
+# every :sunday, at: '9:00 am' do # Many shortcuts available: :hour, :day, :month, :year, :reboot
+#   rake 'deadline_approaching:notification'
+# end
+
+every 1.minute do # Many shortcuts available: :hour, :day, :month, :year, :reboot
   rake 'deadline_approaching:notification'
 end
