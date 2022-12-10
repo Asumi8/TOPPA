@@ -65,3 +65,7 @@ gem 'rails_admin', '~> 3.0'
 gem 'cancancan'
 gem "chartkick"
 gem 'whenever', require: false
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'fog-aws'
+gem 'dotenv-rails'
