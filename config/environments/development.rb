@@ -39,7 +39,7 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
 
   # 追加
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.default_url_options = { host: '43.206.187.158' }
   #config.action_mailer.delivery_method = :letter_opener_web
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
@@ -47,8 +47,8 @@ Rails.application.configure do
     address:              'smtp.gmail.com',
     port:                  587,
     domain:               'gmail.com',
-    user_name:            Rails.application.credentials.gmail[:user_name],
-    password:             Rails.application.credentials.gmail[:password],
+    user_name:            ENV['SEND_MAIL'],
+    password:             ENV['GMAIL_SPECIFIC_PASSWORD'],
     authentication:       'plain',
     enable_starttls_auto:  true
   }
