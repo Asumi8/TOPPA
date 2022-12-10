@@ -3,11 +3,13 @@ class TasksController < ApplicationController
   before_action :authenticate_user!
 
   def index
+
     @tasks = Team.find(params[:team_id]).tasks
 
     @tasks = @tasks.created_order if params[:sort_status].present?
     @tasks = @tasks.expired_order if params[:sort_expired].present?
     @tasks = @tasks.created_order if params[:sort_created].present?
+    @tasks = @tasks.page(params[:page]).per(5)
 
     @date = Date.current()
   end

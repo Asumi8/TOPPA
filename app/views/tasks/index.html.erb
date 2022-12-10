@@ -72,6 +72,8 @@
 
 <%= link_to 'New Task',  new_team_task_path(params[:team_id]) %>
 
+<%= paginate @tasks %>
+
 <style>
 .urgent{
   color: red;

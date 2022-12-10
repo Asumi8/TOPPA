@@ -354,6 +354,7 @@ DEPENDENCIES
   dotenv-rails
   ed25519
   fog-aws
+  kaminari
   letter_opener_web
   listen (~> 3.3)
   mini_magick
