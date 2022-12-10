@@ -4,7 +4,6 @@
   password: SecureRandom.urlsafe_base64
 )
 
-
 @guest_team = Team.create!(
   user_id: @guest.id,
   name: 'ゲストプロジェクト',
@@ -56,7 +55,6 @@ Assign.create!(
   expired_at: '2023-03-15'
 )
 
-
 @user_1 = User.create!(
   name: 'hoge',
   email: 'hoge@hoge.com',
@@ -86,10 +84,12 @@ Assign.create!(
   user_id: @guest.id,
   team_id: @user_team1.id
 )
+
 Assign.create!(
   user_id: @user_1.id,
   team_id: @user_team1.id
 )
+
 Assign.create!(
   user_id: @user_2.id,
   team_id: @user_team1.id
@@ -186,7 +186,6 @@ Assign.create!(
   expired_at: '2023-02-20'
 )
 
-
 @user_4 = User.create!(
   name: 'foo',
   email: 'foo@foo.com',
@@ -206,23 +205,26 @@ Assign.create!(
   period: '2023-03-31'
 )
 
-
 Assign.create!(
   user_id: @guest.id,
   team_id: @user_team2.id
 )
+
 Assign.create!(
   user_id: @user_1.id,
   team_id: @user_team2.id
 )
+
 Assign.create!(
   user_id: @user_2.id,
   team_id: @user_team2.id
 )
+
 Assign.create!(
   user_id: @user_3.id,
   team_id: @user_team2.id
 )
+
 Assign.create!(
   user_id: @user_4.id,
   team_id: @user_team2.id
@@ -237,7 +239,6 @@ Assign.create!(
   team_id: @user_team2.id,
   name: '計画'
 )
-
 
 @user_task9 = Task.create!(
   team_id: @user_team2.id,
@@ -327,6 +328,7 @@ Assign.create!(
   name: '飲み物買う',
   expired_at: '2023-03-05'
 )
+
 @user_task13 = Task.create!(
   team_id: @admin_team.id,
   user_id: @admin_user.id,
@@ -334,6 +336,7 @@ Assign.create!(
   name: '大人数用のご飯買う',
   expired_at: '2023-03-05'
 )
+
 @user_task14 = Task.create!(
   team_id: @admin_team.id,
   user_id: @admin_user.id,
@@ -342,6 +345,7 @@ Assign.create!(
   status: true,
   expired_at: '2023-03-02'
 )
+
 @user_task15 = Task.create!(
   team_id: @admin_team.id,
   user_id: @admin_user.id,
@@ -350,6 +354,7 @@ Assign.create!(
   name: 'メンバーに告知する',
   expired_at: '2023-03-01'
 )
+
 Comment.create!(
   task_id: @user_task14.id,
   user_id: @user_3.id,
