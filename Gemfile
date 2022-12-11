@@ -76,3 +76,4 @@ gem 'fog-aws'
 gem 'dotenv-rails' # 開発環境で環境変数を操作するのに必要
 gem 'unicorn' # アプリケーションサーバのunicorn
 gem 'kaminari'
+gem 'bootstrap4-kaminari-views'
