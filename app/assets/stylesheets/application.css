@@ -17,3 +17,20 @@ li {
 }
 
 
+
+.page-item>li>a {
+  border: none;
+  color: #696969; 
+}
+
+
+.page-item>.active>a {
+  background: #4E889A;
+  border-radius: 15px;
+}
+
+
+.page-item>li>a:hover {
+  border-radius: 15px;
+}
+
