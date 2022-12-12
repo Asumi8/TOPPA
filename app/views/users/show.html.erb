@@ -1,35 +1,63 @@
-<h2>Profile</h2>
+<div class = "main">
+  <h1>Profile</h1>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md col-lg-2 icon">
+          <% if @user.icon? %>
+            <p>
+              <label class = "icon"><%= image_tag @user.icon.url %></label>
+          <% else %>
+              <label class = "icon"><%= image_tag ("default_icon.png")  %></label>
+            </p>
+          <% end %>
+        </div>
+        <div class="col-md-8 col-lg-9">
+          <p>
+            <strong>ユーザー名:</strong>
+            <%= @user.name %>
+          </p>
+          <p>
+            <strong>emailアドレス:</strong>
+            <%= @user.email %>
+          </p>
+          <button type="button" class="btn btn-secondary">
+            <%= link_to "Profileを編集する", edit_user_registration_path(@user) %>
+          </button>
+        </div>
+      </div>
+    </div>
+  <hr />
 
-<% if @user.icon? %>
+  <h4>所属しているチーム</h4> <!--自分がつくったチームもしくは所属しているチームがあれば-->
+  <% if current_user.teams.first.present? || current_user.team_members.first.present? %>
   <p>
-    <label class = "icon"><%= image_tag @user.icon.url %></label>
-<% else %>
-    <label class = "icon"><%= image_tag ("default_icon.png")  %></label>
+    <% current_user.team_members.each do |team| %> <!--所属するチーム名を全て表示-->
+      <p>
+        <%= team.name %>
+      </p>
+      <% end %>
   </p>
-<% end %>
-<p>
-    <strong>ユーザー名</strong>
-    <%= @user.name %>
-</p>
-<p>
-    <strong>emailアドレス</strong>
-    <%= @user.email %>
-</p>
+  <% else %>
+  <%= link_to "チームに所属する", new_team_path%><br>
+  <% end %>
+</div>
 
-<%= link_to "Profileを編集する", edit_user_registration_path(@user) %>
+<style>
+h1{
+  padding:30px;
+}
+.container-fluid{
+  margin: auto 30px;
+}
+.main{
+  margin: 5vh auto;
+  background-color:#ECDDD6;
+  height:80vh;
+}
+.btn-secondary a{
+  color:white;
+  font-weight:bold;
+  padding-left:10px;
+}
 
-<hr />
-
-<strong>所属しているチーム</strong> <!--自分がつくったチームもしくは所属しているチームがあれば-->
-<% if current_user.teams.first.present? || current_user.team_members.first.present? %>
-<p>
-  <% current_user.team_members.each do |team| %> <!--所属するチーム名を全て表示-->
-    <p>
-      <%= team.name %>
-    </p>
-    <% end %>
-</p>
-<% else %>
-<%= link_to "チームに所属する", new_team_path%><br>
-<% end %>
-
+</style>
