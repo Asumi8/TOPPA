@@ -1,6 +1,12 @@
 <h1>Editing Task</h1>
 
-<%= render 'form', task: @task %>
+<%= render 'form', task: @task, team: @team %>
+
+<% if (params[:team_id]).present?  %>
+  <% @team_id = params[:team_id] %>
+<% elsif  (params[:task][:team_id]).present? %>
+  <% @team_id = params[:task][:team_id] %>
+<% end %>
 
 <%= link_to 'Show', @task %> |
-<%= link_to 'Back', team_tasks_path(team_id:params[:team_id]) %>
+<%= link_to 'Back', team_tasks_path(team_id:@team_id) %>
