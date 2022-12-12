@@ -22,16 +22,15 @@ class TasksController < ApplicationController
   def new
     @task = Task.new
     @categories = Team.find(params[:team_id]).categories
-    @team = Team.find(params[:team_id])
   end
 
   def edit
     @categories = Team.find(params[:team_id]).categories
-    @team = Team.find(params[:team_id])
   end
 
 
   def create
+    @team = Team.find(params[:team_id])
     @task = current_user.tasks.build(task_params)
     @task.team_id = params[:task][:team_id]
     @categories = Team.find(params[:task][:team_id]).categories

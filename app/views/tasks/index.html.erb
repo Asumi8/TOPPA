@@ -41,7 +41,7 @@
             <label></label>
           <% end %>
         </td>
-        <% if (task.expired_at - @date).to_i < 7 %>
+        <% if (task.expired_at - @date).to_i < 7 && task.status == false %>
             <td class="urgent">
               <span class="urgent"><%= task.expired_at %></span>
             </td>
@@ -77,6 +77,7 @@
 <style>
 .urgent{
   color: red;
+  font-weight:bold;
 }
 label {
     padding-right: 10px;
