@@ -1,8 +1,8 @@
-<div class = "main">
+<div class = "container">
   <h1>Profile</h1>
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-md col-lg-2 icon">
+  <div class="container-fluid">
+    <div class="row">
+        <div class="col-md col-lg-4 icon-img">
           <% if @user.icon? %>
             <p>
               <label class = "icon"><%= image_tag @user.icon.url %></label>
@@ -11,12 +11,12 @@
             </p>
           <% end %>
         </div>
-        <div class="col-md-8 col-lg-9">
-          <p>
+        <div class="col-md-8 col-lg">
+          <p class = "text-green">
             <strong>ユーザー名:</strong>
             <%= @user.name %>
           </p>
-          <p>
+          <p class = "text-green">
             <strong>emailアドレス:</strong>
             <%= @user.email %>
           </p>
@@ -25,39 +25,49 @@
           </button>
         </div>
       </div>
-    </div>
-  <hr />
+      <hr />
 
-  <h4>所属しているチーム</h4> <!--自分がつくったチームもしくは所属しているチームがあれば-->
-  <% if current_user.teams.first.present? || current_user.team_members.first.present? %>
-  <p>
-    <% current_user.team_members.each do |team| %> <!--所属するチーム名を全て表示-->
+      <h4>所属しているチーム</h4>
+      <% if current_user.teams.first.present? || current_user.team_members.first.present? %>
       <p>
-        <%= team.name %>
+        <% current_user.team_members.each do |team| %>
+          <p>
+            <%= team.name %>
+          </p>
+          <% end %>
       </p>
+      <% else %>
+      <%= link_to "チームに所属する", new_team_path%><br>
       <% end %>
-  </p>
-  <% else %>
-  <%= link_to "チームに所属する", new_team_path%><br>
-  <% end %>
+    </div>
+  </div>
 </div>
 
 <style>
 h1{
-  padding:30px;
+  padding:10px 10px;
 }
-.container-fluid{
-  margin: auto 30px;
+h4{
+  color:#4E889A;
 }
-.main{
+.icon-img{
+  text-align:center;
+}
+.container{
   margin: 5vh auto;
   background-color:#ECDDD6;
-  height:80vh;
+  height: auto;
+  max-width: 600px;
+  border-radius:5px;
+  padding: 0 5px 5px 5px;
 }
 .btn-secondary a{
   color:white;
   font-weight:bold;
   padding-left:10px;
 }
-
+.text-green  strong{
+  color:#4E889A;
+  font-weight:bold;
+}
 </style>

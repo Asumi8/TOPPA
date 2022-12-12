@@ -1,26 +1,62 @@
-<h1>Teams</h1>
+<div class = "container">
+  <div class="container-fluid">
+    <div class="row">
+      <h1>myチーム/myタスク</h1>
+      <br>
+      <p>
+        <%= link_to '新しいチームを作成', new_team_path %></label>
+      </p>
 
-<table>
-  <thead>
-    <tr>
-      <th>所属チーム</th>
-      <th></th>
-      <th>チームのタスク</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+      <% current_user.team_members.each do |team| %>
+      <div class="col-lg-6">
+        <div class="card">
+          <div class="card-header bg-dark">
+            <%= team.name %>
+          </div>
+          <div class="card-body">
+            <%= link_to 'チームの詳細', team_path(team.id) %>
+            <%= link_to 'チームのタスク', team_tasks_path(team.id) %>
+          </div>
+        </div>
+      </div>
+      <% end %>
 
-  <tbody>
-    <% current_user.team_members.each do |team| %>
-      <tr>
-        <td><%= team.name %></td>
-        <td><%= link_to 'チームの詳細', team_path(team.id) %></td>
-        <td><%= link_to 'チームのタスク', team_tasks_path(team.id) %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+    </div>
+  </div>
+</div>
 
-<br>
-
-<%= link_to '新しいチームを作成', new_team_path %>
+<style>
+h1{
+  padding:10px 10px;
+  color:#4E889A;
+}
+h4{
+  color:#4E889A;
+}
+.icon-img{
+  text-align:center;
+}
+.container{
+  margin: 5vh auto;
+  background-color:#ECDDD6;
+  height: auto;
+  max-width: 600px;
+  border-radius:5px;
+  padding: 0 5px 5px 5px;
+}
+.text-green strong{
+  color:#4E889A;
+  font-weight:bold;
+}
+.card{
+  background-color: #fff;
+  margin: 10px;
+  color:#fff;
+}
+.card-body{
+  padding:1.25rem;
+}
+.card-title{
+  background-color:#4E889A;
+}
+</style>
