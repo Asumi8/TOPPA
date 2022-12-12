@@ -1,21 +1,21 @@
 <div class = "container">
   <div class="container-fluid">
     <div class="row">
-      <h1>myチーム/myタスク</h1>
-      <br>
-      <p>
-        <%= link_to '新しいチームを作成', new_team_path %></label>
-      </p>
+      <h1 class="col-lg-6">team/task</h1>
+      <%= link_to '新しいチームを作成', new_team_path %>
 
+      <p class="col-lg-12 title">所属しているチームとタスクの一覧</p>
+     
       <% current_user.team_members.each do |team| %>
       <div class="col-lg-6">
         <div class="card">
-          <div class="card-header bg-dark">
-            <%= team.name %>
-          </div>
+          <div class="card-header bg-primary"></div>
+          <h6 class="card-title"><%= team.name %></h6>
           <div class="card-body">
             <%= link_to 'チームの詳細', team_path(team.id) %>
-            <%= link_to 'チームのタスク', team_tasks_path(team.id) %>
+            <span class="btn btn-secondary">
+              <%= link_to 'チームのタスク', team_tasks_path(team.id) %>
+            </span>
           </div>
         </div>
       </div>
@@ -40,9 +40,10 @@ h4{
   margin: 5vh auto;
   background-color:#ECDDD6;
   height: auto;
-  max-width: 600px;
+  max-width: 800px;
   border-radius:5px;
   padding: 0 5px 5px 5px;
+  min-height:600px;
 }
 .text-green strong{
   color:#4E889A;
@@ -51,12 +52,26 @@ h4{
 .card{
   background-color: #fff;
   margin: 10px;
-  color:#fff;
+  color:#50595B;
 }
 .card-body{
   padding:1.25rem;
+  color:#50595B;
 }
 .card-title{
-  background-color:#4E889A;
+  text-align:center;
+  margin:5px 0;
+}
+.card-header{
+  height:8px;
+}
+.btn.btn-secondary a{
+  color:white;
+  font-weight:bold;
+  padding-left:10px;
+}
+.title{
+  text-align:center;
+  font-size:18px;
 }
 </style>
