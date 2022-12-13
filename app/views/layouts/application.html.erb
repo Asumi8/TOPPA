@@ -77,16 +77,15 @@
       </div>
       </div>
     </nav>
-
-    <div class = "container-md main">
-      <% if notice %>
-        <p class="alert alert-notice"><%= notice %></p>
-      <% end %>
-      <% if alert %>
-        <p class="alert alert-error"><%= alert %></p>
-      <% end %>
+      <div class="message">
+        <% if notice %>
+          <p class="alert alert-notice"><%= notice %></p>
+        <% end %>
+        <% if alert %>
+          <p class="alert alert-error"><%= alert %></p>
+        <% end %>
+      </div>
       <%= yield %>
-    </div>
 
     <footer>
       <small>Copyright ©️ TOPPA 2022</small>
@@ -102,27 +101,43 @@
 
 <style>
 .footer_fixed{
-    min-height: 100vh; /* ←コンテンツの高さの最小値＝ブラウザの高さに指定 */
-    position: relative;/* ←相対位置 */
-    padding-bottom: 60px; /* ←フッターの高さを指定 */
+    min-height: 100vh;
+    position: relative;
+    padding-bottom: 60px;
     box-sizing: border-box;
 }
-.container-md {
+.container{
   margin-right: auto;
   margin-left: auto;
   max-width: 1000px;
-  /* margin: 5vh auto;
-  background-color:#ECDDD6;
-  height: auto;
-  border-radius:5px;
-  padding: 30px; */
 }
+.message{
+  max-width: 1000px;
+  margin-right: auto;
+  margin-left: auto;
+}
+/* .container-md {
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 1000px;
+} */
+/* .card{
+  background-color:#ECDDD6;
+  border: #fff;
+  padding: 10px;
+}
+.title{
+  text-align:center;
+  font-size:18px;
+  color:#524f4f;
+} */
 h1{
   font-family: 'Noto Sans JP', sans-serif;
   font-family: 'Quicksand', sans-serif;
   color: #4E889A;
   font-weight: bold;
   color:#4E889A;
+  text-align:center;
 }
 body{
   font-family: 'Noto Sans JP', sans-serif;
