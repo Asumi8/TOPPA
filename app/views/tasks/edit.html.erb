@@ -1,12 +1,36 @@
-<h1>Editing Task</h1>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-8">
+      <div class="card">
+        <div class="card-body">
+          <h1>Editing the Task</h1>
+          <p class="col-lg-12 title">- タスクを編集する -</p>
 
-<%= render 'form', task: @task, team: @team %>
+          <%= render 'form', task: @task, team: @team %>
 
-<% if (params[:team_id]).present?  %>
-  <% @team_id = params[:team_id] %>
-<% elsif  (params[:task][:team_id]).present? %>
-  <% @team_id = params[:task][:team_id] %>
-<% end %>
+          <% if (params[:team_id]).present?  %>
+            <% @team_id = params[:team_id] %>
+          <% elsif  (params[:task][:team_id]).present? %>
+            <% @team_id = params[:task][:team_id] %>
+          <% end %>
 
-<%= link_to 'Show', @task %> |
-<%= link_to 'Back', team_tasks_path(team_id:@team_id) %>
+          <%= link_to 'タスクの詳細', @task %> |
+          <%= link_to '戻る', team_tasks_path(team_id:@team_id) %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.card{
+  background-color:#ECDDD6;
+  border: #fff;
+  padding: 10px;
+}
+.title{
+  text-align:center;
+  font-size:18px;
+  color:#524f4f;
+}
+</style>
