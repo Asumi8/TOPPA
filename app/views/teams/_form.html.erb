@@ -15,14 +15,14 @@
   <div class="field">
     <p>
     <%= form.label :name %><span class="required"> *必須</span><br />
-    <%= form.text_field :name %>
+    <%= form.text_field :name, :placeholder => "例:〇〇チーム/△△プロジェクト"%>
     </p>
   </div>
 
   <div class="field">
     <p>
     <%= form.label :reward %><br />
-    <%= form.text_field :reward %>
+    <%= form.text_area :reward, :placeholder => "やる気の出るご褒美や目標を設定しましょう！例:「1番頑張った人に〇〇を渡そう！」" %>
     </p>
   </div>
 
@@ -47,7 +47,7 @@
 .required{
   color:#c24474;
 }
-input {
+input, textarea {
   width:100%;
 }
 </style>
