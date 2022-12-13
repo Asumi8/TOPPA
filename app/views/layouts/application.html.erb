@@ -18,6 +18,7 @@
   </head>
 
   <body>
+    <div class="footer_fixed">
     <nav class="navbar navbar-expand-md navbar-light bg-light">
       <div class = "container-md">
       <a class="navbar-brand" href="/">TOPPA!</a>
@@ -88,8 +89,9 @@
     </div>
 
     <footer>
-      <small>copyright 2022</small>
+      <small>Copyright ©️ TOPPA 2022</small>
     </footer>
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"   crossorigin="anonymous"></script>
@@ -99,6 +101,17 @@
 </html>
 
 <style>
+.footer_fixed{
+    min-height: 100vh; /* ←コンテンツの高さの最小値＝ブラウザの高さに指定 */
+    position: relative;/* ←相対位置 */
+    padding-bottom: 60px; /* ←フッターの高さを指定 */
+    box-sizing: border-box;
+}
+.container-md {
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 900px;
+}
 h1{
   font-family: 'Noto Sans JP', sans-serif;
   font-family: 'Quicksand', sans-serif;
@@ -123,10 +136,5 @@ footer{
   color:grey;
   font-weight:700;
   font-family: 'Quicksand', sans-serif;
-}
-.container-md {
-  margin-right: auto;
-  margin-left: auto;
-  max-width: 900px;
 }
 </style>

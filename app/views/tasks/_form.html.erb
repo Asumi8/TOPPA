@@ -1,7 +1,7 @@
 <%= form_with(model: [team, task], url:choose_new_or_edit, local: true) do |form| %>
   <% if task.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
+      <h2><%= pluralize(task.errors.count, "件") %><%= t('activerecord.errors.errors_message')%></h2>
 
       <ul>
         <% task.errors.each do |error| %>
