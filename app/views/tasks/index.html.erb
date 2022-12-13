@@ -24,7 +24,23 @@
                 <h6 class="card-title">
                   <div class="left-box">
                     <span class="column category">カテゴリ</span><%= task.category.name %>
-                    <span class="column name">タスク</span><%= task.name %>
+                    <% if (task.expired_at - @date).to_i < 7 && task.status == false %>
+                      <span class="column expire">期限</span>
+                      <span class="urgent"><%= task.expired_at %></span>
+                    <% else %>
+                      <span class="column expire">期限</span>
+                      <%= task.expired_at %>
+                      <% end %>
+                    <% task.created_at.strftime('%Y-%m-%d') %>
+                    <% count = (task.expired_at - task.created_at.to_date).to_i %>
+                    <% today = (task.expired_at - @date.tomorrow).to_i %>
+                    <% if count > 0 || today > 0 %>
+                      <% @expired_at_count = today*100/count %>
+                    <% else %>
+                      <% @expired_at_count = 0 %>
+                    <% end %>
+                    <label for="file">
+                    <progress id="file" max="100" value=<%= @expired_at_count %>></progress></label>
                   </div>
                   <div class="right-box">
                     <span class="column create">作成日:<%= task.created_at.strftime('%Y-%m-%d') %></span>
@@ -37,35 +53,16 @@
                     <label>🟩</label>
                   <% end %>
 
-                  <% if (task.expired_at - @date).to_i < 7 && task.status == false %>
-                    <span class="column expire">期限</span>
-                    <span class="urgent"><%= task.expired_at %></span>
-                  <% else %>
-                    <span class="column expire">期限</span>
-                    <%= task.expired_at %>
-                    <% end %>
-                  <% task.created_at.strftime('%Y-%m-%d') %>
-                  <% count = (task.expired_at - task.created_at.to_date).to_i %>
-                  <% today = (task.expired_at - @date.tomorrow).to_i %>
-                  <% if count > 0 || today > 0 %>
-                    <% @expired_at_count = today*100/count %>
-                  <% else %>
-                    <% @expired_at_count = 0 %>
-                  <% end %>
-
-                  <label for="file">
-                  <progress id="file" max="100" value=<%= @expired_at_count %>></progress></label>
-
-
+                  <span class="column name">タスク</span><%= task.name %>
                   <% if task.repeat == true %>
                     <label>🔄</label>
                   <% else %>
                     <label></label>
                   <% end %>
 
-                  <%= link_to 'Show', task %>
-                  <%= link_to 'Edit', edit_task_path(id:task.id, team_id:task.team_id) %>
-                  <%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %>
+                  <%= link_to '詳細', task %>
+                  <%= link_to '編集', edit_task_path(id:task.id, team_id:task.team_id) %>
+                  <%= link_to '削除', task, method: :delete, data: { confirm: 'Are you sure?' } %>
                 </div>
               </div>
             </div>
@@ -93,7 +90,7 @@ progress {
   background-color: #dadce0 ;
 }
 ::-webkit-progress-value {
-  background-color: #4E889A ;
+  background-color: #F85B57 ;
   }
 .card{
   background-color:#ECDDD6;
@@ -119,14 +116,14 @@ progress {
 }
 
 .column.category{
-  background-color:#4E889A;
+  background-color:#5f6466;
   color:white;
   padding:2px;
   font-size:14px;
   margin-right:5px;
 }
 .column.name{
-  background-color:#F85B57;
+  background-color:#F3A5A3;
   color:white;
   padding:2px;
   font-size:14px;
