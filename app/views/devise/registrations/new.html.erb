@@ -1,9 +1,10 @@
 <div class="container">
   <div class="row justify-content-center">
-    <div class="col-5">
+    <div class="col-6">
       <div class = "card">
         <div class="card-body">
-          <h2 class="title"><%= t('.sign_up') %></h2><br />
+          <h1>Sign up</h1>
+          <p class="col-lg-12 title">- アカウント登録 -</p>
 
           <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
             <%= render "devise/shared/error_messages", resource: resource %>
@@ -11,14 +12,14 @@
             <div class="field">
               <p>
                 <%= f.label :name %><br />
-                <%= f.text_field :name %>
+                <%= f.text_field :name, :placeholder =>  "ユーザー名" %>
               </p>
             </div>
 
             <div class="field">
               <p>
                 <%= f.label :email %><br />
-                <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+                <%= f.email_field :email, autofocus: true, autocomplete: "email", :placeholder =>  "メールアドレス" %>
               </p>
             </div>
 
@@ -28,14 +29,14 @@
                 <% if @minimum_password_length %>
                 <em><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></em>
                 <% end %><br />
-                <%= f.password_field :password, autocomplete: "new-password" %>
+                <%= f.password_field :password, autocomplete: "new-password", :placeholder =>  "6文字以上必要です" %>
               </p>
             </div>
 
             <div class="field">
               <p>
                 <%= f.label :password_confirmation %><br />
-                <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+                <%= f.password_field :password_confirmation, autocomplete: "new-password", :placeholder =>  "パスワードを再入力" %>
               </p>
             </div>
 
@@ -54,12 +55,13 @@
 </div>
 
 <style>
+h1{
+  text-align:center;
+}
 .title{
-  text-align: center;
-  font-family: 'Noto Sans JP', sans-serif;
-  font-family: 'Quicksand', sans-serif;
-  color: #4E889A;
-  font-weight: bold;
+  text-align:center;
+  font-size:18px;
+  color:#524f4f;
 }
 input {
   width:100%
@@ -67,5 +69,6 @@ input {
 .card{
   background-color:#ECDDD6;
   border: #fff;
+  padding:10px;
 }
 </style>
