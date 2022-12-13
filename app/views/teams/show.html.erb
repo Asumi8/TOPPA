@@ -1,44 +1,82 @@
-<p>
-  <strong>チーム名</strong>
-  <%= @team.name %>
-</p>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12">
+      <div class = "card">
+        <div class="card-body">
+          <h1>My Team</h1>
+          <p class="col-lg-12 title">- <%= @team.name%>チーム -</p>
+          <p class="text-green">
+            <strong>チーム名:</strong>
+            <%= @team.name %>
+          </p>
 
-<p>
-  <strong>チームのご褒美</strong>
-  <%= @team.reward %>
-</p>
+          <p class="text-green">
+            <strong>チームのご褒美/目標:</strong>
+            <%= @team.reward %>
+          </p>
 
-<p>
-  <strong>期限</strong>
-  <%= @team.period %>
-</p>
+          <p class="text-green">
+            <strong>達成期限:</strong>
+            <%= @team.period %>
+          </p>
 
-<p>
-  <strong>チームメンバー</strong><br />
-  <% @team.users.each do |user| %>
-  <%= user.name%><br />
-  <% end %>
-</p>
-<%= link_to 'メンバーを招待する', new_user_invitation_path(id: current_user.id, team: @team.id) %>
-<br />
-<%= link_to 'このチームを抜ける', assign_delete_team_path(@team), method: :delete, data: { confirm: 'Are you sure?' } %>
-<p>
-<strong>チームのMVP</strong>
-<%= button_to 'mvpを決める！', mvp_team_path, method: :get %>
-</p>
+          <p class="text-green">
+            <strong>チームメンバー:</strong><br />
+            <% @team.users.each do |user| %>
+            <%= user.name%><br />
+            <% end %>
+          </p>
 
-<p>
-<strong>チームのタスク実行状況</strong>
-  <%= bar_chart @completed_count, id: "users-chart", width: "800px", height: "300px",  colors: ["#F3A5A3","#4E889A"], xtitle: "タスク実行数", ytitle: "チームメンバー" , min: 0%>
-</p>
+          <button class = "btn btn-secondary">
+            <%= link_to 'メンバーを招待する', new_user_invitation_path(id: current_user.id, team: @team.id) %>
+          </button>
+          <button class = "btn btn-dark">
+            <%= link_to 'このチームを抜ける', assign_delete_team_path(@team), method: :delete, data: { confirm: 'Are you sure?' } %>
+          </button>
+          <hr />
 
-<% if @team.user == current_user %>
-  <%= link_to 'このチームを削除する', team_path(@team), method: :delete, data: { confirm: 'Are you sure?' } %>
-<% end %>
-
-<hr />
-
-<%= link_to 'Edit', edit_team_path(@team) %> |
-<%= link_to 'Back', teams_path %>
+          <p class="text-green">
+            <strong>チームのMVP</strong>
+            <%= button_to 'mvpを決める！', mvp_team_path, method: :get %>
+          </p>
 
 
+          <p class="text-green">
+          <strong>チームのタスク実行状況</strong>
+            <%= bar_chart @completed_count, id: "users-chart", max_width: "800px", max_height: "300px",  colors: ["#F3A5A3","#4E889A"], xtitle: "タスク実行数", ytitle: "チームメンバー" , min: 0%>
+          </p>
+
+          <% if @team.user == current_user %>
+            <button class = "btn btn-dark">
+              <%= link_to 'このチームを削除する', team_path(@team), method: :delete, data: { confirm: 'Are you sure?' } %>
+            </button>
+          <% end %>
+          <hr />
+          <%= link_to 'チームを編集', edit_team_path(@team) %> |
+          <%= link_to '戻る', teams_path %>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.card{
+  background-color:#ECDDD6;
+  border: #fff;
+  padding: 10px;
+}
+.title{
+  text-align:center;
+  font-size:18px;
+  color:#524f4f;
+}
+.text-green  strong{
+  color:#4E889A;
+  font-weight:bold;
+}
+.btn a{
+  color:white;
+}
+</style>
