@@ -9,7 +9,7 @@ class TasksController < ApplicationController
     @tasks = @tasks.created_order if params[:sort_status].present?
     @tasks = @tasks.expired_order if params[:sort_expired].present?
     @tasks = @tasks.created_order if params[:sort_created].present?
-    @tasks = @tasks.page(params[:page]).per(5)
+    @tasks = @tasks.page(params[:page]).per(30)
 
     @date = Date.current()
   end

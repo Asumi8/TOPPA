@@ -5,7 +5,7 @@
       <%= link_to '新しいチームを作成', new_team_path %>
 
       <p class="col-lg-12 title">所属しているチームとタスクの一覧</p>
-     
+
       <% current_user.team_members.each do |team| %>
       <div class="col-lg-6">
         <div class="card">
