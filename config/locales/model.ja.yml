@@ -24,5 +24,10 @@ ja:
         category: カテゴリー
         name: タスク名
         expired_at: 達成期限/終了期限
+        status: 状況
+        repeat: 繰り返し
+        remarks: 補足
       category:
         name: カテゴリー
+      comment:
+        content: コメント

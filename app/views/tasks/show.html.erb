@@ -1,52 +1,79 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-8">
+      <div class="card">
+        <div class="card-body">
+          <h1>Task Details</h1>
+          <p class="col-lg-12 title">- タスクの詳細 -</p>
+          <p class="text-green">
+            <strong>カテゴリー：</strong>
+            <%= @task.category.name %>
+          </p>
 
-<p>
-  <strong>Category:</strong>
-  <%= @task.category.name %>
-</p>
+          <p class="text-green">
+            <strong>タスク名：</strong>
+            <%= @task.name %>
+          </p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @task.name %>
-</p>
+          <p class="text-green">
+            <strong>期限：</strong>
+            <%= @task.expired_at %>
+          </p>
 
-<p>
-  <strong>Expired at:</strong>
-  <%= @task.expired_at %>
-</p>
+          <% if @task.remarks != "" %>
+            <p class="text-green">
+              <strong>補足：</strong>
+              <%= @task.remarks %>
+            </p>
+          <% end %>
 
-<% if @task.remarks != "" %>
-  <p>
-    <strong>Remarks:</strong>
-    <%= @task.remarks %>
-  </p>
-<% end %>
+          <% if @task.image.url != nil %>
+            <p class="text-green">
+              <strong>画像：</strong>
+              <label class="image"><%= image_tag @task.image.url %></label>
+            </p>
+          <% end %>
 
-<% if @task.image.url != nil %>
-  <p>
-    <strong>Image:</strong>
-    <label class="image"><%= image_tag @task.image.url %></label>
-  </p>
-<% end %>
+          <p class="text-green">
+            <strong>状況：</strong>
+            <%= @task.status %>
+          </p>
 
-<p>
-  <strong>Status:</strong>
-  <%= @task.status %>
-</p>
-
-<p>
-  <strong>Repeat:</strong>
-  <%= @task.repeat %>
-</p>
+          <p class="text-green">
+            <strong>繰り返し：</strong>
+            <%= @task.repeat %>
+          </p>
 
 
-<%= link_to 'Edit', edit_task_path(id:@task.id, team_id:@task.team_id) %> |
-<%= link_to 'Back', team_tasks_path(@task.team_id) %>
+          <%= link_to '編集する', edit_task_path(id:@task.id, team_id:@task.team_id) %> |
+          <%= link_to '戻る', team_tasks_path(@task.team_id) %>
 
-<hr />
-<p>コメント一覧</p>
+          <hr />
+          <p>コメント一覧</p>
 
-  <div id="comments_area">
-    <%= render partial: 'comments/index', locals: { comments: @comments, task: @task } %>
+          <div id="comments_area">
+            <%= render partial: 'comments/index', locals: { comments: @comments, task: @task } %>
+          </div>
+          <%= render partial: 'comments/form', locals: { comment: @comment, task: @task } %>
+        </div>
+      </div>
+    </div>
   </div>
-  <%= render partial: 'comments/form', locals: { comment: @comment, task: @task } %>
+</div>
+
+<style>
+.card{
+  background-color:#ECDDD6;
+  border: #fff;
+  padding: 10px;
+}
+.title{
+  text-align:center;
+  font-size:18px;
+  color:#524f4f;
+}
+.text-green  strong{
+  color:#4E889A;
+  font-weight:bold;
+}
+</style>
