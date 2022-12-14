@@ -1,35 +1,60 @@
-<% if resource.name.present? %>
-  <h2><%= t "devise.invitations.edit.header_2" %></h2>
-<% else%>
-  <h2><%= t "devise.invitations.edit.header" %></h2>
-<% end %>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-8">
+      <div class = "card">
+        <div class="card-body">
+        <% if resource.name.present? %>
+          <h1>Login and Password Reset</h1>
+          <p class="col-lg-12 title"><%= t "devise.invitations.edit.header_2" %></p>
+        <% else%>
+          <h1>Set Login and Password</h1>
+          <p class="col-lg-12 title"><%= t "devise.invitations.edit.header" %></p>
+        <% end %>
 
-<%= form_for(resource, as: resource_name, url: invitation_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-  <%= f.hidden_field :invitation_token, readonly: true %>
+        <%= form_for(resource, as: resource_name, url: invitation_path(resource_name), html: { method: :put }) do |f| %>
+          <%= render "devise/shared/error_messages", resource: resource %>
+          <%= f.hidden_field :invitation_token, readonly: true %>
 
-  <% if f.object.class.require_password_on_accepting %>
-    <div class="field">
-      <%= f.label :name %><br />
-      <%= f.text_field :name %>
+          <% if f.object.class.require_password_on_accepting %>
+            <div class="field">
+              <p>
+                <%= f.label :name %><br />
+                <%= f.text_field :name %>
+              </p>
+            </div>
+
+            <div class="field">
+              <p>
+                <%= f.label :password %><br />
+                <%= f.password_field :password %>
+              </p>
+            </div>
+
+            <div class="field">
+              <p>
+                <%= f.label :password_confirmation %><br />
+                <%= f.password_field :password_confirmation %>
+              </p>
+            </div>
+          <% end %>
+
+          <div class="actions">
+            <% if resource.name.present? %>
+              <%= f.submit t("devise.invitations.edit.submit_button_2") %>
+            <% else %>
+              <%= f.submit t("devise.invitations.edit.submit_button") %>
+            <% end %>
+          </div>
+        <% end %>
+        </div>
+      </div>
     </div>
-
-    <div class="field">
-      <%= f.label :password %><br />
-      <%= f.password_field :password %>
-    </div>
-
-    <div class="field">
-      <%= f.label :password_confirmation %><br />
-      <%= f.password_field :password_confirmation %>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <% if resource.name.present? %>
-      <%= f.submit t("devise.invitations.edit.submit_button_2") %>
-    <% else %>
-      <%= f.submit t("devise.invitations.edit.submit_button") %>
-    <% end %>
   </div>
-<% end %>
+</div>
+
+
+<style>
+input {
+  width:100%;
+}
+</style>

@@ -6,12 +6,14 @@ class TasksController < ApplicationController
 
     @tasks = Team.find(params[:team_id]).tasks
 
-    @tasks = @tasks.created_order if params[:sort_status].present?
+    @tasks = @tasks.status_choice if params[:choice_status].present?
+    @tasks = @tasks.status_order if params[:sort_status].present?
     @tasks = @tasks.expired_order if params[:sort_expired].present?
     @tasks = @tasks.created_order if params[:sort_created].present?
     @tasks = @tasks.page(params[:page]).per(30)
 
     @date = Date.current()
+    @team = Team.find(params[:team_id])
   end
 
   def show
@@ -36,7 +38,7 @@ class TasksController < ApplicationController
     @categories = Team.find(params[:task][:team_id]).categories
     if @task.valid?
       @task.save
-      redirect_to team_tasks_path(params[:task][:team_id])
+      redirect_to team_tasks_path(params[:task][:team_id]), notice: "タスクを作成しました！"
     else
       render :new
     end
@@ -46,7 +48,7 @@ class TasksController < ApplicationController
     @categories = Team.find(params[:task][:team_id]).categories
     @task.user_id = current_user.id
     if @task.update(task_params)
-      redirect_to team_tasks_path(params[:task][:team_id])
+      redirect_to team_tasks_path(params[:task][:team_id]), notice: "タスクを編集しました！"
     else
       render :edit
     end

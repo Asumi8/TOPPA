@@ -12,6 +12,7 @@ class Task < ApplicationRecord
   belongs_to :team
   belongs_to :category
 
+  scope :status_choice, -> { where(status: false) }
   scope :status_order, -> { order(status: :ASC) }
   scope :expired_order, -> { order(expired_at: :ASC) }
   scope :created_order, -> { order(created_at: :ASC) }

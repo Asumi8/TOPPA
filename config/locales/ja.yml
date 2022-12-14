@@ -54,6 +54,15 @@ ja:
           attributes:
             team:
               required: ""
+            name:
+              blank: タスク名を入力してください
+            expired_at:
+              blank: 期限を入力してください
+            category:
+              require: カテゴリーを選んでください
+            category_id:
+              blank: カテゴリーが空白です。
+
     attributes:
       user:
         confirmation_sent_at: パスワード確認送信時刻

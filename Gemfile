@@ -78,3 +78,5 @@ gem 'unicorn' # アプリケーションサーバのunicorn
 gem 'kaminari'
 gem 'bootstrap4-kaminari-views'
 gem 'rails-i18n'
+gem 'bootstrap_icons_rails'
+gem 'font-awesome-rails'
