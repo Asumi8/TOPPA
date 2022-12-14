@@ -1,37 +1,48 @@
-<div class = "container">
-  <div class="row">
-		<div class="box">
-			<% if @completed_count.empty? %>
+<% if @completed_count.empty? %>
+	<div class = "container">
+  	<div class="row">
+			<div class="box">
 				<h1>MVP</h1>
 				<p class="col-lg-12 title">- チームに最も貢献した方を表彰します -</p>
 				<p>
 				まだひとつもタスクを実行していません😢<br />
 				チームで分担して実行していきましょう!!🤝
 				</p>
-				<% else %>
-				<div id="particles-js"></div>
-				<div id="wrapper">
-				<h1>MVP</h1>
-				<p class="col-lg-12 title">- チームに最も貢献した方 -</p>
-				<h1 class="congrats">🎉Congratulations!!🎉</h1>
-
-				<p>
-	  		  <% @maximum_completed_user.each do|user| %>
-	  		    <span class="text-green"><%= user %>さん</span>
-	  		  <% end %>
-	  		  <label>にご褒美を渡しましょう！</label>
-	  		</p>
-	  		<br />
-	  		<label>最もチームに貢献した人</label>
-	  		<% @maximum_completed_user.each do|user| %>
-	  		  	<span class="text-green"><%= user %>さん</span>
-	  		<% end %>
-	  		<%= button_to '完了したタスクを削除する', mvp_delete_team_path(@team), method: :delete, data: { confirm: 'Are you sure?' } %>
-	  		<% end %>
-		  </div>
+			</div>
 		</div>
 	</div>
+<% else %>
+	<div id="particles-js"></div>
+		<div id="wrapper">
+			<div class = "container">
+				<div class="row">
+					<div class="box">
+						<h1>MVP</h1>
+						<p class="col-lg-12 title">- チームに最も貢献した方 -</p>
+						<h1 class="congrats">🎉Congratulations!!🎉</h1>
+
+						<p>
+							<% @maximum_completed_user.each do|user| %>
+								<span class="text-green"><%= user %>さん</span>
+							<% end %>
+							<label>にご褒美を渡しましょう！</label>
+						</p>
+					<br />
+					<label>最もチームに貢献した人</label><br />
+					<% @maximum_completed_user.each do|user| %>
+					<span class="text-green mvp"><%= user %>さん</span>
+					<% end %>
+					<div class="delete-btn">
+						<%= button_to '完了したタスクを削除する', mvp_delete_team_path(@team), method: :delete, data: { confirm: 'Are you sure?' } %>
+						<p>「繰り返し」にチェックを入れていない、実行済みのタスクを削除できます</p>
+					</div>
+				</div>
+			</div>
+		</div>
+  <% end %>
 </div>
+
+
 
 <script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 <script src="js/5-8.js"></script>
@@ -67,6 +78,12 @@ html,body{
 .text-green{
   color:#4E889A;
   font-weight:bold;
+}
+.text-green.mvp{
+	font-size:20px;
+}
+.delete-btn{
+	margin-top:150px;
 }
 </style>
 
