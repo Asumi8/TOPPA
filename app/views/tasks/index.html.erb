@@ -6,9 +6,11 @@
         <h1>Tasks List</h1>
         <p class="col-lg-12 title">- タスク一覧 -</p>
 
-        <button class="btn btn-secondary col-6">
-          <%= link_to 'タスクをつくる',  new_team_task_path(params[:team_id]) %>
+        <button class="btn btn-secondary col-4 ">
+          <i class="fa fa-plus-square white" aria-hidden="true" style="#fff"></i>
+          <%= link_to '新しいタスク',  new_team_task_path(params[:team_id]) %>
         </button>
+
         <p>
           <span>チームのMVP</span>
           <%= button_to 'mvpを決める！', mvp_team_path(params[:team_id]), method: :get %>
@@ -20,11 +22,31 @@
 
           <% @tasks.each do |task| %>
             <div class="col-lg-12">
-              <div class="card task">
-                <h6 class="card-title">
+              <div class="card-task">
+                <div class="card-header">
+                <!--<h6 class="card-title">-->
                   <div class="left-box">
                     <span class="column category">カテゴリ</span><%= task.category.name %>
-                    <% if (task.expired_at - @date).to_i < 7 && task.status == false %>
+                    <span class="column name">タスク</span><%= task.name %>
+                    <% if task.repeat == true %>
+                      <label><i class="bi bi-arrow-counterclockwise"></i></label>
+                    <% else %>
+                      <label></label>
+                    <% end %>
+                  </div>
+                  <div class="right-box">
+                    <span class="column create">作成日:<%= task.created_at.strftime('%Y-%m-%d') %></span>
+                  </div>
+                </div>
+                <!--</h6>-->
+                <div class="card-body task">
+                  <% if task.status == true  %>
+                    <label class = "checkbox"><%= image_tag ("icon_true.png")  %></label>
+                  <% else %>
+                   <label class = "checkbox"><%= image_tag ("icon_false.png")  %></label>
+                  <% end %>
+
+                  <% if (task.expired_at - @date).to_i < 7 && task.status == false %>
                       <span class="column expire">期限</span>
                       <span class="urgent"><%= task.expired_at %></span>
                     <% else %>
@@ -41,28 +63,10 @@
                     <% end %>
                     <label for="file">
                     <progress id="file" max="100" value=<%= @expired_at_count %>></progress></label>
-                  </div>
-                  <div class="right-box">
-                    <span class="column create">作成日:<%= task.created_at.strftime('%Y-%m-%d') %></span>
-                  </div>
-                </h6>
-                <div class="card-body task">
-                  <% if task.status == true  %>
-                    <label>✅</label>
-                  <% else %>
-                    <label>🟩</label>
-                  <% end %>
 
-                  <span class="column name">タスク</span><%= task.name %>
-                  <% if task.repeat == true %>
-                    <label>🔄</label>
-                  <% else %>
-                    <label></label>
-                  <% end %>
-
-                  <%= link_to '詳細', task %>
-                  <%= link_to '編集', edit_task_path(id:task.id, team_id:task.team_id) %>
-                  <%= link_to '削除', task, method: :delete, data: { confirm: 'Are you sure?' } %>
+                  <i class="bi bi-pencil-square"></i><%= link_to '編集', edit_task_path(id:task.id, team_id:task.team_id) %>
+                  <i class="bi bi-three-dots"></i><%= link_to '詳細', task %>
+                  <i class="bi bi-trash3"></i><%= link_to '削除', task, method: :delete, data: { confirm: 'Are you sure?' } %>
                 </div>
               </div>
             </div>
@@ -95,20 +99,19 @@ progress {
 .card{
   background-color:#ECDDD6;
   border: #fff;
-  padding: 10px;
 }
 .title{
   text-align:center;
   font-size:18px;
   color:#524f4f;
 }
-.card.task{
+.card-task{
   background-color: #fff;
   margin: 10px;
   color:#50595B;
+  border-radius:5px;
 }
 .card-body{
-  padding:1.25rem;
   color:#50595B;
 }
 .colmun{
@@ -123,7 +126,7 @@ progress {
   margin-right:5px;
 }
 .column.name{
-  background-color:#F3A5A3;
+  background-color: #4E889A;
   color:white;
   padding:2px;
   font-size:14px;
@@ -136,13 +139,13 @@ progress {
   margin:0 5px;
 }
 .column.expire{
-  background-color:#F85B57;
+  background-color:#F3A5A3;
   color:white;
   padding:2px;
   font-size:14px;
   margin-right:5px;
 }
-h6{
+.card-header{
   display:flex;
   position:relative;
 }
@@ -154,4 +157,11 @@ h6{
 .btn-secondary a{
   color:white;
 }
+.white{
+  color:#fff;
+}
+.checkbox img{
+  height:50px;
+}
+
 </style>
