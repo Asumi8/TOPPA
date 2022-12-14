@@ -13,8 +13,8 @@ ja:
         header: ''
         submit_button: '招待メールを送る'
       edit:
-        header: 'パスワードを設定する'
-        header_2: 'パスワードを再設定してログインする'
+        header: '- パスワードを設定してログインする -'
+        header_2: '- パスワードを再設定してログインする -'
         submit_button: 'パスワードを設定する'
         submit_button_2: 'パスワードを再設定する'
     mailer:
