@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>TOPPA</title>
+    <title>TOPPA!</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -21,60 +21,62 @@
     <div class="footer_fixed">
     <nav class="navbar navbar-expand-md navbar-light bg-light">
       <div class = "container-lg">
-      <a class="navbar-brand" href="/">TOPPA!</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-      </button>
+        <div class="logo">
+        <a class="navbar-brand" href="/">TOPPA!</a>
+        </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-auto">
-          <% if user_signed_in? %>
-            <li class="nav-item active">
-              <a class="nav-link active" href="#">
-                <%= link_to 'myチーム/myタスク', teams_path(current_user) %>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                <%= link_to 'プロフィール', user_path(current_user) %>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                <% if current_user.admin? %>
-                  <%= link_to "管理者画面", rails_admin_path %>
-                <% end %>
-              </a>
-            </li>
-          <% else %>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                <%= link_to 'ゲストログイン', users_guest_sign_in_path, method: :post %>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                <%= link_to 'ゲスト管理者ログイン', users_admin_sign_in_path, method: :post %>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                <%= link_to 'ログイン', new_user_session_path %>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                <%= link_to 'サインアップ', new_user_registration_path %>
-              </a>
-            </li>
-          <% end %>
-        </ul>
-      </div>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <% if user_signed_in? %>
+              <li class="nav-item active">
+                <a class="nav-link active" href="#">
+                  <%= link_to 'myチーム/myタスク', teams_path(current_user) %>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <%= link_to 'プロフィール', user_path(current_user) %>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <% if current_user.admin? %>
+                    <%= link_to "管理者画面", rails_admin_path %>
+                  <% end %>
+                </a>
+              </li>
+            <% else %>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <%= link_to 'ゲストログイン', users_guest_sign_in_path, method: :post %>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <%= link_to 'ゲスト管理者ログイン', users_admin_sign_in_path, method: :post %>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <%= link_to 'ログイン', new_user_session_path %>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <%= link_to 'サインアップ', new_user_registration_path %>
+                </a>
+              </li>
+            <% end %>
+          </ul>
+        </div>
       </div>
     </nav>
       <div class="message">
@@ -134,7 +136,6 @@ h1{
   font-family: 'Quicksand', sans-serif;
   color: #4E889A;
   font-weight: bold;
-  color:#4E889A;
   text-align:center;
 }
 body{
@@ -154,5 +155,11 @@ footer{
   color:grey;
   font-weight:700;
   font-family: 'Quicksand', sans-serif;
+}
+.navbar-brand{
+  display:block;
+  background-color:#4E889A;
+  padding:5px;
+  color:white;
 }
 </style>
