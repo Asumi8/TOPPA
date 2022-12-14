@@ -1,0 +1,33 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザー
+      team: チーム
+      task: タスク
+      assign: アサイン
+      comment: コメント
+      category: カテゴリー
+    attributes:
+      user:
+        title: タイトル
+        name: 名前
+        email: メールアドレス
+        current_password: 現在のパスワード
+        password: パスワード
+        password_confirmation: 確認用パスワード
+        remember_me: ログインを記憶
+      team:
+        name: チーム名
+        reward: チームのご褒美/目標
+        period: 達成期限
+      task:
+        category: カテゴリー
+        name: タスク名
+        expired_at: 達成期限/終了期限
+        status: 状況
+        repeat: 繰り返し
+        remarks: 補足
+      category:
+        name: カテゴリー
+      comment:
+        content: コメント

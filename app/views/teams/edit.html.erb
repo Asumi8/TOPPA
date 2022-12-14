@@ -1,6 +1,29 @@
-<h1>Editing Team</h1>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-8">
+      <div class="card">
+        <div class="card-body">
+          <h1>Editing the Team</h1>
+          <p class="col-lg-12 title">- チームを編集する -</p>
 
-<%= render 'form', team: @team %>
+          <%= render 'form', team: @team %>
 
-<%= link_to 'Show', @team %> |
-<%= link_to 'Back', teams_path %>
+          <span class="col-4"><%= link_to 'チームの詳細', @team %><%= link_to '戻る', teams_path %></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.card{
+  background-color:#ECDDD6;
+  border: #fff;
+  padding: 10px;
+}
+.title{
+  text-align:center;
+  font-size:18px;
+  color:#524f4f;
+}
+</style>

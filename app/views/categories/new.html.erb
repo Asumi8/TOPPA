@@ -1,14 +1,45 @@
-<h1>Categories#new</h1>
-<div class="col-sm-12">
-    <h2 class="text-center">カテゴリの追加</h2>
-    <%= form_with(model: @category, local: true, url: team_categories_path(params[:team_id])) do |f| %>
-        <div class="form_input">
-            <%= f.label :name %>
-            <%= f.text_field :name, class:"form-control" %>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-8">
+      <div class="card">
+        <div class="card-body">
+          <h1>Creating a New Category</h1>
+          <p class="col-lg-12 title">- カテゴリーの追加 -</p>
+          <div>
+            <%= form_with(model: @category, local: true, url: team_categories_path(params[:team_id])) do |f| %>
+              <div class="form_input">
+                <p>
+                  <%= f.label :name %>
+                  <%= f.text_field :name, class:"form-control", :placeholder => "新しいカテゴリーを入力してください" %>
+                </p>
+              </div>
+              <div class="form_action">
+                <%= f.submit "登録する", class: "btn col-sm-12 submit_btn" %>
+              </div>
+            <% end %>
+            <%= link_to "戻る", new_team_task_path%>
+          </div>
         </div>
-        <div class="form_action row">
-            <%= f.submit "登録する", class: "btn col-sm-12 submit_btn" %>
-        </div>
-    <% end %>
+      </div>
+    </div>
+  </div>
 </div>
-<%= link_to "戻る", new_team_task_path%>
+<style>
+.card{
+  background-color:#ECDDD6;
+  border: #fff;
+  padding: 10px;
+}
+.title{
+  text-align:center;
+  font-size:18px;
+  color:#524f4f;
+}
+input, textarea {
+  width:100%;
+}
+.btn{
+  background-color:grey;
+  color:white;
+}
+</style>

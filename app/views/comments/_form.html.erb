@@ -11,11 +11,19 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :content %>
-    <%= form.text_area :content %>
+    <p>
+      <%= form.label :content %><br />
+      <%= form.text_area :content %>
+    </p>
   </div>
 
   <div class="actions">
     <%= form.submit %>
   </div>
 <% end %>
+
+<style>
+input, textarea{
+  width:100%;
+}
+</style>

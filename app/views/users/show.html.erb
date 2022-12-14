@@ -1,67 +1,73 @@
 <div class = "container">
-  <h1>Profile</h1>
-  <div class="container-fluid">
-    <div class="row">
-        <div class="col-md col-lg-4 icon-img">
-          <% if @user.icon? %>
-            <p>
-              <label class = "icon"><%= image_tag @user.icon.url %></label>
-          <% else %>
-              <label class = "icon"><%= image_tag ("default_icon.png")  %></label>
-            </p>
-          <% end %>
-        </div>
-        <div class="col-md-8 col-lg">
-          <p class = "text-green">
-            <strong>ユーザー名:</strong>
-            <%= @user.name %>
-          </p>
-          <p class = "text-green">
-            <strong>emailアドレス:</strong>
-            <%= @user.email %>
-          </p>
-          <button type="button" class="btn btn-secondary">
-            <%= link_to "Profileを編集する", edit_user_registration_path(@user) %>
-          </button>
+  <div class="row justify-content-center">
+    <div class="col-8">
+      <div class = "card">
+        <div class="card-body">
+          <h1>Profile</h1>
+          <p class="col-lg-12 title">- プロフィール -</p>
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md col-lg-4 icon-img">
+                <% if @user.icon? %>
+                  <p>
+                    <label class = "icon"><%= image_tag @user.icon.url %></label>
+                <% else %>
+                    <label class = "icon"><%= image_tag ("default_icon.png")  %></label>
+                  </p>
+                <% end %>
+              </div>
+              <div class="col-md-8 col-lg">
+                <p class = "text-green">
+                  <strong>ユーザー名:</strong>
+                  <%= @user.name %>
+                </p>
+                <p class = "text-green">
+                   <span class="bi bi-people"></span><strong>emailアドレス:</strong>
+                  <%= @user.email %>
+                </p>
+                <button type="button" class="btn btn-secondary">
+                <%= link_to "Profileを編集する", edit_user_registration_path(@user) %>
+                </button>
+              </div>
+            </div>
+            <hr />
+
+            <h4>所属しているチーム</h4>
+            <% if current_user.teams.first.present? || current_user.team_members.first.present? %>
+              <p>
+                <% current_user.team_members.each do |team| %>
+                  <p>
+                    <%= team.name %>
+                  </p>
+                <% end %>
+              </p>
+            <% else %>
+              <%= link_to "チームに所属する", new_team_path%><br>
+            <% end %>
+          </div>
         </div>
       </div>
-      <hr />
-
-      <h4>所属しているチーム</h4>
-      <% if current_user.teams.first.present? || current_user.team_members.first.present? %>
-      <p>
-        <% current_user.team_members.each do |team| %>
-          <p>
-            <%= team.name %>
-          </p>
-          <% end %>
-      </p>
-      <% else %>
-      <%= link_to "チームに所属する", new_team_path%><br>
-      <% end %>
     </div>
   </div>
 </div>
 
 <style>
-h1{
-  padding:10px 10px;
+.card{
+  background-color:#ECDDD6;
+  border: #fff;
+  padding: 10px;
+  margin-top:20px;
 }
-h4{
-  color:#4E889A;
+.title{
+  text-align:center;
+  font-size:18px;
+  color:#524f4f;
+  margin-bottom:20px;
 }
 .icon-img{
   text-align:center;
 }
-.container{
-  margin: 5vh auto;
-  background-color:#ECDDD6;
-  height: auto;
-  max-width: 600px;
-  border-radius:5px;
-  padding: 0 5px 5px 5px;
-  min-height:600px;
-}
+
 .btn-secondary a{
   color:white;
   font-weight:bold;

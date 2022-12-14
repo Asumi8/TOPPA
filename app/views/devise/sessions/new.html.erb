@@ -1,22 +1,23 @@
 <div class="container">
   <div class="row justify-content-center">
-    <div class="col-5">
+    <div class="col-6">
       <div class = "card">
         <div class="card-body">
-        <h2 class="title"><%= t('.sign_in') %></h2>
+        <h1>Login</h1>
+          <p class="col-lg-12 title">- ログイン -</p>
 
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
           <div class="field">
             <p>
               <%= f.label :email %><br />
-              <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", :placeholder =>  "メールアドレス" %>
             </p>
           </div>
 
           <div class="field">
             <p>
               <%= f.label :password %><br />
-              <%= f.password_field :password, autocomplete: "current-password" %>
+              <%= f.password_field :password, autocomplete: "current-password", :placeholder =>  "パスワード" %>
             </p>
           </div>
 
@@ -48,18 +49,21 @@
 
 
 <style>
+h1{
+  text-align:center;
+}
 .title{
-  text-align: center;
-  font-family: 'Noto Sans JP', sans-serif;
-  font-family: 'Quicksand', sans-serif;
-  color: #4E889A;
-  font-weight: bold;
+  text-align:center;
+  font-size:18px;
+  color:#524f4f;
 }
 input {
   width:100%;
 }
 .card{
   background-color:#ECDDD6;
+  border: #fff;
+  padding:10px;
 }
 input .remember_me{
   width: auto;

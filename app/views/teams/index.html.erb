@@ -1,60 +1,48 @@
 <div class = "container">
-  <div class="container-fluid">
-    <div class="row">
-      <h1 class="col-lg-6">team/task</h1>
-      <%= link_to '新しいチームを作成', new_team_path %>
+  <div class = "card">
+    <div class = "card-body">
+      <div class="container-fluid">
+        <div class="row">
+          <h1>My Team / My Task</h1>
+          <p class="col-lg-12 title">- 所属しているチームとタスクの一覧 -</p>
+          <%= link_to '新しいチームを作成', new_team_path %>
 
-      <p class="col-lg-12 title">所属しているチームとタスクの一覧</p>
-     
-      <% current_user.team_members.each do |team| %>
-      <div class="col-lg-6">
-        <div class="card">
-          <div class="card-header bg-primary"></div>
-          <h6 class="card-title"><%= team.name %></h6>
-          <div class="card-body">
-            <%= link_to 'チームの詳細', team_path(team.id) %>
-            <span class="btn btn-secondary">
-              <%= link_to 'チームのタスク', team_tasks_path(team.id) %>
-            </span>
+          <% current_user.team_members.each do |team| %>
+            <div class="col-lg-6">
+              <div class="card-team">
+                <div class="card-header bg-primary"></div>
+                  <h6 class="card-title"><%= team.name %></h6>
+                  <div class="card-body-team">
+                    <%= link_to 'チームの詳細', team_path(team.id) %>
+                    <span class="btn btn-secondary">
+                    <%= link_to 'チームのタスク', team_tasks_path(team.id) %>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            <% end %>
           </div>
         </div>
       </div>
-      <% end %>
-
     </div>
   </div>
 </div>
 
 <style>
-h1{
-  padding:10px 10px;
-  color:#4E889A;
-}
-h4{
-  color:#4E889A;
-}
 .icon-img{
   text-align:center;
-}
-.container{
-  margin: 5vh auto;
-  background-color:#ECDDD6;
-  height: auto;
-  max-width: 800px;
-  border-radius:5px;
-  padding: 0 5px 5px 5px;
-  min-height:600px;
 }
 .text-green strong{
   color:#4E889A;
   font-weight:bold;
 }
-.card{
+.card-team{
   background-color: #fff;
   margin: 10px;
   color:#50595B;
+  border-radius:5px;
 }
-.card-body{
+.card-body-team{
   padding:1.25rem;
   color:#50595B;
 }
@@ -73,5 +61,14 @@ h4{
 .title{
   text-align:center;
   font-size:18px;
+}
+.card{
+  background-color:#ECDDD6;
+  border: #fff;
+  padding: 10px;
+}
+.card-body{
+  padding:1.25rem;
+  color:#50595B;
 }
 </style>

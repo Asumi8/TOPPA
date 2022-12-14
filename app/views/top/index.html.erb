@@ -1,26 +1,88 @@
-<p>
-<h1>TOPPA</h1>
-<label>"めんどくさいタスク"をチームで協力してTOPPA！していくためのアプリ</label>
-</p>
-<p>家族や複数人のいるグループ、プロジェクトを進めている時、
-こんな経験ありませんか？</p>
-<ul>
-<li>つい「誰かがやってくれるだろう」と思って後回しにしてしまう</li>
-<li>忙しくて期限を忘れていた/消耗品を買い忘れてしまった</li>
-<li>誰も手をつけず最終的に負担が偏ってしまう　…</li>
-</ul>
+<div class = "container">
+  <div class="row justify-content-center">
+    <div class="col-12">
+      <div class="box">
+        <div class="title-box">
+          <h1 class="col-lg-4 title">TOPPA!</h1>
+          <p class="col-lg-8 sub-title">
+            家族、グループ、組織が一つのチームとして「めんどくさいタスク」を協力・分担して乗り越えるためのアプリ
+          </p>
+        </div>
+        <div class="explanation">
+          <p>家族や複数人のいるグループ、プロジェクトを進めている時、
+          こんな経験ありませんか？</p>
+          <ul>
+          <li>つい「誰かがやってくれるだろう」と思って後回しにしてしまう</li>
+          <li>忙しくて期限を忘れていた/消耗品を買い忘れてしまった</li>
+          <li>誰も手をつけず最終的に負担が偏ってしまう　…</li>
+          </ul>
+        </div>
 
-<p>
-そこで、複数人がチームとして、
-楽しみながらめんどくさいタスク乗り越えられるTOPPAをつくりました。
-</p>
-<p>
-このアプリでは、
-</p>
-<ul>
-<li>チームでご褒美を設定し、ちょっとした楽しみに向かって自分の役割に取り組めます</li>
-<li>タスクの実行状況や進捗状況がグラフになっているので、状況をぱっと理解できます</li>
-<li>期限が迫ると通知が自動で送られるので、期限の管理をアプリにお任せできます</li>
-</ul>
-</p>
+        <p>
+        そこで、複数人がチームとして、<br/>
+        楽しみながらめんどくさいタスク乗り越えられる<span class="text-green">TOPPA!</span>をつくりました。
+        </p>
+        <div class="app-explanation">
+          <p>
+            このアプリでは、
+          </p>
+          <ul>
+            <li>チームでご褒美を設定し、ちょっとした楽しみに向かって自分の役割に取り組めます</li>
+            <li>タスクの実行状況や進捗状況がグラフになっているので、状況をぱっと理解できます</li>
+            <li>期限が迫ると通知が自動で送られるので、期限の管理をアプリにお任せできます</li>
+          </ul>
+        </div>
+        <label class = "top-image"><%= image_tag ("top_image.png")  %></label>
+        <p>一緒に"めんどくさい"壁をTOPPAしていきましょう！</p>
+      </div>
+    </div>
+  </div>
+</div>
 
+<style>
+body{
+  background-color:#FFF9F9;
+}
+.container{
+	margin: 0 auto;
+	text-align:center;
+}
+.box{
+	margin-top:50px;
+}
+.congrats{
+	color:#F3A5A3;
+	font-size:50px;
+}
+.title-box{
+  display:flex;
+}
+.col-lg-4.title{
+  font-size:70px;
+  color: #4E889A;
+  font-weight: bold;
+  text-align:center;
+  color:#F3A5A3;
+
+}
+.sub-title{
+  font-weight:bold;
+  color:#575A5B;
+  padding-top:10px;
+  font-size:20px;
+}
+.explanation{
+  padding:10px;
+  color:#3D3F40;
+}
+.text-green{
+  color:#4E889A;
+  font-weight:bold;
+}
+.app-explanation{
+  padding:10px;
+}
+.top-image img{
+  height:150px;
+}
+</style>

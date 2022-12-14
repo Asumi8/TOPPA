@@ -1,7 +1,7 @@
 <%= form_with(model: [team, task], url:choose_new_or_edit, local: true) do |form| %>
   <% if task.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
+      <h2><%= pluralize(task.errors.count, "件") %><%= t('activerecord.errors.errors_message')%></h2>
 
       <ul>
         <% task.errors.each do |error| %>
@@ -12,44 +12,62 @@
   <% end %>
 
   <div class="field">
-    <%= form.label 'カテゴリー＊' %>
-    <%= form.collection_select :category_id, @categories, :id, :name, :include_blank => "カテゴリを選択してください" %>
-    <% if (params[:team_id]).present?  %>
-      <% @team_id = params[:team_id] %>
-    <% elsif  (params[:task][:team_id]).present? %>
-      <% @team_id = params[:task][:team_id] %>
-    <% end %>
-    <%= link_to "新しいカテゴリを追加する", new_team_category_path(team_id: @team_id) %>
+    <p>
+      <%= form.label 'カテゴリー' %><span class="required"> *必須</span><br />
+      <%= form.collection_select :category_id, @categories, :id, :name, :include_blank => "カテゴリを選択してください" %>
+      <% if (params[:team_id]).present?  %>
+        <% @team_id = params[:team_id] %>
+      <% elsif  (params[:task][:team_id]).present? %>
+        <% @team_id = params[:task][:team_id] %>
+      <% end %>
+      <%= link_to "新しいカテゴリを追加", new_team_category_path(team_id: @team_id) %>
+    </p>
   </div>
 
   <div class="field">
-    <%= form.label 'タスク名＊' %>
-    <%= form.text_field :name %>
+    <p>
+      <%= form.label 'タスク名' %><span class="required"> *必須</span><br />
+      <%= form.text_field :name, :placeholder => "例:〇〇を提出する" %>
+    </p>
   </div>
 
   <div class="field">
-    <%= form.label '期限＊' %>
-    <%= form.date_field :expired_at %>
+    <p>
+      <%= form.label '期限' %><span class="required"> *必須</span><br />
+      <%= form.date_field :expired_at %>
+    </p>
   </div>
 
   <div class="field">
-    <%= form.label '補足' %>
-    <%= form.text_area :remarks %>
+    <p>
+      <%= form.label '補足' %><br />
+      <%= form.text_area :remarks, :placeholder => "必要であれば入力ください" %>
+    </p>
   </div>
 
   <div class="field">
-    <%= form.label '画像' %>
-    <%= form.file_field :image %>
+    <p>
+      <%= form.label '画像' %><br />
+      <%= form.file_field :image %>
+    </p>
   </div>
 
   <div class="field">
-    <%= form.label '状況' %>
-    <%= form.check_box :status %>
+    <p>
+      <label>
+        <%= form.check_box :status %>
+      </label>
+      <%= form.label '状況' %><span class="text-grey">(実行済みの場合に✅)</span><br />
+    </p>
   </div>
 
   <div class="field">
-    <%= form.label '繰り返し' %>
-    <%= form.check_box :repeat %>
+    <p>
+      <label>
+        <%= form.check_box :repeat %>
+      </label>
+        <%= form.label '繰り返し' %><span class="text-grey">(定期的に実行するタスクの場合に✅)</span><br />
+    </p>
   </div>
 
   <%= form.hidden_field :team_id, :value => @team_id %>
@@ -58,3 +76,15 @@
     <%= form.submit %>
   </div>
 <% end %>
+
+<style>
+.required{
+  color:#c24474;
+}
+input, textarea {
+  width:100%;
+}
+.text-grey{
+  color:grey;
+}
+</style>

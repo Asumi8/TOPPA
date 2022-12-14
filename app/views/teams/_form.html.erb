@@ -1,7 +1,8 @@
 <%= form_with(model: team) do |form| %>
+
   <% if team.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(team.errors.count, "error") %> prohibited this team from being saved:</h2>
+      <h2><%= pluralize(team.errors.count, "件") %><%= t('activerecord.errors.errors_message')%></h2>
 
       <ul>
         <% team.errors.each do |error| %>
@@ -12,21 +13,41 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+    <p>
+    <%= form.label :name %><span class="required"> *必須</span><br />
+    <%= form.text_field :name, :placeholder => "例:〇〇チーム/△△プロジェクト"%>
+    </p>
   </div>
 
   <div class="field">
-    <%= form.label :reward %>
-    <%= form.text_field :reward %>
+    <p>
+    <%= form.label :reward %><br />
+    <%= form.text_area :reward, :placeholder => "やる気の出るご褒美や目標を設定しましょう！例:「1番頑張った人に〇〇を渡そう！」" %>
+    </p>
   </div>
 
   <div class="field">
-    <%= form.label :period %>
+  <p>
+    <%= form.label :period %><br />
     <%= form.date_field :period %>
+    </p>
   </div>
 
   <div class="actions">
+  <p>
     <%= form.submit %>
+    </p>
   </div>
 <% end %>
+</div>
+
+
+
+<style>
+.required{
+  color:#c24474;
+}
+input, textarea {
+  width:100%;
+}
+</style>

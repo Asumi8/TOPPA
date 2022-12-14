@@ -1,95 +1,157 @@
-<h1>Tasks</h1>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12">
+      <div class = "card">
+        <div class="card-body">
+        <h1>Tasks List</h1>
+        <p class="col-lg-12 title">- タスク一覧 -</p>
 
-<strong>チームのMVP</strong>
-<%= button_to 'mvpを決める！', mvp_team_path(params[:team_id]), method: :get %>
+        <button class="btn btn-secondary col-6">
+          <%= link_to 'タスクをつくる',  new_team_task_path(params[:team_id]) %>
+        </button>
+        <p>
+          <span>チームのMVP</span>
+          <%= button_to 'mvpを決める！', mvp_team_path(params[:team_id]), method: :get %>
+        </p>
 
-<table>
-  <thead>
-    <tr>
-      <th>
-        <%= link_to "状況", team_tasks_path(sort_status: "true")%>
-      </th>
-      <th>カテゴリー</th>
-      <th>タスク名</th>
-      <th>繰り返し</th>
-      <th>
-        <%= link_to "期限", team_tasks_path(sort_expired: "true") %>
-      </th>
-      <th>
-        <%= link_to "作成日", team_tasks_path(sort_created: "true")%>
-      </th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+                <%= link_to "状況▼", team_tasks_path(sort_status: "true")%>
+                <%= link_to "期限▼", team_tasks_path(sort_expired: "true") %>
+                <%= link_to "作成日▼", team_tasks_path(sort_created: "true")%>
 
-  <tbody>
-    <% @tasks.each do |task| %>
-      <tr>
-        <td>
-          <% if task.status == true  %>
-            <label>✅</label>
-          <% else %>
-            <label>🟩</label>
+          <% @tasks.each do |task| %>
+            <div class="col-lg-12">
+              <div class="card task">
+                <h6 class="card-title">
+                  <div class="left-box">
+                    <span class="column category">カテゴリ</span><%= task.category.name %>
+                    <% if (task.expired_at - @date).to_i < 7 && task.status == false %>
+                      <span class="column expire">期限</span>
+                      <span class="urgent"><%= task.expired_at %></span>
+                    <% else %>
+                      <span class="column expire">期限</span>
+                      <%= task.expired_at %>
+                      <% end %>
+                    <% task.created_at.strftime('%Y-%m-%d') %>
+                    <% count = (task.expired_at - task.created_at.to_date).to_i %>
+                    <% today = (task.expired_at - @date.tomorrow).to_i %>
+                    <% if count > 0 || today > 0 %>
+                      <% @expired_at_count = today*100/count %>
+                    <% else %>
+                      <% @expired_at_count = 0 %>
+                    <% end %>
+                    <label for="file">
+                    <progress id="file" max="100" value=<%= @expired_at_count %>></progress></label>
+                  </div>
+                  <div class="right-box">
+                    <span class="column create">作成日:<%= task.created_at.strftime('%Y-%m-%d') %></span>
+                  </div>
+                </h6>
+                <div class="card-body task">
+                  <% if task.status == true  %>
+                    <label>✅</label>
+                  <% else %>
+                    <label>🟩</label>
+                  <% end %>
+
+                  <span class="column name">タスク</span><%= task.name %>
+                  <% if task.repeat == true %>
+                    <label>🔄</label>
+                  <% else %>
+                    <label></label>
+                  <% end %>
+
+                  <%= link_to '詳細', task %>
+                  <%= link_to '編集', edit_task_path(id:task.id, team_id:task.team_id) %>
+                  <%= link_to '削除', task, method: :delete, data: { confirm: 'Are you sure?' } %>
+                </div>
+              </div>
+            </div>
           <% end %>
-        </td>
-        <td><%= task.category.name %></td>
-        <td><%= task.name %></td>
-        <td>
-          <% if task.repeat == true %>
-          <label>🔄</label>
-          <% else %>
-            <label></label>
-          <% end %>
-        </td>
-        <% if (task.expired_at - @date).to_i < 7 && task.status == false %>
-            <td class="urgent">
-              <span class="urgent"><%= task.expired_at %></span>
-            </td>
-          <% else %>
-            <td><%= task.expired_at %></td>
-        <% end %>
-        <td><%= task.created_at.strftime('%Y-%m-%d') %></td>
-        <% count = (task.expired_at - task.created_at.to_date).to_i %>
-        <% today = (task.expired_at - @date.tomorrow).to_i %>
-        <% if count > 0 || today > 0 %>
-          <% @expired_at_count = today*100/count %>
-        <% else %>
-          <% @expired_at_count = 0 %>
-        <% end %>
-        <td>
-          <label for="file">リミット:</label>
-          <progress id="file" max="100" value=<%= @expired_at_count %>></progress>
-        </td>
-        <td><%= link_to 'Show', task %></td>
-        <td><%= link_to 'Edit', edit_task_path(id:task.id, team_id:task.team_id) %></td>
-        <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Task',  new_team_task_path(params[:team_id]) %>
-
-<%= paginate @tasks %>
+          <%= paginate @tasks %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <style>
 .urgent{
-  color: red;
+  color: #F85B57;
   font-weight:bold;
 }
 label {
     padding-right: 10px;
     font-size: 1rem;
 }
-  progress {
-    -webkit-appearance: none;
+progress {
+  -webkit-appearance: none;
+}
+::-webkit-progress-bar {
+  background-color: #dadce0 ;
+}
+::-webkit-progress-value {
+  background-color: #F85B57 ;
   }
-  ::-webkit-progress-bar {
-    background-color: #dadce0 ;
-  }
-  ::-webkit-progress-value {
-    background-color: #4E889A ;
-  }
+.card{
+  background-color:#ECDDD6;
+  border: #fff;
+  padding: 10px;
+}
+.title{
+  text-align:center;
+  font-size:18px;
+  color:#524f4f;
+}
+.card.task{
+  background-color: #fff;
+  margin: 10px;
+  color:#50595B;
+}
+.card-body{
+  padding:1.25rem;
+  color:#50595B;
+}
+.colmun{
+  font-weight:bold;
+}
+
+.column.category{
+  background-color:#5f6466;
+  color:white;
+  padding:2px;
+  font-size:14px;
+  margin-right:5px;
+}
+.column.name{
+  background-color:#F3A5A3;
+  color:white;
+  padding:2px;
+  font-size:14px;
+  margin:0 5px;
+}
+.column.create{
+  color:grey;
+  padding:2px;
+  font-size:14px;
+  margin:0 5px;
+}
+.column.expire{
+  background-color:#F85B57;
+  color:white;
+  padding:2px;
+  font-size:14px;
+  margin-right:5px;
+}
+h6{
+  display:flex;
+  position:relative;
+}
+
+.right-box{
+  position:absolute;
+  right:0;
+}
+.btn-secondary a{
+  color:white;
+}
 </style>

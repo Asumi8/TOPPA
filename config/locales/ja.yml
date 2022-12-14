@@ -33,18 +33,21 @@ ja:
 
   activerecord:
     errors:
+      errors_message: のエラーがあります。
       models:
         user:
           attributes:
             name:
-              blank: ：名前が空白です。
+              blank: ：名前を入力してください。
             email:
-              blank: ：メールアドレスが空白です。
+              blank: ：メールアドレスを入力してください。
               invalid: ：メールアドレスを正しく入力してください。
             password:
-              blank: ：パスワードが空白です。
+              blank: ：パスワードを入力してください。
         team:
           attributes:
+            name:
+              blank: :名前を入力してください。
             user:
               required: ""
         task:
@@ -83,6 +86,11 @@ ja:
       comment: コメント
       category: カテゴリー
       assign: アサイン
+  helper:
+    submit:
+      create: 登録する
+      update: 更新する
+      submit: 保存する
 
   devise:
     confirmations:
@@ -157,7 +165,6 @@ ja:
         unhappy: 気に入りません
         update: 更新
         we_need_your_current_password_to_confirm_your_changes: 変更を反映するには現在のパスワードを入力してください
-      new:
         sign_up: "アカウント登録"
       signed_up: アカウント登録が完了しました。
       signed_up_but_inactive: ログインするためには、アカウントを有効化してください。
@@ -202,4 +209,3 @@ ja:
     models:
       team:
         attributes:
-          owner: オーナー
