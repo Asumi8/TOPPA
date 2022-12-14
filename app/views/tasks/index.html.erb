@@ -3,22 +3,45 @@
     <div class="col-12">
       <div class = "card">
         <div class="card-body">
-        <h1>Tasks List</h1>
-        <p class="col-lg-12 title">- タスク一覧 -</p>
+          <h1>Tasks List</h1>
+          <p class="col-lg-12 title">- タスク一覧 -</p>
 
-        <button class="btn btn-secondary col-4 ">
-          <i class="fa fa-plus-square white" aria-hidden="true" style="#fff"></i>
-          <%= link_to '新しいタスク',  new_team_task_path(params[:team_id]) %>
-        </button>
+          <div class="explanation">
+            <ul>
+            <li>＊"未実行で期限まで2週間以内のタスク"は日付が赤くなり、毎週日曜日にタスクの一覧をまとめてメールで配信します</li>
+            <li>＊タスクの状況等を編集する場合は"編集"ボタンから変更ください</li>
+            </い>
+          </div>
 
-        <p>
-          <span>チームのMVP</span>
-          <%= button_to 'mvpを決める！', mvp_team_path(params[:team_id]), method: :get %>
-        </p>
+          <div class="row justify-content-center">
+            <button class="btn btn-red col-4 ">
+              <i class="fa fa-plus-square white" aria-hidden="true" style="#fff"></i>
+              <%= link_to '新しいタスクを作成',  new_team_task_path(params[:team_id]) %>
+            </button>
+          </div>
 
-                <%= link_to "状況▼", team_tasks_path(sort_status: "true")%>
-                <%= link_to "期限▼", team_tasks_path(sort_expired: "true") %>
-                <%= link_to "作成日▼", team_tasks_path(sort_created: "true")%>
+
+          <div class="team-reward">
+            <span class="reward"><i class="bi bi-sun"></i>
+              チームのご褒美/目標<i class="bi bi-sun"></i></span>
+            <%= @team.reward%>
+            <%= button_to 'MVPを決める！', mvp_team_path(params[:team_id]), method: :get %>
+          </div>
+
+         <!--<div class="mvp">
+            <label>チームのMVP<i class="bi bi-hand-thumbs-up"></i></label>
+              <%= button_to 'MVPを決める！', mvp_team_path(params[:team_id]), method: :get %>
+          </div>-->
+          <div class="sort">
+            <i class="bi bi-caret-down-square-fill grey"></i>
+            <%= link_to "未実行のみ絞り込み", team_tasks_path(choice_status: "true")%>
+            <i class="bi bi-caret-down-square-fill grey"></i>
+            <%= link_to "実行状況で並び替え", team_tasks_path(sort_status: "true")%>
+            <i class="bi bi-caret-down-square-fill grey"></i>
+            <%= link_to "期限で並び替え", team_tasks_path(sort_expired: "true") %>
+            <i class="bi bi-caret-down-square-fill grey"></i>
+            <%= link_to "作成日で並び替え", team_tasks_path(sort_created: "true")%>
+          </div>
 
           <% @tasks.each do |task| %>
             <div class="col-lg-12">
@@ -43,10 +66,10 @@
                   <% if task.status == true  %>
                     <label class = "checkbox"><%= image_tag ("icon_true.png")  %></label>
                   <% else %>
-                   <label class = "checkbox"><%= image_tag ("icon_false.png")  %></label>
+                  <label class = "checkbox"><%= image_tag ("icon_false.png")  %></label>
                   <% end %>
 
-                  <% if (task.expired_at - @date).to_i < 7 && task.status == false %>
+                  <% if (task.expired_at - @date).to_i < 14 && task.status == false %>
                       <span class="column expire">期限</span>
                       <span class="urgent"><%= task.expired_at %></span>
                     <% else %>
@@ -139,7 +162,7 @@ progress {
   margin:0 5px;
 }
 .column.expire{
-  background-color:#F3A5A3;
+  background-color:#F37774;
   color:white;
   padding:2px;
   font-size:14px;
@@ -160,8 +183,50 @@ progress {
 .white{
   color:#fff;
 }
+.grey{
+  color:grey;
+}
 .checkbox img{
   height:50px;
 }
-
+.btn-red, .btn-red a{
+  color:#fff;
+}
+.sort a{
+  color:#638793;
+}
+.sort, .mvp{
+  margin-left:35px;
+}
+.mvp{
+  margin-bottom:15px;
+}
+.team-reward{
+  margin:10px 35px 20px;
+  background-color:#fff;
+  padding:2px 0 4px 0;
+}
+.reward{
+  font-size:14px;
+  color:#F37774;
+  padding:5px;
+  margin-right:5px;
+}
+.explanation{
+  margin:10px;
+  font-size:14px;
+}
+form{
+  display:inline;
+}
+form input{
+  background-color:#F3A5A3;
+  color:#fff;
+  border:1px solid #F37774;
+  border-radius:5px;
+  margin-left:10px;
+}
+form input:hover{
+  opacity:0.7;
+}
 </style>
