@@ -8,41 +8,54 @@ RSpec.describe 'ユーザー管理機能', type: :system do
         fill_in 'メールアドレス', with: 'mail@example.com'
         fill_in 'パスワード', with: 'password'
         fill_in '確認用パスワード', with: 'password'
-        click_on 'spec_notice'
-        sleep(2)
+        find('#rspec-notice').click
         expect(page).to have_content 'アカウント登録が完了しました'
-      end
-    end
-    context 'ユーザーがログインせずにチーム一覧に飛ぼうとした場合' do
-      it 'ログイン画面に遷移する' do
       end
     end
   end
   describe 'セッション機能' do
     context 'ユーザーがログインした場合' do
       it 'ログインができる' do
+        FactoryBot.create(:user)
+        visit new_user_session_path
+        fill_in 'メールアドレス', with: 'hoge@hoge.com'
+        fill_in 'パスワード', with: 'password'
+        find('#rspec-notice').click
+        expect(page).to have_content 'ログインしました。'
       end
     end
     context 'ゲストユーザーがログインした場合' do
       it 'ログインができる' do
+        FactoryBot.create(:guest)
+        visit root_path
+        click_on 'ゲストログイン'
+        expect(page).to have_content 'ゲストユーザーとしてログインしました。'
       end
     end
     context '管理者ゲストユーザーがログインした場合' do
       it 'ログインができる' do
+        FactoryBot.create(:admin)
+        visit root_path
+        click_on 'ゲスト管理者ログイン'
+        expect(page).to have_content 'ゲスト管理者ユーザーとしてログインしました。'
       end
     end
     context 'ユーザーがログインせずにチーム一覧画面に飛ぼうとした場合' do
       it 'ログイン画面に遷移する' do
+        visit root_path
+        visit teams_path
+        expect(page).to have_content 'ログインもしくはアカウント登録してください。'
       end
     end
   end
   describe '管理者画面機能' do
     context '管理者ゲストユーザーがログインした場合' do
       it '管理画面に遷移できる' do
-      end
-    end
-    context '一般ユーザーがログインした場合' do
-      it '管理画面に遷移できない' do
+        FactoryBot.create(:admin)
+        visit root_path
+        click_on 'ゲスト管理者ログイン'
+        click_on '管理者画面'
+        expect(page).to have_content 'Toppa Admin'
       end
     end
   end
