@@ -1,7 +1,7 @@
 class TeamsController < ApplicationController
   before_action :set_team, only: %i[show edit update destroy mvp mvp_delete assign_delete]
   before_action :authenticate_user!
-  before_action :prohibit_access_by_other_teams, except: %i[index]
+  before_action :prohibit_access_by_other_teams, except: %i[index new create]
 
   def index
     @teams = Team.all
