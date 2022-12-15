@@ -57,7 +57,7 @@ class TasksController < ApplicationController
 
   def destroy
     @task.destroy
-    redirect_to team_tasks_path(@task.team_id)
+    redirect_to team_tasks_path(@task.team_id), notice: "タスクを削除しました。"
   end
 
   private

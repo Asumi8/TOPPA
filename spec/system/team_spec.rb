@@ -8,14 +8,14 @@ RSpec.describe 'チーム管理機能', type: :system do
       fill_in 'パスワード', with: 'password'
       find('#rspec-notice').click
     end
-    context 'チーム一覧からチームを作成した場合' do
+    context 'チーム一覧からチームを新しく作成した場合' do
       it '作成したチームが表示される' do
         find('#rspec-team-new').click
         fill_in 'チーム名', with: 'hogehogeチーム'
         fill_in 'チームのご褒美/目標', with: 'みんなで美味しいご飯を食べに行こう'
         fill_in '達成期限', with: '2023-01-30'
         click_on '登録する'
-        expect(page).to have_content 'hogehogeチーム'
+        expect(page).to have_content 'チームを作成しました！'
       end
     end
     context 'チーム一覧から任意のチームを選択した場合' do
@@ -44,11 +44,11 @@ RSpec.describe 'チーム管理機能', type: :system do
         click_on 'チームを編集'
         fill_in 'チーム名', with: 'fugafugaチーム'
         click_on '更新する'
-        expect(page).to have_content 'fugafugaチーム'
+        expect(page).to have_content 'チームを編集しました！'
       end
     end
-    context 'チーム一覧から任意のチームを選択した場合' do
-      it 'そのチームの詳細が表示される' do
+    context '任意のチームを削除した場合' do
+      it 'そのチームがチーム一覧から削除されるる' do
         find('#rspec-team-new').click
         fill_in 'チーム名', with: 'hogehogeチーム'
         fill_in 'チームのご褒美/目標', with: 'みんなで美味しいご飯を食べに行こう'
@@ -61,7 +61,7 @@ RSpec.describe 'チーム管理機能', type: :system do
         sleep(1)
         find('#rspec-team-destroy').click
         page.driver.browser.switch_to.alert.accept
-        expect(page).to_not have_content 'hogehogeチーム'
+        expect(page).to have_content 'チームを削除しました。'
       end
     end
   end
@@ -77,7 +77,7 @@ RSpec.describe 'チーム管理機能', type: :system do
       find('#rspec-notice').click
     end
     context 'ユーザーが所属していないチームの詳細画面に飛んだ場合' do
-      it 'アクセス権限がないと表示される' do
+      it 'アクセス権限がありません、と表示される' do
         find('#rspec-team-new').click
         fill_in 'チーム名', with: 'hogehogeチーム'
         fill_in 'チームのご褒美/目標', with: 'みんなで美味しいご飯を食べに行こう'

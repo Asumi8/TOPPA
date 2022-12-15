@@ -13,7 +13,7 @@
 
   <div class="field">
     <p>
-      <%= form.label 'カテゴリー' %><span class="required"> *必須</span><br />
+      <%= form.label 'カテゴリー'%><span class="required"> *必須</span><br />
       <%= form.collection_select :category_id, @categories, :id, :name, :include_blank => "カテゴリを選択してください" %>
       <% if (params[:team_id]).present?  %>
         <% @team_id = params[:team_id] %>
@@ -26,14 +26,14 @@
 
   <div class="field">
     <p>
-      <%= form.label 'タスク名' %><span class="required"> *必須</span><br />
+      <%= form.label 'タスク名'%><span class="required"> *必須</span><br />
       <%= form.text_field :name, :placeholder => "例:〇〇を提出する" %>
     </p>
   </div>
 
   <div class="field">
     <p>
-      <%= form.label '期限' %><span class="required"> *必須</span><br />
+      <%= form.label '期限'%><span class="required"> *必須</span><br />
       <%= form.date_field :expired_at %>
     </p>
   </div>

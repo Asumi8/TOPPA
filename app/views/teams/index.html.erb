@@ -21,7 +21,7 @@
                   <div class="card-body-team">
                     <i class="bi bi-people-fill"></i><%= link_to 'チームの詳細', team_path(team.id) %>
                     <span class="btn btn-secondary">
-                      <i class="bi bi-list-task"></i><%= link_to 'チームのタスク', team_tasks_path(team.id) %>
+                      <i class="bi bi-list-task"></i><%= link_to 'チームのタスク', team_tasks_path(team.id), id:'rspec-task-index'%>
                     </span>
                   </div>
                 </div>

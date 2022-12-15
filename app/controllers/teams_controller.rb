@@ -34,7 +34,7 @@ class TeamsController < ApplicationController
 
   def update
     if @team.update(team_params)
-      redirect_to teams_path(params[:team_id])
+      redirect_to teams_path(params[:team_id]), notice: 'チームを編集しました！'
     else
       render :edit
     end
@@ -42,7 +42,7 @@ class TeamsController < ApplicationController
 
   def destroy
     @team.destroy
-    redirect_to teams_path(params[:team_id])
+    redirect_to teams_path(params[:team_id]), notice: 'チームを削除しました。'
   end
 
   def assign_delete
