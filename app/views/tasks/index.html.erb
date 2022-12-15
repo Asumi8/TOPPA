@@ -8,8 +8,8 @@
 
           <div class="explanation">
             <ul>
-            <li>＊"未実行で期限まで2週間以内のタスク"は日付が赤くなり、毎週日曜日にタスクの一覧をまとめてメールで配信します</li>
-            <li>＊タスクの状況等を編集する場合は"編集"ボタンから変更ください</li>
+            <li><i class="bi bi-asterisk"></i>"未実行で期限まで2週間以内のタスク"は日付が赤くなり、毎週日曜日にタスクの一覧をまとめてメールで配信します</li>
+            <li><i class="bi bi-asterisk"></i>タスクの状況等を編集する場合は"編集"ボタンから変更ください</li>
             </い>
           </div>
 
@@ -22,19 +22,20 @@
 
 
           <div class="team-reward">
-            <span class="reward"><i class="bi bi-sun"></i>
-              チームのご褒美/目標<i class="bi bi-sun"></i></span>
+            <span class="reward">
+              <i class="bi bi-sun"></i>チームのご褒美/目標<i class="bi bi-sun"></i></span>
             <%= @team.reward%>
-            <%= button_to 'MVPを決める！', mvp_team_path(params[:team_id]), method: :get %>
+            <span class="mvp">
+              <i class="bi bi-award red"></i><%= link_to 'MVPを決める', mvp_team_path(params[:team_id]), method: :get %>
+            </span>
+              <span class="team-info">
+            <i class="bi bi-people-fill green"></i><%= link_to 'チームの詳細',  team_path(params[:team_id]) %>
+            </span>
           </div>
 
-         <!--<div class="mvp">
-            <label>チームのMVP<i class="bi bi-hand-thumbs-up"></i></label>
-              <%= button_to 'MVPを決める！', mvp_team_path(params[:team_id]), method: :get %>
-          </div>-->
           <div class="sort">
             <i class="bi bi-caret-down-square-fill grey"></i>
-            <%= link_to "未実行のみ絞り込み", team_tasks_path(choice_status: "true")%>
+            <%= link_to "未実行のみ絞り込む", team_tasks_path(choice_status: "true")%>
             <i class="bi bi-caret-down-square-fill grey"></i>
             <%= link_to "実行状況で並び替え", team_tasks_path(sort_status: "true")%>
             <i class="bi bi-caret-down-square-fill grey"></i>
@@ -195,11 +196,8 @@ progress {
 .sort a{
   color:#638793;
 }
-.sort, .mvp{
+.sort{
   margin-left:35px;
-}
-.mvp{
-  margin-bottom:15px;
 }
 .team-reward{
   margin:10px 35px 20px;
@@ -219,14 +217,26 @@ progress {
 form{
   display:inline;
 }
-form input{
-  background-color:#F3A5A3;
-  color:#fff;
+/* .mvp{
+  background-color:#fff;
   border:1px solid #F37774;
-  border-radius:5px;
-  margin-left:10px;
-}
-form input:hover{
+} */
+.mvp a:hover{
   opacity:0.7;
+}
+.mvp a{
+  color:#F37774;
+}
+.team-info a{
+  color:#59A6B0;
+}
+.team-info a:hover{
+  opacity:0.7;
+}
+.red{
+  color:#F37774;
+}
+.green{
+  color:#59A6B0;
 }
 </style>
