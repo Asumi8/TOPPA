@@ -1,6 +1,7 @@
 class TasksController < ApplicationController
   before_action :set_task, only: %i[show edit update destroy]
   before_action :authenticate_user!
+  before_action :prohibit_access_by_other_teams, except: %i[show destroy]
 
   def index
 
@@ -61,11 +62,18 @@ class TasksController < ApplicationController
 
   private
 
-    def set_task
-      @task = Task.find(params[:id])
-    end
+  def set_task
+    @task = Task.find(params[:id])
+  end
 
-    def task_params
-      params.require(:task).permit(:category_id, :name, :expired_at, :remarks, :image, :image_cache, :status, :repeat, :user_id, :team_id)
+  def task_params
+    params.require(:task).permit(:category_id, :name, :expired_at, :remarks, :image, :image_cache, :status, :repeat, :user_id, :team_id)
+  end
+
+  def prohibit_access_by_other_teams
+    unless current_user.assigns.pluck(:team_id).any?(params[:team_id].to_i)
+      flash[:notice] = "アクセス権限がありません"
+      redirect_to teams_path
     end
+  end
 end

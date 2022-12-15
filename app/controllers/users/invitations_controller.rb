@@ -1,4 +1,6 @@
 class Users::InvitationsController < Devise::InvitationsController
+  before_action :prohibit_access_by_other_teams, only: %i[new]
+
   def create
     @user = User.new
     if User.find_by(email: params[:user][:email].downcase).present?
@@ -56,6 +58,14 @@ class Users::InvitationsController < Devise::InvitationsController
     else
       resource.invitation_token = raw_invitation_token
       respond_with_navigational(resource) { render :edit, status: :unprocessable_entity }
+    end
+  end
+
+  private
+  def prohibit_access_by_other_teams
+    unless current_user.assigns.pluck(:team_id).any?(params[:team].to_i)
+      flash[:notice] = "アクセス権限がありません"
+      redirect_to teams_path
     end
   end
 end

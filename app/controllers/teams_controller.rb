@@ -1,6 +1,7 @@
 class TeamsController < ApplicationController
   before_action :set_team, only: %i[show edit update destroy mvp mvp_delete assign_delete]
   before_action :authenticate_user!
+  before_action :prohibit_access_by_other_teams, except: %i[index]
 
   def index
     @teams = Team.all
@@ -76,5 +77,12 @@ class TeamsController < ApplicationController
 
   def team_params
     params.require(:team).permit(:name, :reward, :period, :user_id, :owner_id)
+  end
+
+  def prohibit_access_by_other_teams
+    unless current_user.assigns.pluck(:team_id).any?(params[:id].to_i)
+      flash[:notice] = "アクセス権限がありません"
+      redirect_to teams_path
+    end
   end
 end
