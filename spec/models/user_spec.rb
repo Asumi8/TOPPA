@@ -1,5 +1,5 @@
 require 'rails_helper'
-RSpec.describe User, type: :model do
+RSpec.describe 'ユーザー管理機能', type: :model do
   describe 'バリデーションのテスト' do
     context '名前、メールアドレス、パスワードの情報が正しく入力されている場合' do
       it 'アカウント登録が完了する' do
@@ -7,7 +7,7 @@ RSpec.describe User, type: :model do
         expect(user).to be_valid
       end
     end
-    context '名前、メールアドレス、パスワードのいずれかの情報が入力されない場合' do
+    context '名前、メールアドレス、パスワードのいずれかの情報が入力されていない場合' do
       it 'バリデーションにひっかかる' do
         user1 = User.new(name: '', email: 'user@example.com', password: 'password', password_confirmation: 'password')
         user2 = User.new(name: 'user2', email: '', password: 'password', password_confirmation: 'password')
