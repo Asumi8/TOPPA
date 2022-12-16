@@ -48,7 +48,7 @@
 
           <% if @team.user == current_user %>
             <button class = "btn btn-dark">
-              <%= link_to 'このチームを削除する', team_path(@team), method: :delete, data: { confirm: 'Are you sure?' } %>
+              <%= link_to 'このチームを削除する', team_path(@team), method: :delete, data: { confirm: 'Are you sure?' }, id:'rspec-team-destroy'%>
             </button>
           <% end %>
           <hr />
