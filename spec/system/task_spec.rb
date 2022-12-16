@@ -26,6 +26,16 @@ RSpec.describe 'タスク管理機能', type: :system do
         expect(page).to have_content 'タスクを作成しました！'
       end
     end
+    context '新しいタスクを作成する際、必須項目を空のまま登録しようとした場合' do
+      it 'エラーがあります、と表示される' do
+        find('#rspec-task-index').click
+        find('#rspec-task-new').click
+        fill_in 'task[name]', with: ''
+        fill_in 'task[expired_at]', with: ''
+        click_on '登録する'
+        expect(page).to have_content 'エラーがあります。'
+      end
+    end
     context 'タスク一覧から任意のタスクを選択した場合' do
       it 'そのタスクの詳細が表示される' do
         find('#rspec-task-index').click

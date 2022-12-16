@@ -18,6 +18,14 @@ RSpec.describe 'チーム管理機能', type: :system do
         expect(page).to have_content 'チームを作成しました！'
       end
     end
+    context 'チームを新しく作成する際、必須項目を空のまま登録しようとした場合' do
+      it 'エラーがあります、と表示される' do
+        find('#rspec-team-new').click
+        fill_in 'チーム名', with: ''
+        click_on '登録する'
+        expect(page).to have_content 'エラーがあります。'
+      end
+    end
     context 'チーム一覧から任意のチームを選択した場合' do
       it 'そのチームの詳細が表示される' do
         find('#rspec-team-new').click
