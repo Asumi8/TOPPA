@@ -4,6 +4,7 @@ FactoryBot.define do
     name { "hogehogeチーム" }
     reward { "みんなで美味しいご飯を食べに行こう" }
     period { "2022-01-30" }
+    user_id { 1 }
   end
   factory :team2, class: Team do
     id { 2 }

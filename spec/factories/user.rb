@@ -8,6 +8,7 @@ FactoryBot.define do
     admin { false }
   end
   factory :guest, class: User do
+    id { 2 }
     name { "guest" }
     email { "guest@example.com" }
     password { "password" }
@@ -15,6 +16,7 @@ FactoryBot.define do
     admin { false }
   end
   factory :admin, class: User do
+    id { 3 }
     name { "admin" }
     email { "admin@example.com" }
     password { "password" }
