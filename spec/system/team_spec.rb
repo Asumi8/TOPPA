@@ -75,9 +75,13 @@ RSpec.describe 'チーム管理機能', type: :system do
   end
   describe 'アクセス制限' do
     let!(:user) { FactoryBot.create(:user) }
-    let!(:guest) { FactoryBot.create(:guest) }
     let!(:team) { FactoryBot.create(:team, user: user) }
+    let!(:assign) { FactoryBot.create(:assign, user: user, team: team) }
+    let!(:category) { FactoryBot.create(:category, team: team) }
+    let!(:task) { FactoryBot.create(:task, user: user, team: team) }
+    let!(:guest) { FactoryBot.create(:guest) }
     let!(:team2) { FactoryBot.create(:team2, user: guest) }
+    let!(:assign2) { FactoryBot.create(:assign2, user: guest, team: team2) }
     before do
       visit new_user_session_path
       fill_in 'メールアドレス', with: 'hoge@hoge.com'
@@ -86,11 +90,6 @@ RSpec.describe 'チーム管理機能', type: :system do
     end
     context 'ユーザーが所属していないチームの詳細画面に飛んだ場合' do
       it 'アクセス権限がありません、と表示される' do
-        find('#rspec-team-new').click
-        fill_in 'チーム名', with: 'hogehogeチーム'
-        fill_in 'チームのご褒美/目標', with: 'みんなで美味しいご飯を食べに行こう'
-        fill_in '達成期限', with: '2023-01-30'
-        click_on '登録する'
         click_on 'チームの詳細'
         visit team_path(2)
         expect(page).to have_content 'アクセス権限がありません'

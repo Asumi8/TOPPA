@@ -3,14 +3,12 @@ RSpec.describe 'カテゴリー管理機能', type: :system do
   describe 'カテゴリー作成機能' do
     let!(:user) { FactoryBot.create(:user) }
     let!(:team) { FactoryBot.create(:team, user: user) }
+    let!(:assign) { FactoryBot.create(:assign, user: user, team: team) }
     before do
       visit new_user_session_path
       fill_in 'メールアドレス', with: 'hoge@hoge.com'
       fill_in 'パスワード', with: 'password'
       find('#rspec-notice').click
-      find('#rspec-team-new').click
-      fill_in 'チーム名', with: 'hogehogeチーム'
-      click_on '登録する'
     end
     context 'タスク一覧から新しいタスクを作成した場合' do
       it 'カテゴリー名を登録し、作成したタスクが表示される' do
@@ -27,16 +25,15 @@ RSpec.describe 'カテゴリー管理機能', type: :system do
   describe 'アクセス制限機能' do
     let!(:user) { FactoryBot.create(:user) }
     let!(:team) { FactoryBot.create(:team, user: user) }
+    let!(:assign) { FactoryBot.create(:assign, user: user, team: team) }
     let!(:guest) { FactoryBot.create(:guest) }
     let!(:team2) { FactoryBot.create(:team2, user: guest) }
+    let!(:assign2) { FactoryBot.create(:assign2, user: guest, team: team2) }
     before do
       visit new_user_session_path
       fill_in 'メールアドレス', with: 'hoge@hoge.com'
       fill_in 'パスワード', with: 'password'
       find('#rspec-notice').click
-      find('#rspec-team-new').click
-      fill_in 'チーム名', with: 'hogehogeチーム'
-      click_on '登録する'
     end
     context 'ユーザーが所属していないチームのカテゴリー作成画面に飛んだ場合' do
       it 'アクセス権限がありません、と表示される' do
