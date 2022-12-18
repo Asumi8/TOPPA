@@ -33,7 +33,7 @@
 					<span class="text-green mvp"><%= user %>さん</span>
 					<% end %>
 					<div class="delete-btn">
-						<%= button_to '完了したタスクを削除する', mvp_delete_team_path(@team), method: :delete, data: { confirm: 'Are you sure?' } %>
+						<%= button_to '完了したタスクを削除する', mvp_delete_team_path(@team), method: :delete, data: { confirm: '削除して良いですか？' } %>
 						<p>「繰り返し」にチェックを入れていない、実行済みのタスクを削除できます</p>
 					</div>
 				</div>

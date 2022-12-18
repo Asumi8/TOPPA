@@ -31,7 +31,7 @@
             <%= link_to 'メンバーを招待する', new_user_invitation_path(id: current_user.id, team: @team.id) %>
           </button>
           <button class = "btn btn-dark">
-            <%= link_to 'このチームを抜ける', assign_delete_team_path(@team), method: :delete, data: { confirm: 'Are you sure?' } %>
+            <%= link_to 'このチームを抜ける', assign_delete_team_path(@team), method: :delete, data: { confirm: '削除して良いですか？' } %>
           </button>
           <hr />
 
@@ -48,7 +48,7 @@
 
           <% if @team.user == current_user %>
             <button class = "btn btn-dark">
-              <%= link_to 'このチームを削除する', team_path(@team), method: :delete, data: { confirm: 'Are you sure?' }, id:'rspec-team-destroy'%>
+              <%= link_to 'このチームを削除する', team_path(@team), method: :delete, data: { confirm: '削除して良いですか？' }, id:'rspec-team-destroy'%>
             </button>
           <% end %>
           <hr />
