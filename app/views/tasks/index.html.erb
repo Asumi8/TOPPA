@@ -9,8 +9,8 @@
           <div class="explanation">
             <ul>
             <li><i class="bi bi-asterisk"></i>"未実行で期限まで2週間以内のタスク"は日付が赤くなり、毎週日曜日にタスクの一覧をまとめてメールで配信します</li>
-            <li><i class="bi bi-asterisk"></i>タスクの状況等を編集する場合は"編集"ボタンから変更ください</li>
-            </い>
+            <!--<li><i class="bi bi-asterisk"></i>タスクの状況等を編集する場合は"編集"ボタンから変更ください</li>-->
+            </ul>
           </div>
 
           <div class="row justify-content-center">
@@ -52,11 +52,28 @@
                   <div class="left-box">
                     <span class="column category">カテゴリ</span><%= task.category.name %>
                     <span class="column name">タスク</span><span class="rspec"><%= task.name %></span>
-                    <% if task.repeat == true %>
-                      <label><i class="bi bi-arrow-counterclockwise"></i></label>
-                    <% else %>
-                      <label></label>
-                    <% end %>
+                    <div class="icon-box">
+                      <% if task.repeat == true %>
+                        <label><i class="bi bi-arrow-counterclockwise"></i></label>
+                      <% else %>
+                        <label></label>
+                      <% end %>
+                      <% if task.image.present? %>
+                        <label><i class="bi bi-card-image"></i></label>
+                      <% else %>
+                        <label></label>
+                      <% end %>
+                      <% if task.remarks.present? %>
+                        <label><i class="bi bi-journal-text"></i></label>
+                      <% else %>
+                        <label></label>
+                      <% end %>
+                      <% if task.comments.present? %>
+                        <label><i class="bi bi-chat-left-dots"></i></label>
+                      <% else %>
+                        <label></label>
+                      <% end %>
+                    </div>
                   </div>
                   <div class="right-box">
                     <span class="column create">作成日:<%= task.created_at.strftime('%Y-%m-%d') %></span>
@@ -64,10 +81,13 @@
                 </div>
                 <!--</h6>-->
                 <div class="card-body task">
-                  <% if task.status == true  %>
-                    <label class = "checkbox"><%= image_tag ("icon_true.png")  %></label>
+
+                  <% if task.status == true %>
+                    <%= link_to task_path(id:task.id, team_id: task.team_id, task: {status: false, team_id: task.team_id}), remote: true, method: :put, class: "checkbox", id:"js-checkbox-#{task.team_id}" do %>
+                    <label class = "checkbox"><%= image_tag ("icon_true_green.png")  %></label><% end %>
                   <% else %>
-                  <label class = "checkbox"><%= image_tag ("icon_false.png")  %></label>
+                    <%= link_to task_path(id:task.id, team_id: task.team_id, task: {status: true, team_id: task.team_id}), remote: true, method: :put, class: "checkbox" do %>
+                    <label class = "checkbox"><%= image_tag ("icon_false_green.png")  %></label><% end %>
                   <% end %>
 
                   <% if (task.expired_at - @date).to_i < 14 && task.status == false %>
@@ -88,9 +108,9 @@
                     <label for="file">
                     <progress id="file" max="100" value=<%= @expired_at_count %>></progress></label>
 
-                  <i class="bi bi-pencil-square"></i><%= link_to '編集', edit_task_path(id:task.id, team_id:task.team_id) %>
-                  <i class="bi bi-three-dots"></i><%= link_to '詳細', task %>
-                  <i class="bi bi-trash3"></i><%= link_to '削除', task, method: :delete, data: { confirm: 'Are you sure?' } %>
+                  <%= link_to edit_task_path(id:task.id, team_id:task.team_id), class: "edit" do %><i class="bi bi-pencil-square"></i><% end %>
+                  <%= link_to task, class: "show" do %><i class="bi bi-three-dots"></i><% end %>
+                  <%= link_to task, method: :delete, data: { confirm: 'Are you sure?' }, class: "show" do %><i class="bi bi-trash3"></i><% end %>
                 </div>
               </div>
             </div>
@@ -173,7 +193,18 @@ progress {
   display:flex;
   position:relative;
 }
-
+.left-box{
+  display:flex;
+}
+.icon-box{
+  margin-left: 10px;
+  background-color:#fff;
+  padding: 0 5px 0;
+  height:25px;
+}
+.icon-box i{
+  height: 50px;
+}
 .right-box{
   position:absolute;
   right:0;
@@ -188,7 +219,10 @@ progress {
   color:grey;
 }
 .checkbox img{
-  height:50px;
+  height:40px;
+}
+.checkbox img:hover{
+  opacity:0.7;
 }
 .btn-red, .btn-red a{
   color:#fff;
