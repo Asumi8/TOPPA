@@ -6,10 +6,10 @@ rails_env = ENV['RAILS_ENV'] || :development
 set :output, "#{Rails.root}/log/cron.log"
 set :environment, :production
 
-# every :sunday, at: '9:00 am' do
-#   rake 'deadline_approaching:notification'
-# end
-
-every 1.day, at: '9:00 am' do
+every :sunday, at: '9:00 am' do
   rake 'deadline_approaching:notification'
 end
+
+# every 1.day, at: '9:00 am' do
+#   rake 'deadline_approaching:notification'
+# end
