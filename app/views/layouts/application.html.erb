@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Serif:ital,wght@1,400;1,700&family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&family=Noto+Serif:ital,wght@1,400;1,700&family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -21,7 +22,7 @@
 
   <body>
     <div class="footer_fixed">
-      <nav class="navbar navbar-expand-md navbar-light bg-light">
+      <nav style="background-color: #fafafa;" class="navbar navbar-expand-md navbar-light">
         <div class = "container-lg">
           <div class="logo">
           <a class="navbar-brand" href="/"><label class = "logo"><%= image_tag ("logo.png")  %></label></a>
@@ -81,6 +82,9 @@
           </div>
         </div>
       </nav>
+
+      <p class="border border-primary"></p>
+
       <div class="message">
         <% if notice %>
           <p class="alert alert-notice"><%= notice %></p>
@@ -104,6 +108,10 @@
 </html>
 
 <style>
+.nav-item a{
+  color: #88898a;
+  font-weight:bold;
+}
 .card{
   background-color:#ECDDD6;
   border: #fff;
