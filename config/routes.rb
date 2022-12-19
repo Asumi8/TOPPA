@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     end
     resources :categories, only: %i[new create], shallow: true
     resources :tasks, shallow: true do
+      member { patch 'update_status' => 'tasks#update_status' }
       resources :comments, only: %i[create destroy]
     end
   end

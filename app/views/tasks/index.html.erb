@@ -65,6 +65,8 @@
                   <div class="left-box">
                     <span class="column category">カテゴリ</span><%= task.category.name %>
                     <span class="column name">タスク</span><span class="rspec" style="font-weight:bold;, font-size:18px;"><%= task.name %></span>
+                  </div>
+                  <div class="right-box ml-auto">
                     <div class="icon-box">
                       <% if task.repeat == true %>
                         <label><i class="bi bi-arrow-counterclockwise"></i></label>
@@ -87,21 +89,14 @@
                         <label></label>
                       <% end %>
                     </div>
-                  </div>
-                  <div class="right-box ml-auto">
-                    <span class="column create">作成日:<%= task.created_at.strftime('%Y-%m-%d') %></span>
+                    <div class="column create">作成日:<%= task.created_at.strftime('%Y-%m-%d') %></div>
                   </div>
                 </div>
 
                 <div class="card-body task">
                   <div class="left-contents">
-                    <% if task.status == true %>
-                      <%= link_to task_path(id:task.id, team_id: task.team_id, task: {status: false, team_id: task.team_id}), remote: true, method: :put, class: "checkbox", id:"js-checkbox-#{task.team_id}" do %>
-                      <label class = "checkbox"><%= image_tag ("icon_true_green.png")  %></label><% end %>
-                    <% else %>
-                      <%= link_to task_path(id:task.id, team_id: task.team_id, task: {status: true, team_id: task.team_id}), remote: true, method: :put, class: "checkbox" do %>
-                      <label class = "checkbox"><%= image_tag ("icon_false_green.png")  %></label><% end %>
-                    <% end %>
+
+                    <%= render "tasks/update_status", task: task %>
 
                     <% if (task.expired_at - @date).to_i < 14 && task.status == false %>
                       <label class="column expire">期限</label>
@@ -138,6 +133,7 @@
     </div>
   </div>
 </div>
+
 
 <style>
 .urgent{
@@ -178,7 +174,6 @@ progress {
 .colmun{
   font-weight:bold;
 }
-
 .column.category{
   background-color:#8F989B;
   color:white;
@@ -216,8 +211,8 @@ progress {
 .icon-box{
   margin-left: 10px;
   background-color:#fff;
-  padding: 0 5px 0;
-  height:25px;
+  padding: 0 5px;
+  height:20px;
 }
 .icon-box i{
   height: 50px;
@@ -335,5 +330,8 @@ form{
 }
 .btn-outline-secondary a:hover{
   color:#fff;
+}
+.right-box{
+  display:flex;
 }
 </style>

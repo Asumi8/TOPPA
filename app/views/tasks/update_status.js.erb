@@ -1,0 +1,1 @@
+$("#change-status-link-<%= @task.id %>").html("<%= escape_javascript(render 'tasks/update_status', task: @task)%>")
