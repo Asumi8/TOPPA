@@ -17,7 +17,7 @@ class UsersController < ApplicationController
 
   def prohibit_access_by_others
     if current_user.id != params[:id].to_i
-      flash[:notice] = "アクセス権限がありません"
+      flash[:notice] = "アクセス権限がありません。"
       redirect_to user_path(current_user)
     end
   end
