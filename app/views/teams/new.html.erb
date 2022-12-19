@@ -8,7 +8,10 @@
 
           <%= render 'form', team: @team %>
 
-          <span class="col-4"><%= link_to '戻る', teams_path %></span>
+          <hr>
+          <span class="col-4 back">
+            <%= link_to '戻る', @team %>
+          </span>
         </div>
       </div>
     </div>

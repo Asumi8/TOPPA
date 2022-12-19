@@ -4,7 +4,7 @@
       <div class = "card">
         <div class="card-body"><h2><%= t "devise.invitations.new.header" %></h2>
          <h1>Invitation</h1>
-          <p class="col-lg-12 title">- チームへの招待メール送る -</p>
+          <p class="col-lg-12 title">- チームへの招待メールを送る -</p>
         <%= form_for(@user, as: resource_name, url: invitation_path(resource_name), html: { method: :post }) do |f| %>
           <%= render "devise/shared/error_messages", resource: resource %>
 
@@ -24,6 +24,11 @@
             </p>
           </div>
         <% end %>
+
+        <hr>
+          <span class="col-4 back">
+            <%= link_to '戻る', team_path(id:params[:team]) %>
+          </span>
         </div>
       </div>
     </div>
