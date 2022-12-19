@@ -1,12 +1,12 @@
 <% if @completed_count.empty? %>
-	<div class = "container">
+	<div class = "container no-task">
   	<div class="row">
 			<div class="box">
 				<h1>MVP</h1>
 				<p class="col-lg-12 title">- チームに最も貢献した方を表彰します -</p>
 				<p>
 				まだひとつもタスクを実行していません😢<br />
-				チームで分担して実行していきましょう!!🤝
+				チームで分担してタスクを実行していきましょう!!🤝
 				</p>
 			</div>
 		</div>
@@ -22,10 +22,11 @@
 						<h1 class="congrats">🎉Congratulations!!🎉</h1>
 
 						<p>
+							おつかれさまでした！<br>
 							<% @maximum_completed_user.each do|user| %>
 								<span class="text-green"><%= user %>さん</span>
 							<% end %>
-							<label>にご褒美を渡しましょう！</label>
+							<label>に労いの言葉をかけ、ご褒美を渡しましょう！</label>
 						</p>
 					<br />
 					<label>最もチームに貢献した人</label><br />
@@ -34,7 +35,7 @@
 					<% end %>
 					<div class="delete-btn">
 						<%= button_to '完了したタスクを削除する', mvp_delete_team_path(@team), method: :delete, data: { confirm: '削除して良いですか？' } %>
-						<p>「繰り返し」にチェックを入れていない、実行済みのタスクを削除できます</p>
+						<p class="small">「繰り返し」にチェックを入れていない、実行済みのタスクを削除できます</p>
 					</div>
 				</div>
 			</div>
