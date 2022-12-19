@@ -52,10 +52,6 @@
             <% end%>
           </p>
 
-
-          <%= link_to '編集する', edit_task_path(id:@task.id, team_id:@task.team_id) %> |
-          <%= link_to '戻る', team_tasks_path(@task.team_id) %>
-
           <hr />
           <p>コメント一覧</p>
 
@@ -63,6 +59,9 @@
             <%= render partial: 'comments/index', locals: { comments: @comments, task: @task } %>
           </div>
           <%= render partial: 'comments/form', locals: { comment: @comment, task: @task } %>
+
+          <%= link_to '編集する', edit_task_path(id:@task.id, team_id:@task.team_id) %> |
+          <%= link_to '戻る', team_tasks_path(@task.team_id) %>
         </div>
       </div>
     </div>

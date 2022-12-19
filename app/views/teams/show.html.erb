@@ -5,55 +5,63 @@
         <div class="card-body">
           <h1>My Team</h1>
           <p class="col-lg-12 title">- <%= @team.name%>チーム -</p>
-          <p class="text-green">
-            <strong>チーム名:</strong>
-            <%= @team.name %>
-          </p>
-
-          <p class="text-green">
-            <strong>チームのご褒美/目標:</strong>
-            <%= @team.reward %>
-          </p>
-
-          <p class="text-green">
-            <strong>達成期限:</strong>
-            <%= @team.period %>
-          </p>
-
-          <p class="text-green">
-            <strong>チームメンバー:</strong><br />
-            <% @team.users.each do |user| %>
-            <%= user.name%><br />
-            <% end %>
-          </p>
-
-          <button class = "btn btn-secondary">
-            <%= link_to 'メンバーを招待する', new_user_invitation_path(id: current_user.id, team: @team.id) %>
-          </button>
-          <button class = "btn btn-dark">
-            <%= link_to 'このチームを抜ける', assign_delete_team_path(@team), method: :delete, data: { confirm: '削除して良いですか？' } %>
-          </button>
-          <hr />
-
-          <p class="text-green">
-            <strong>チームのMVP<i class="bi bi-award"></i></strong>
-            <%= button_to 'MVPを決める！', mvp_team_path, method: :get %>
-          </p>
-
+          <div class="team-body">
+            <table>
+              <tr>
+                <th class="text-green">チーム名</th>
+                <td><%= @team.name %></td>
+              </tr>
+              <tr>
+                <th class="text-green">チームのご褒美/目標</th>
+                <td><%= @team.reward %></td>
+              </tr>
+              <tr>
+                <th class="text-green">達成期限</th>
+                <td> <%= @team.period %></td>
+              </tr>
+              <tr>
+                <th class="text-green">チームメンバー</th>
+                <td><% @team.users.each do |user| %>
+                  <%= user.name%><br />
+                  <% end %>
+                </td>
+              </tr>
+            </table>
+            <div class="link-box d-flex justify-content-center col-lg-10">
+              <button class="btn btn-success">
+                <%= link_to edit_team_path(@team) do %><i class="bi bi-pencil-square"></i>チームを編集<% end %>
+              </button>
+              <button class = "btn btn-secondary">
+                <%= link_to new_user_invitation_path(id: current_user.id, team: @team.id) do %><i class="bi bi-people-fill"></i>チームにメンバーを招待する<% end %>
+              </button>
+              <button class = "btn btn-dark">
+                <%= link_to assign_delete_team_path(@team), method: :delete, data: { confirm: '削除して良いですか？' } do %><i class="bi bi-box-arrow-right"></i>チームを抜ける<% end %>
+              </button>
+            </div>
+          </div>
+          <hr  size="10px" color="#fff">
 
           <p class="text-green">
           <strong>チームのタスク実行状況</strong>
-            <%= bar_chart @completed_count, id: "users-chart", max_width: "800px", max_height: "300px",  colors: ["#F3A5A3","#4E889A"], xtitle: "タスク実行数", ytitle: "チームメンバー" , min: 0%>
+            <%= bar_chart @completed_count, id: "users-chart", max_width: "800px", max_height: "300px",  colors: ["#4E889A", "#26516f"], xtitle: "タスク実行数", ytitle: "チームメンバー" , min: 0%>
+          </p>
+
+          <p class="text-green">
+            <strong>チームのMVP</strong>
+            <span class="btn btn-outline-secondary">
+              <i class="bi bi-award red"></i><%= link_to 'MVPを決める', mvp_team_path, method: :get %>
+            </span>
           </p>
 
           <% if @team.user == current_user %>
             <button class = "btn btn-dark">
-              <%= link_to 'このチームを削除する', team_path(@team), method: :delete, data: { confirm: '削除して良いですか？' }, id:'rspec-team-destroy'%>
+              <%= link_to team_path(@team), method: :delete, data: { confirm: '削除して良いですか？' }, id:'rspec-team-destroy' do %><i class="bi bi-trash3"></i>このチームを削除する<% end %>
             </button>
           <% end %>
-          <hr />
-          <%= link_to 'チームを編集', edit_team_path(@team) %> |
-          <%= link_to '戻る', teams_path %>
+
+          <hr>
+
+          <span class="back"><%= link_to '戻る', teams_path %></span>
 
         </div>
       </div>
@@ -72,11 +80,49 @@
   font-size:18px;
   color:#524f4f;
 }
-.text-green  strong{
+.text-green{
   color:#4E889A;
   font-weight:bold;
 }
 .btn a{
   color:white;
+}
+.btn-outline-secondary{
+  padding:3px 6px;
+  background-color:#fff;
+  margin-left:10px;
+}
+.btn-outline-secondary a{
+  color:#F3A5A3;
+  font-size:18px;
+}
+.btn-outline-secondary a:hover{
+  color:#fff;
+}
+table{
+  border-collapse: separate;
+  border-spacing: 8px 8px;
+  margin-bottom:10px;
+}
+th{
+  vertical-align: top; 
+}
+td{
+  font-size:18px;
+}
+.team-body{
+  background-color:#fff;
+  padding:25px 0;
+  border-radius:5px;
+}
+.link-box{
+  margin-left:10px;
+}
+hr {
+  border-style: none;
+  border-top: 4px solid white;
+}
+.btn{
+  margin-right:10px;
 }
 </style>

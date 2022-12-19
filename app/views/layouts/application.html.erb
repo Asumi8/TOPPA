@@ -34,19 +34,19 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
               <% if user_signed_in? %>
-                <li class="nav-item active">
-                  <a class="nav-link active" href="#">
-                    <%= link_to 'myチーム/myタスク', teams_path(current_user) %>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">
+                    <%= link_to teams_path(current_user) do %><i class="bi bi-house-fill" style="font-size:1.2rem;"></i>TeamとTask<% end %>
                   </a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="#">
-                    <%= link_to 'プロフィール', user_path(current_user) %>
+                    <%= link_to user_path(current_user) do %><i class="bi bi-person-circle" style="font-size:1.2rem;"></i>プロフィール<% end %>
                   </a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="#">
-                    <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
+                    <%= link_to destroy_user_session_path, method: :delete do %><i class="bi bi-box-arrow-right" style="font-size:1.2rem;"></i>ログアウト<% end %>
                   </a>
                 </li>
                 <li class="nav-item">
@@ -167,5 +167,11 @@ footer{
   color:grey;
   font-weight:700;
   font-family: 'Quicksand', sans-serif;
+}
+.nav-link{
+  padding:0;
+}
+.back a{
+  color: #4F92C2;
 }
 </style>
