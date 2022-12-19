@@ -58,11 +58,13 @@
             </div>
           <% end %>
           <hr>
-          <h4>アカウントを削除する</h4>
+          <p>アカウントを削除する</p>
 
           <p><%#= t('.unhappy') %> <%= button_to t('.cancel_my_account'), registration_path(resource_name), data: { confirm: t('.are_you_sure') }, method: :delete %></p>
-
-          <%= link_to '戻る', user_path(current_user) %>
+          <hr>
+          <span class="back">
+            <%= link_to '戻る', user_path(current_user) %>
+          </span>
         </div>
       </div>
     </div>
@@ -72,10 +74,5 @@
 <style>
 input {
   width:100%;
-}
-hr{
-  height: 2px;
-  background-color: red;
-  border: none;
 }
 </style>
