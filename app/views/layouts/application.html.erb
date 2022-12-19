@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Serif:ital,wght@1,400;1,700&family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&family=Noto+Serif:ital,wght@1,400;1,700&family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -21,7 +22,7 @@
 
   <body>
     <div class="footer_fixed">
-      <nav class="navbar navbar-expand-md navbar-light bg-light">
+      <nav style="background-color: #fafafa;" class="navbar navbar-expand-md navbar-light">
         <div class = "container-lg">
           <div class="logo">
           <a class="navbar-brand" href="/"><label class = "logo"><%= image_tag ("logo.png")  %></label></a>
@@ -33,25 +34,25 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
               <% if user_signed_in? %>
-                <li class="nav-item active">
-                  <a class="nav-link active" href="#">
-                    <%= link_to 'myチーム/myタスク', teams_path(current_user) %>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">
+                    <%= link_to teams_path(current_user) do %><i class="bi bi-house-fill" style="font-size:1.2rem;"></i>TeamとTask<% end %>
                   </a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="#">
-                    <%= link_to 'プロフィール', user_path(current_user) %>
+                    <%= link_to user_path(current_user) do %><i class="bi bi-person-circle" style="font-size:1.2rem;"></i>プロフィール<% end %>
                   </a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="#">
-                    <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
+                    <%= link_to destroy_user_session_path, method: :delete do %><i class="bi bi-box-arrow-right" style="font-size:1.2rem;"></i>ログアウト<% end %>
                   </a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="#">
                     <% if current_user.admin? %>
-                      <%= link_to "管理者画面", rails_admin_path %>
+                      <%= link_to rails_admin_path do %><i class="bi bi-person-fill-lock" style="font-size:1.2rem;"></i>管理者画面<% end %>
                     <% end %>
                   </a>
                 </li>
@@ -81,6 +82,9 @@
           </div>
         </div>
       </nav>
+
+      <p class="border border-primary"></p>
+
       <div class="message">
         <% if notice %>
           <p class="alert alert-notice"><%= notice %></p>
@@ -104,6 +108,13 @@
 </html>
 
 <style>
+.nav-item a{
+  color: #88898a;
+  font-weight:bold;
+}
+.nav-item a:hover{
+  opacity: 0.7;
+}
 .card{
   background-color:#ECDDD6;
   border: #fff;
@@ -156,5 +167,15 @@ footer{
   color:grey;
   font-weight:700;
   font-family: 'Quicksand', sans-serif;
+}
+.nav-link{
+  padding:0;
+}
+.back a{
+  color: #4F92C2;
+}
+hr {
+  border-style: none;
+  border-top: 2px solid #4E889A;
 }
 </style>

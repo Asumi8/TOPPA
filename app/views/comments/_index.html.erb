@@ -16,7 +16,7 @@
           </div>
         <div class="box comment">
         <p><%= comment.content %></p>
-        <p class="left-box"><%= link_to "コメント削除", comment_path(id:comment.task_id, comment_id:comment.id), method: :delete, remote: true, data: { confirm: "本当に削除しますか?"} %></p>
+        <p class="left-box trash"><%= link_to comment_path(id:comment.task_id, comment_id:comment.id), method: :delete, remote: true, data: { confirm: "本当に削除しますか?"} do %><i class="bi bi-trash3"></i><% end %></p>
         </div>
       </div>
     </div>
@@ -41,4 +41,12 @@
 .icon_comment img{
   margin-right: 10px;
 }
+.trash a{
+  font-size: 1.2rem;
+  color: cornflowerblue;"
+}
+.trash a:hover{
+  opacity:0.7;
+}
+
 </style>

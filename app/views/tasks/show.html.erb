@@ -5,64 +5,64 @@
         <div class="card-body">
           <h1>Task Details</h1>
           <p class="col-lg-12 title">- タスクの詳細 -</p>
-          <p class="text-green">
-            <strong>カテゴリー：</strong>
-            <%= @task.category.name %>
-          </p>
+          <div class="task-body">
+            <table>
+              <tr>
+                <th class="text-green">カテゴリー</th>
+                <td style="font-weight:bold;"><%= @task.category.name %></td>
+              </tr>
+              <tr>
+                <th class="text-green">タスク名</th>
+                <td style="font-weight:bold;"><span class="underline"><%= @task.name %></span></td>
+              </tr>
+              <tr>
+                <th class="text-green">期限</th>
+                <td style="font-weight:bold;"><%= @task.expired_at %></td>
+              </tr>
+              <tr>
+                <th class="text-green">状況</th>
+                <% if @task.status == true %>
+                  <td style="font-weight:bold;">実行済み<i class="bi bi-check-circle-fill"></i></td>
+                <% else %>
+                  <td style="font-weight:bold;">未実行<i class="bi bi-dash-circle"></i></td>
+                <% end %>
+              </tr>
+              <tr>
+                <% if @task.remarks.present? %>
+                  <th class="text-green">補足<i class="bi bi-journal-text"></i></th>
+                  <td><%= @task.remarks %></td>
+                <% end %>
+              </tr>
+              <tr>
+                <% if @task.image.url != nil %>
+                  <th class="text-green">画像<i class="bi bi-card-image"></i></th>
+                  <td><label class="image"><%= image_tag @task.image.url %></label></td>
+                <% end %>
+              </tr>
+              <th class="text-green">繰り返し<i class="bi bi-arrow-counterclockwise"></i></th>
+                <% if @task.repeat == true %>
+                  <td><span>有り</span></td>
+                <% else %>
+                  <td><span>無し</span></td>
+                <% end%>
+              </tr>
+            </table>
+          <button class="btn btn-success">
+            <%= link_to '編集する', edit_task_path(id:@task.id, team_id:@task.team_id) %>
+          </button>
+          </div>
 
-          <p class="text-green">
-            <strong>タスク名：</strong>
-            <%= @task.name %>
-          </p>
-
-          <p class="text-green">
-            <strong>期限：</strong>
-            <%= @task.expired_at %>
-          </p>
-
-          <% if @task.remarks != "" %>
-            <p class="text-green">
-              <strong>補足：</strong>
-              <%= @task.remarks %>
-            </p>
-          <% end %>
-
-          <% if @task.image.url != nil %>
-            <p class="text-green">
-              <strong>画像：</strong>
-              <label class="image"><%= image_tag @task.image.url %></label>
-            </p>
-          <% end %>
-
-          <p class="text-green">
-            <strong>状況：</strong>
-            <% if @task.status == true %>
-              <span>実行済み</span>
-            <% else %>
-              <span>未実行</span>
-            <% end%>
-          </p>
-
-          <p class="text-green">
-            <strong>繰り返し：</strong>
-            <% if @task.repeat == true %>
-              <span>有り</span>
-            <% else %>
-              <span>無し</span>
-            <% end%>
-          </p>
-
-
-          <%= link_to '編集する', edit_task_path(id:@task.id, team_id:@task.team_id) %> |
-          <%= link_to '戻る', team_tasks_path(@task.team_id) %>
-
-          <hr />
-          <p>コメント一覧</p>
+          <hr>
+          <p class="text-green">コメント一覧</p>
 
           <div id="comments_area">
             <%= render partial: 'comments/index', locals: { comments: @comments, task: @task } %>
           </div>
           <%= render partial: 'comments/form', locals: { comment: @comment, task: @task } %>
+          <hr>
+          <span class="back">
+            <%= link_to '戻る', team_tasks_path(@task.team_id) %>
+          </span>
         </div>
       </div>
     </div>
@@ -80,8 +80,31 @@
   font-size:18px;
   color:#524f4f;
 }
-.text-green  strong{
+.text-green{
   color:#4E889A;
   font-weight:bold;
+}
+table{
+  border-collapse: separate;
+  border-spacing: 8px 8px;
+  margin-bottom:10px;
+}
+th{
+  vertical-align: top; 
+}
+td{
+  font-size:18px;
+}
+.task-body{
+  background-color:#fff;
+}
+.underline{
+  background: linear-gradient(transparent 80%, #ff99ab 80%);
+}
+.btn-success{
+  margin:10px;
+}
+.btn-success a{
+  color:#fff;
 }
 </style>

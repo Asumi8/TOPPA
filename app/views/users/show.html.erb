@@ -6,7 +6,7 @@
           <h1>Profile</h1>
           <p class="col-lg-12 title">- プロフィール -</p>
           <div class="container-fluid">
-            <div class="row">
+            <div class="row profile-body">
               <div class="col-md col-lg-4 icon-img">
                 <% if @user.icon? %>
                   <p>
@@ -17,30 +17,35 @@
                 <% end %>
               </div>
               <div class="col-md-8 col-lg">
-                <p class = "text-green">
-                  <strong>ユーザー名:</strong>
-                  <%= @user.name %>
-                </p>
-                <p class = "text-green">
-                  <strong>emailアドレス:</strong>
-                  <%= @user.email %>
-                </p>
-                <button type="button" class="btn btn-secondary">
+              <table>
+              <tr>
+                <th class="text-green">ユーザー名</th>
+                <td><%= @user.name %></td>
+
+              </tr>
+              <tr>
+                <th class="text-green">emailアドレス</th>
+                <td><%= @user.email %></td>
+              </tr>
+              </table>
+
+              <button type="button" class="btn btn-secondary">
                 <%= link_to "Profileを編集する", edit_user_registration_path(@user) %>
-                </button>
+              </button>
+              <label class="small"><i class="bi bi-hand-index"></i>アイコンの設定はこちらから</label>
               </div>
             </div>
             <hr />
 
-            <h4>所属しているチーム</h4>
+            <h4 class="text-green">所属しているチーム</h4>
             <% if current_user.teams.first.present? || current_user.team_members.first.present? %>
-              <p>
                 <% current_user.team_members.each do |team| %>
-                  <p>
-                    <%= team.name %>
-                  </p>
+                <ul>
+                  <li>
+                    <i class="bi bi-play-fill text-green"></i><%= team.name %>
+                  </li>
+                </ul>
                 <% end %>
-              </p>
             <% else %>
               <%= link_to "チームに所属する", new_team_path%><br>
             <% end %>
@@ -73,8 +78,21 @@
   font-weight:bold;
   padding-left:10px;
 }
-.text-green  strong{
+.text-green{
   color:#4E889A;
   font-weight:bold;
+}
+.profile-body{
+  background-color:#fff;
+  padding:25px 0;
+  border-radius:5px;
+}
+table{
+  border-collapse: separate;
+  border-spacing: 5px 8px;
+  margin-bottom:10px;
+}
+td{
+  font-size:16px;
 }
 </style>

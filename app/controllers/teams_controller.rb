@@ -63,9 +63,9 @@ class TeamsController < ApplicationController
     completed_not_repeat_task = @team.tasks.where(status: true).where(repeat: false)
     if completed_not_repeat_task.present?
       completed_not_repeat_task.destroy_all
-      redirect_to team_tasks_path(params[:id]), notice: '実行済みのタスクを削除しました'
+      redirect_to team_tasks_path(params[:id]), notice: '実行済みのタスクを削除しました。'
     else
-      redirect_to team_tasks_path(params[:id]), notice: '削除できるタスクがありません'
+      redirect_to team_tasks_path(params[:id]), notice: '削除できるタスクがありません。'
     end
   end
 
@@ -81,7 +81,7 @@ class TeamsController < ApplicationController
 
   def prohibit_access_by_other_teams
     unless current_user.assigns.pluck(:team_id).any?(params[:id].to_i)
-      flash[:notice] = "アクセス権限がありません"
+      flash[:notice] = "アクセス権限がありません。"
       redirect_to teams_path
     end
   end

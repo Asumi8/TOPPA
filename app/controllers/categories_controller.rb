@@ -12,6 +12,7 @@ class CategoriesController < ApplicationController
     if @category.save
       redirect_to new_team_task_path
     else
+      flash[:notice] = "登録できませんでした。"
       render :new
     end
   end

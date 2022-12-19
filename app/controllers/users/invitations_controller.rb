@@ -14,7 +14,8 @@ class Users::InvitationsController < Devise::InvitationsController
         user.save
         redirect_to teams_path(current_user), notice: "招待メールが#{exist_email}に送信されました。"
       else
-        render :new, notice: 'メールアドレスを正しく入力してください'
+        flash[:notice] = 'メールアドレスを正しく入力してください。'
+        render :new
       end
     else
       new_email = params[:user][:email]
@@ -22,7 +23,8 @@ class Users::InvitationsController < Devise::InvitationsController
       if User.invite!(email: new_email, invited_by_team_id: team_id).valid?
         redirect_to teams_path(current_user), notice: "招待メールが#{new_email}に送信されました。"
       else
-        render :new, notice: 'メールアドレスを正しく入力してください'
+        flash[:notice] = 'メールアドレスを正しく入力してください。'
+        render :new
       end
     end
   end
@@ -64,7 +66,7 @@ class Users::InvitationsController < Devise::InvitationsController
   private
   def prohibit_access_by_other_teams
     unless current_user.assigns.pluck(:team_id).any?(params[:team].to_i)
-      flash[:notice] = "アクセス権限がありません"
+      flash[:notice] = "アクセス権限がありません。"
       redirect_to teams_path
     end
   end

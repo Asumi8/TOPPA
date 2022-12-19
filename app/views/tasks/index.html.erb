@@ -6,13 +6,6 @@
           <h1>Tasks List</h1>
           <p class="col-lg-12 title">- タスク一覧 -</p>
 
-          <div class="explanation">
-            <ul>
-            <li><i class="bi bi-asterisk"></i>"未実行で期限まで2週間以内のタスク"は日付が赤くなり、毎週日曜日にタスクの一覧をまとめてメールで配信します</li>
-            <!--<li><i class="bi bi-asterisk"></i>タスクの状況等を編集する場合は"編集"ボタンから変更ください</li>-->
-            </ul>
-          </div>
-
           <div class="row justify-content-center">
             <button class="btn btn-red col-4 ">
               <i class="fa fa-plus-square white" aria-hidden="true" style="#fff"></i>
@@ -20,17 +13,37 @@
             </button>
           </div>
 
+          <div class="explanation">
+            <ul>
+              <li>
+                <i class="bi bi-asterisk"></i>
+                <span class="underline thin">自分が実行したタスクに<i class="bi bi-check-circle-fill"></i></span>をつけましょう！チームに1番貢献した人は<span class="underline thin">「MVPを決める」ボタン</span>見ることができます！
+              </li>
+              <li>
+                <i class="bi bi-asterisk"></i>
+                "<span class="underline thin">未実行で期限まで2週間以内のタスク</span>"は日付に下線が付き、タスクの一覧をまとめて<span class="underline thin">毎週日曜日にメールで配信</span>します
+              </li>
+              <li>
+                <i class="bi bi-asterisk"></i>
+                アイコンの説明：<i class="bi bi-arrow-counterclockwise"></i>繰り返し、<i class="bi bi-card-image"></i>写真有り、<i class="bi bi-journal-text"></i>補足有り、<i class="bi bi-chat-left-dots"></i>コメント有り(「詳細」をご覧ください)
+              </li>
+            </ul>
+          </div>
 
           <div class="team-reward">
-            <span class="reward">
-              <i class="bi bi-sun"></i>チームのご褒美/目標<i class="bi bi-sun"></i></span>
-            <%= @team.reward%>
-            <span class="mvp">
-              <i class="bi bi-award red"></i><%= link_to 'MVPを決める', mvp_team_path(params[:team_id]), method: :get %>
-            </span>
-              <span class="team-info">
-            <i class="bi bi-people-fill green"></i><%= link_to 'チームの詳細',  team_path(params[:team_id]) %>
-            </span>
+            <div class="left-reward">
+              <span class="reward">
+                <i class="bi bi-sun"></i>チームのご褒美/目標<i class="bi bi-sun"></i></span>
+              <%= @team.reward%>
+            </div>
+            <div class="right-btn ml-auto">
+              <span class="btn btn-outline-secondary">
+                <i class="bi bi-award red"></i><%= link_to 'MVPを決める', mvp_team_path(params[:team_id]), method: :get %>
+              </span>
+              <span class="btn btn-outline-success">
+                <%= link_to team_path(params[:team_id]) do %><i class="bi bi-people-fill green"></i>チームの詳細<% end %>
+              </span>
+            </div>
           </div>
 
           <div class="sort">
@@ -48,10 +61,10 @@
             <div class="col-lg-12">
               <div class="card-task">
                 <div class="card-header">
-                <!--<h6 class="card-title">-->
+
                   <div class="left-box">
                     <span class="column category">カテゴリ</span><%= task.category.name %>
-                    <span class="column name">タスク</span><span class="rspec"><%= task.name %></span>
+                    <span class="column name">タスク</span><span class="rspec" style="font-weight:bold;, font-size:18px;"><%= task.name %></span>
                     <div class="icon-box">
                       <% if task.repeat == true %>
                         <label><i class="bi bi-arrow-counterclockwise"></i></label>
@@ -75,28 +88,28 @@
                       <% end %>
                     </div>
                   </div>
-                  <div class="right-box">
+                  <div class="right-box ml-auto">
                     <span class="column create">作成日:<%= task.created_at.strftime('%Y-%m-%d') %></span>
                   </div>
                 </div>
-                <!--</h6>-->
+
                 <div class="card-body task">
+                  <div class="left-contents">
+                    <% if task.status == true %>
+                      <%= link_to task_path(id:task.id, team_id: task.team_id, task: {status: false, team_id: task.team_id}), remote: true, method: :put, class: "checkbox", id:"js-checkbox-#{task.team_id}" do %>
+                      <label class = "checkbox"><%= image_tag ("icon_true_green.png")  %></label><% end %>
+                    <% else %>
+                      <%= link_to task_path(id:task.id, team_id: task.team_id, task: {status: true, team_id: task.team_id}), remote: true, method: :put, class: "checkbox" do %>
+                      <label class = "checkbox"><%= image_tag ("icon_false_green.png")  %></label><% end %>
+                    <% end %>
 
-                  <% if task.status == true %>
-                    <%= link_to task_path(id:task.id, team_id: task.team_id, task: {status: false, team_id: task.team_id}), remote: true, method: :put, class: "checkbox", id:"js-checkbox-#{task.team_id}" do %>
-                    <label class = "checkbox"><%= image_tag ("icon_true_green.png")  %></label><% end %>
-                  <% else %>
-                    <%= link_to task_path(id:task.id, team_id: task.team_id, task: {status: true, team_id: task.team_id}), remote: true, method: :put, class: "checkbox" do %>
-                    <label class = "checkbox"><%= image_tag ("icon_false_green.png")  %></label><% end %>
-                  <% end %>
-
-                  <% if (task.expired_at - @date).to_i < 14 && task.status == false %>
+                    <% if (task.expired_at - @date).to_i < 14 && task.status == false %>
                       <label class="column expire">期限</label>
-                      <label class="urgent"><%= task.expired_at %></label>
+                      <label class="urgent underline"><%= task.expired_at%></label>
                     <% else %>
                       <span class="column expire">期限</span>
-                      <%= task.expired_at %>
-                      <% end %>
+                      <label><%= task.expired_at %></label>
+                    <% end %>
                     <% task.created_at.strftime('%Y-%m-%d') %>
                     <% count = (task.expired_at - task.created_at.to_date).to_i %>
                     <% today = (task.expired_at - @date.tomorrow).to_i %>
@@ -105,12 +118,16 @@
                     <% else %>
                       <% @expired_at_count = 0 %>
                     <% end %>
-                    <label for="file">
-                    <progress id="file" max="100" value=<%= @expired_at_count %>></progress></label>
+                    <label for="file" class="bar">
+                      <progress id="file" max="100" value=<%= @expired_at_count %>></progress>
+                    </label>
+                  </div>
 
-                  <%= link_to edit_task_path(id:task.id, team_id:task.team_id), class: "edit" do %><i class="bi bi-pencil-square"></i><% end %>
-                  <%= link_to task, class: "show" do %><i class="bi bi-three-dots"></i><% end %>
-                  <%= link_to task, method: :delete, data: { confirm: 'Are you sure?' }, class: "show" do %><i class="bi bi-trash3"></i><% end %>
+                  <div class="right-contents ml-auto">
+                    <%= link_to task, class: "link" do %><i class="bi bi-three-dots"></i>詳細<% end %>
+                    <%= link_to edit_task_path(id:task.id, team_id:task.team_id), class: "link" do %><i class="bi bi-pencil-square"></i><% end %>
+                    <%= link_to task, method: :delete, data: { confirm: '削除して良いですか？' }, class: "link" do %><i class="bi bi-trash3"></i><% end %>
+                  </div>
                 </div>
               </div>
             </div>
@@ -124,8 +141,8 @@
 
 <style>
 .urgent{
-  color: #F85B57;
-  font-weight:bold;
+  /* color: #F85B57; */
+  /* font-weight:bold; */
 }
 label {
     padding-right: 10px;
@@ -138,7 +155,7 @@ progress {
   background-color: #dadce0 ;
 }
 ::-webkit-progress-value {
-  background-color: #F85B57 ;
+  background-color: #EC9592 ;
   }
 .card{
   background-color:#ECDDD6;
@@ -163,7 +180,7 @@ progress {
 }
 
 .column.category{
-  background-color:#5f6466;
+  background-color:#8F989B;
   color:white;
   padding:2px;
   font-size:14px;
@@ -205,10 +222,6 @@ progress {
 .icon-box i{
   height: 50px;
 }
-.right-box{
-  position:absolute;
-  right:0;
-}
 .btn-secondary a{
   color:white;
 }
@@ -219,7 +232,8 @@ progress {
   color:grey;
 }
 .checkbox img{
-  height:40px;
+  height:35px;
+  margin-left:10px;
 }
 .checkbox img:hover{
   opacity:0.7;
@@ -231,12 +245,21 @@ progress {
   color:#638793;
 }
 .sort{
+  margin-top:10px;
   margin-left:35px;
 }
 .team-reward{
-  margin:10px 35px 20px;
+  margin:0px 35px 25px;
   background-color:#fff;
-  padding:2px 0 4px 0;
+  padding:2px 0 2px 0;
+  display:flex;
+}
+ul{
+  padding-bottom:0;
+  margin-bottom:0;
+}
+.left-reward{
+  padding-top:3px;
 }
 .reward{
   font-size:14px;
@@ -272,5 +295,45 @@ form{
 }
 .green{
   color:#59A6B0;
+}
+.underline{
+  background: linear-gradient(transparent 80%, #ff99ab 80%);
+}
+.underline.thin{
+  background: linear-gradient(transparent 90%, #ff99ab 90%);
+}
+.card-body.task{
+  padding:8px;
+  display:flex;
+}
+.right-contents{
+  padding:8px 8px 0 8px;
+}
+.bar{
+  padding:8px 8px 0 8px;
+}
+.link{
+  color:#7E8385;
+  font-size:1.1rem;
+}
+.btn-outline-success{
+  padding:3px 6px;
+}
+.btn-outline-success a{
+  color:#4F92C2;
+  font-size:14px;
+}
+.btn-outline-success a:hover{
+  color:#fff;
+}
+.btn-outline-secondary{
+  padding:3px 6px;
+}
+.btn-outline-secondary a{
+  color:#F3A5A3;
+  font-size:14px;
+}
+.btn-outline-secondary a:hover{
+  color:#fff;
 }
 </style>
