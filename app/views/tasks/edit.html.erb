@@ -13,9 +13,10 @@
           <% elsif  (params[:task][:team_id]).present? %>
             <% @team_id = params[:task][:team_id] %>
           <% end %>
-
-          <%= link_to 'タスクの詳細', @task %> |
-          <%= link_to '戻る', team_tasks_path(team_id:@team_id) %>
+          <hr>
+          <span class="back">
+            <%= link_to '戻る', team_tasks_path(team_id:@team_id) %>
+          </span>
         </div>
       </div>
     </div>
