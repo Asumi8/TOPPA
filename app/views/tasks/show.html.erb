@@ -6,49 +6,47 @@
           <h1>Task Details</h1>
           <p class="col-lg-12 title">- タスクの詳細 -</p>
           <div class="task-body">
-          <table>
-          <tr>
-            <th class="text-green">カテゴリー</th>
-            <td style="font-weight:bold;"><%= @task.category.name %></td>
-          </tr>
-          <tr>
-          <th class="text-green">タスク名</th>
-          <td style="font-weight:bold;"><span class="underline"><%= @task.name %></span></td>
-          </tr>
-          <tr>
-          <th class="text-green">期限</th>
-          <td style="font-weight:bold;"><%= @task.expired_at %></td>
-          </tr>
-          <tr>
-          <th class="text-green">状況</th>
-            <% if @task.status == true %>
-              <td style="font-weight:bold;">実行済み<i class="bi bi-check-circle-fill"></i></td>
-            <% else %>
-              <td style="font-weight:bold;">未実行<i class="bi bi-dash-circle"></i></td>
-            <% end %>
-          </tr>
-          <tr>
-          <tr>
-          <% if @task.remarks.present? %>
-            <th class="text-green">補足<i class="bi bi-journal-text"></i></th>
-            <td><%= @task.remarks %></td>
-          <% end %>
-          </tr>
-          <tr>
-          <% if @task.image.url != nil %>
-            <th class="text-green">画像<i class="bi bi-card-image"></i></th>
-            <td><label class="image"><%= image_tag @task.image.url %></label></td>
-          <% end %>
-          </tr>
-          
-          <th class="text-green">繰り返し<i class="bi bi-arrow-counterclockwise"></i></th>
-            <% if @task.repeat == true %>
-              <td><span>有り</span></td>
-            <% else %>
-              <td><span>無し</span></td>
-            <% end%>
-          </tr>
-          </table>
+            <table>
+              <tr>
+                <th class="text-green">カテゴリー</th>
+                <td style="font-weight:bold;"><%= @task.category.name %></td>
+              </tr>
+              <tr>
+                <th class="text-green">タスク名</th>
+                <td style="font-weight:bold;"><span class="underline"><%= @task.name %></span></td>
+              </tr>
+              <tr>
+                <th class="text-green">期限</th>
+                <td style="font-weight:bold;"><%= @task.expired_at %></td>
+              </tr>
+              <tr>
+                <th class="text-green">状況</th>
+                <% if @task.status == true %>
+                  <td style="font-weight:bold;">実行済み<i class="bi bi-check-circle-fill"></i></td>
+                <% else %>
+                  <td style="font-weight:bold;">未実行<i class="bi bi-dash-circle"></i></td>
+                <% end %>
+              </tr>
+              <tr>
+                <% if @task.remarks.present? %>
+                  <th class="text-green">補足<i class="bi bi-journal-text"></i></th>
+                  <td><%= @task.remarks %></td>
+                <% end %>
+              </tr>
+              <tr>
+                <% if @task.image.url != nil %>
+                  <th class="text-green">画像<i class="bi bi-card-image"></i></th>
+                  <td><label class="image"><%= image_tag @task.image.url %></label></td>
+                <% end %>
+              </tr>
+              <th class="text-green">繰り返し<i class="bi bi-arrow-counterclockwise"></i></th>
+                <% if @task.repeat == true %>
+                  <td><span>有り</span></td>
+                <% else %>
+                  <td><span>無し</span></td>
+                <% end%>
+              </tr>
+            </table>
           <button class="btn btn-success">
             <%= link_to '編集する', edit_task_path(id:@task.id, team_id:@task.team_id) %>
           </button>

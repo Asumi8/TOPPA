@@ -39,15 +39,16 @@
                 <%= f.password_field :password_confirmation, autocomplete: "new-password", :placeholder =>  "パスワードを再入力" %>
               </p>
             </div>
-
             <div class="actions">
               <p>
                 <%= f.submit t('.sign_up'), id: "rspec-notice"%>
               </p>
             </div>
           <% end %>
-
-          <%= render "devise/shared/links" %>
+          <hr>
+          <span class="back">
+            <%= render "devise/shared/links" %>
+          </span>
         </div>
       </div>
     </div>
