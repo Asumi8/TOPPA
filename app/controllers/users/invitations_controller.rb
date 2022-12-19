@@ -14,7 +14,8 @@ class Users::InvitationsController < Devise::InvitationsController
         user.save
         redirect_to teams_path(current_user), notice: "招待メールが#{exist_email}に送信されました。"
       else
-        render :new, notice: 'メールアドレスを正しく入力してください。'
+        flash[:notice] = 'メールアドレスを正しく入力してください。'
+        render :new
       end
     else
       new_email = params[:user][:email]
@@ -22,7 +23,8 @@ class Users::InvitationsController < Devise::InvitationsController
       if User.invite!(email: new_email, invited_by_team_id: team_id).valid?
         redirect_to teams_path(current_user), notice: "招待メールが#{new_email}に送信されました。"
       else
-        render :new, notice: 'メールアドレスを正しく入力してください。'
+        flash[:notice] = 'メールアドレスを正しく入力してください。'
+        render :new
       end
     end
   end
