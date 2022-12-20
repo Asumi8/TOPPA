@@ -8,8 +8,8 @@
             複数人が一つのチームとして「めんどくさいタスク」を協力・分担して乗り越えるためのアプリ
           </p>
         </div>
-        <div class="explanation">
-          <p>家族や複数人のいるグループで、こんな経験ありませんか？</p>
+        <div class="explanation large row">
+          <p>家族やグループで、こんな経験ありませんか？</p>
           <ul class="explanation-list">
           <li>つい、「誰かがやってくれるだろう」と思って後回しにしてしまう　…</li>
           <li>忙しくて期限を忘れていた　消耗品を買い忘れてしまった　…</li>
@@ -17,22 +17,22 @@
           </ul>
         </div>
 
-        <p>
-        そこで、家族やグループ、プロジェクトが<br/>
-        楽しみながらタスク管理と進捗管理ができる<span class="text-green">TOPPA!</span>をつくりました。
+        <p class="large">
+        そこで、家族やグループ、プロジェクトが<span class="underline">楽しみながら</span><br>
+        <span class="underline">タスク管理と進捗管理ができる</span>アプリをつくりました。
         </p>
         <div class="app-explanation">
           <p>
-            このアプリでは、
+            <span class="app" >このアプリでは、</span>
           </p>
-          <ul>
-            <li>チームでご褒美を設定し、ちょっとした楽しみに向かって自分の役割に取り組めます</li>
-            <li>タスクの実行状況や進捗状況がグラフになっているので、状況をぱっと理解できます</li>
-            <li>期限が迫ると通知が自動で送られるので、期限の管理をアプリにお任せできます</li>
+          <ul class="do_list">
+            <li><%= image_tag ("top_bird_green.png")  %>チームでご褒美を設定し、ちょっとした楽しみに向かって自分の役割に取り組めます</li>
+            <li><%= image_tag ("top_bird_green.png")  %>タスクの実行状況や進捗状況がグラフになっているので、状況をぱっと理解できます</li>
+            <li><%= image_tag ("top_bird_green.png")  %>期限が迫ると通知が自動で送られるので、期限の管理をアプリにお任せできます</li>
           </ul>
         </div>
-        <label class = "top-image"><%= image_tag ("top_image.png")  %></label>
-        <p>一緒に"めんどくさい"壁をTOPPAしていきましょう！</p>
+        <label class = "top-image"><%= image_tag ("top_people.png")  %></label>
+        <p>一緒に、目の前にある壁を<span class="text-green large">TOPPA!</span>していきましょう！</p>
       </div>
     </div>
   </div>
@@ -66,13 +66,13 @@ body{
 }
 .sub-title{
   font-weight:bold;
-  color:#575A5B;
+  color:#727779;
   padding-top:10px;
   font-size:20px;
   text-align:left;
 }
 .explanation{
-  padding:10px;
+  padding:5px;
   color:#3D3F40;
 }
 .text-green{
@@ -87,5 +87,30 @@ body{
 }
 .explanation-list li{
   font-size:14px;
+}
+.large{
+  font-size:18px;
+}
+.underline{
+  background: linear-gradient(transparent 80%, #ff99ab 80%);
+}
+.underline.thin{
+  background: linear-gradient(transparent 90%, #ff99ab 90%);
+}
+.do_list li{
+  font-size:16px;
+  margin-bottom:5px;
+}
+.do_list{
+  border:4px dotted #BDD1DF;
+  width:700px;
+  margin:0 auto;
+  border-radius:20px;
+  padding:10px;
+}
+.app{
+  color:#727779;
+  font-weight:bold;
+  font-size:18px;
 }
 </style>
