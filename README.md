@@ -7,10 +7,14 @@
 ## 就業Termの技術
 - devise
 - Ajaxを使ったコメント機能
+- AWS EC2へのデプロイ
 
 ## カリキュラム外の技術
 - gem/chartkick
-- gem/devise/invitable
+- gem/devise_invitable
+- gem/whenever
+- gem/cancancan
+- gem/rails_admin
 
 ## 実行手順
 ````
