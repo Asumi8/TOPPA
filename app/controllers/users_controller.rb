@@ -1,9 +1,12 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: %i[app]
   before_action :prohibit_access_by_others, only: %i[show]
 
   def show
     @user = User.find(params[:id])
+  end
+
+  def app
   end
 
   def invitation

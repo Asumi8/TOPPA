@@ -1,0 +1,83 @@
+<div class = "container">
+  <div class="row justify-content-center">
+    <div class="col-10">
+      <div class = "card">
+        <div class="card-body">
+          <h1>How to use the app</h1>
+          <p class="col-lg-12 title">- アプリの使い方 -</p>
+          <div class="row justify-content-center">
+            <div class="app_explaination col-lg-10">
+              <div class="explanation_block">
+
+                <h4 class="headline">基本の使い方</h4>
+                <p class="text">
+                  チームごとにタスクを作成し、自身が達成したタスク項目でチェックボックスを押して「実行済み」にします。
+                  プログレスバーは、作成日から期日が近づくにつれて減っていくので、ぱっと見て期日までの期間が確認ができます。
+                </p>
+                <span class="small_image"><%= image_tag ("task.png") %></span>
+              </div>
+
+              <div class="explanation_block">
+                <h4 class="headline">通知機能について</h4>
+                <p class="text">
+                  "未実行で期限まで2週間以内のタスク"の一覧を集約し、毎週日曜日にチームメンバー全員にメールで配信します。(画像：お知らせメールのイメージ)
+                </p>
+                <%= image_tag ("notification.png") %>
+              </div>
+
+              <div class="explanation_block">
+                <h4 class="headline">進捗状況の確認機能について</h4>
+                <p class="text">
+                  タスク実行によりチェックボタンを押した人をカウントしています。
+                  「チームの詳細」画面でチームメンバーのタスクの実行状況を確認することができます。
+                </p>
+                <%= image_tag ("task_status.png") %>
+              </div>
+
+              <div class="explanation_block">
+                <h4 class="headline">MVP機能について</h4>
+                <p class="text">
+                  チームで決めた期限になった時、もしくはタスクを達成した時、区切りがついた時、
+                  「MVPを決めるボタン」を押すと、チームに一番貢献した人の名前を表示します。
+                  チームへの貢献者に労いの言葉をかけましょう！
+                </p>
+                <%= image_tag ("mvp.png") %>
+                <p></p>
+                <p>
+                  また、「完了したタスクを削除する」を押すと、タスクの作成時に「繰り返し」にチェックを入れていない「実行済み」のタスクを削除することができます。
+                  消耗品の購入や、定期的に行う業務/作業については「繰り返し」にチェックを入れるのがおすすめです。
+                </p>
+                <span class="small_image"><%= image_tag ("complete_task.png") %></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.app_explaination{
+  text-align:center;
+}
+.headline{
+  color: #8B8D8E;
+  font-weight:bold;
+  font-size:24px;
+}
+.text{
+  text-align:left;
+}
+.explanation_block .small_image img{
+  max-height:80px;
+}
+.explanation_block img{
+  height:200px;
+}
+.explanation_block{
+  margin-bottom:40px;
+}
+
+
+</style>

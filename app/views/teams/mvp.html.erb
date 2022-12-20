@@ -30,7 +30,7 @@
 					<br />
 					<label>最もチームに貢献した人</label><br />
 					<% @maximum_completed_user.each do|user| %>
-						<span class="text-green mvp"><%= user %>さん</span>
+						<span class="text-green mvp"><%= user %>さん</span></br>
 					<% end %>
 					<div class="delete-btn">
 						<%= button_to '完了したタスクを削除する', mvp_delete_team_path(@team), method: :delete, data: { confirm: '削除して良いですか？' } %>

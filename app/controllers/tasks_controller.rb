@@ -45,6 +45,7 @@ class TasksController < ApplicationController
 
   def update_status
     @task = Task.find(params[:id])
+    @task.user_id = current_user.id
     @task.toggle!(:status)
   end
 
