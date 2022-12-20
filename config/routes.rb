@@ -24,7 +24,11 @@ Rails.application.routes.draw do
     invitations: 'users/invitations',
     registrations: 'users/registrations'
   }
-  resources :users, only: :show
+  resources :users, only: :show do
+    collection do
+      get 'app'
+    end
+  end
 
   # letter_opener
   if Rails.env.development?

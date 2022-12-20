@@ -12,14 +12,14 @@
             <div class="field">
               <p>
                 <%= f.label :name %><br />
-                <%= f.text_field :name, :placeholder =>  "ユーザー名" %>
+                <%= f.text_field :name, autofocus: true, :placeholder =>  "ユーザー名" %>
               </p>
             </div>
 
             <div class="field">
               <p>
                 <%= f.label :email %><br />
-                <%= f.email_field :email, autofocus: true, autocomplete: "email", :placeholder =>  "メールアドレス" %>
+                <%= f.email_field :email, autocomplete: "email", :placeholder =>  "メールアドレス" %>
               </p>
             </div>
 
