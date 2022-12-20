@@ -45,6 +45,11 @@ class TasksController < ApplicationController
     end
   end
 
+  def update_status
+    @task = Task.find(params[:id])
+    @task.toggle!(:status)
+  end
+
   def update
     @categories = Team.find(params[:task][:team_id]).categories
     @task.user_id = current_user.id

@@ -1,16 +1,49 @@
-<h2><%= t('.forgot_your_password') %></h2>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-6">
+      <div class = "card">
+        <div class="card-body">
+          <h1>Send password reset instructions</h1>
+          <p class="col-lg-12 title">- パスワードの再設定方法を送信 -</p>
+          <%#= t('.forgot_your_password') %>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+          <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+            <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+            <div class="field">
+              <p>
+                <%= f.label :email %><br />
+                <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+              </p>
+            </div>
+
+            <div class="actions">
+              <p>
+                <%= f.submit t('.send_me_reset_password_instructions') %>
+              </p>
+            </div>
+          <% end %>
+
+          <hr>
+
+          <%= render "devise/shared/links" %>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <div class="actions">
-    <%= f.submit t('.send_me_reset_password_instructions') %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>
+<style>
+input, textarea {
+  width:100%;
+}
+.card{
+  background-color:#ECDDD6;
+  border: #fff;
+  padding: 10px;
+}
+.title{
+  text-align:center;
+  font-size:18px;
+  color:#524f4f;
+}
+</style>
