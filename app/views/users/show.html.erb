@@ -18,15 +18,15 @@
               </div>
               <div class="col-md-8 col-lg">
               <table>
-              <tr>
-                <th class="text-green">ユーザー名</th>
-                <td><%= @user.name %></td>
+                <tr>
+                  <th class="text-green">ユーザー名</th>
+                  <td><%= @user.name %></td>
 
-              </tr>
-              <tr>
-                <th class="text-green">emailアドレス</th>
-                <td><%= @user.email %></td>
-              </tr>
+                </tr>
+                <tr>
+                  <th class="text-green">emailアドレス</th>
+                  <td><%= @user.email %></td>
+                </tr>
               </table>
 
               <button type="button" class="btn btn-secondary">
@@ -39,15 +39,15 @@
 
             <h4 class="text-green">所属しているチーム</h4>
             <% if current_user.teams.first.present? || current_user.team_members.first.present? %>
-                <% current_user.team_members.each do |team| %>
+              <% current_user.team_members.each do |team| %>
                 <ul>
                   <li>
                     <i class="bi bi-play-fill text-green"></i><%= team.name %>
                   </li>
                 </ul>
-                <% end %>
+              <% end %>
             <% else %>
-              <%= link_to "チームに所属する", new_team_path%><br>
+              <%= link_to "チームに所属する", new_team_path %><br>
             <% end %>
           </div>
         </div>
