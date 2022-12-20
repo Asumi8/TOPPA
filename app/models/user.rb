@@ -5,7 +5,6 @@ class User < ApplicationRecord
         :recoverable, :rememberable, :validatable, validate_on_invite: true
 
   validates :name, presence: true, length: { maximum: 30 }, unless: :invited_to_sign_up?
-  #validates :name, presence: true, length: { maximum: 30 }, if: :invitation_accepted?
   validates :email, presence: true, length: { maximum: 255 }, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
 
   has_many :assigns, dependent: :destroy

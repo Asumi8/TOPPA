@@ -4,7 +4,6 @@ class TasksController < ApplicationController
   before_action :prohibit_access_by_other_teams, except: %i[show destroy]
 
   def index
-
     @tasks = Team.find(params[:team_id]).tasks
 
     @tasks = @tasks.status_choice if params[:choice_status].present?
@@ -30,7 +29,6 @@ class TasksController < ApplicationController
   def edit
     @categories = Team.find(params[:team_id]).categories
   end
-
 
   def create
     @team = Team.find(params[:team_id])
