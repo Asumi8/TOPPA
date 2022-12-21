@@ -33,6 +33,9 @@
         </div>
         <label class="top-image"><%= image_tag ("top_people.png") %></label>
         <p>一緒に、目の前にある壁を<span class="text-green large">TOPPA!</span>していきましょう！</p>
+        <button class="btn btn-secondary">
+          <%= link_to 'アプリの使い方を見る', app_users_path %>
+        </button>
       </div>
     </div>
   </div>
@@ -112,5 +115,8 @@ body{
   color:#727779;
   font-weight:bold;
   font-size:18px;
+}
+.btn-secondary a{
+  color: #fff;
 }
 </style>
