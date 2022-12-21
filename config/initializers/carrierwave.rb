@@ -14,14 +14,14 @@ CarrierWave.configure do |config|
   }
 
   config.fog_public     = false
-  config.fog_attributes = {'Cache-Control' => 'public, max-age=86400'}
+  config.fog_attributes = { 'Cache-Control' => 'public, max-age=86400' }
 
   case Rails.env
-    when 'production'
-      config.fog_directory = 'toppa-production'
-      config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/toppa-production'
-    when 'development'
-      config.fog_directory = 'toppa-development'
-      config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/toppa-development'
+  when 'production'
+    config.fog_directory = 'toppa-production'
+    config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/toppa-production'
+  when 'development'
+    config.fog_directory = 'toppa-development'
+    config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/toppa-development'
   end
 end

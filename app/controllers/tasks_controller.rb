@@ -12,7 +12,7 @@ class TasksController < ApplicationController
     @tasks = @tasks.created_order if params[:sort_created].present?
     @tasks = @tasks.page(params[:page]).per(30)
 
-    @date = Date.current()
+    @date = Date.current
     @team = Team.find(params[:team_id])
   end
 

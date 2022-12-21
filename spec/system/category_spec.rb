@@ -40,7 +40,7 @@ RSpec.describe 'カテゴリー管理機能', type: :system do
         find('#rspec-task-index').click
         find('#rspec-task-new').click
         click_on '新しいカテゴリを追加'
-        visit new_team_category_path(team_id:2)
+        visit new_team_category_path(team_id: 2)
         expect(page).to have_content 'アクセス権限がありません'
       end
     end

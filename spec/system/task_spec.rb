@@ -159,7 +159,7 @@ RSpec.describe 'タスク管理機能', type: :system do
     context 'ユーザーが所属していないチームの持つタスク一覧画面に飛んだ場合' do
       it 'アクセス権限がありません、と表示される' do
         find('#rspec-task-index').click
-        visit team_tasks_path(team_id:2)
+        visit team_tasks_path(team_id: 2)
         sleep(1)
         expect(page).to have_content 'アクセス権限がありません'
       end
