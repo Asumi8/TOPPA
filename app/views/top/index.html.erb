@@ -5,21 +5,21 @@
         <div class="title-box">
           <h1 class="col-lg-6 title">TOPPA!</h1>
           <p class="col-lg-6 sub-title">
-            複数人が一つのチームとして「めんどくさいタスク」を協力・分担して乗り越えるためのアプリ
+            家族やグループ、複数人で楽しく<br>タスク管理と進捗管理ができるアプリ
           </p>
         </div>
         <div class="explanation large row">
           <p>家族やグループで、こんな経験ありませんか？</p>
           <ul class="explanation-list">
-            <li>つい、「誰かがやってくれるだろう」と思って後回しにしてしまう　…</li>
-            <li>忙しくて期限を忘れていた　消耗品を買い忘れてしまった　…</li>
+            <li>つい、「誰かがやってくれるだろう」と思って先送りにしてしまう　…</li>
+            <li>「誰かが覚えているだろう」と期限を忘れていた、消耗品を買い忘れてしまった　…</li>
             <li>誰も手をつけず最終的に負担が偏ってしまう　…</li>
           </ul>
         </div>
 
         <p class="large">
-        そこで、家族やグループ、プロジェクトが<span class="underline">楽しみながら</span><br>
-        <span class="underline">タスク管理と進捗管理ができる</span>アプリをつくりました。
+        そこで、家族やグループが
+        <span class="underline">楽しみながら</span><span class="underline">タスク管理と進捗管理ができる</span>アプリをつくりました。
         </p>
         <div class="app-explanation">
           <p>
@@ -33,6 +33,9 @@
         </div>
         <label class="top-image"><%= image_tag ("top_people.png") %></label>
         <p>一緒に、目の前にある壁を<span class="text-green large">TOPPA!</span>していきましょう！</p>
+        <button class="btn btn-secondary">
+          <%= link_to 'アプリの使い方を見る', app_users_path %>
+        </button>
       </div>
     </div>
   </div>
@@ -67,7 +70,7 @@ body{
 .sub-title{
   font-weight:bold;
   color:#727779;
-  padding-top:10px;
+  padding-top:20px;
   font-size:20px;
   text-align:left;
 }
@@ -112,5 +115,8 @@ body{
   color:#727779;
   font-weight:bold;
   font-size:18px;
+}
+.btn-secondary a{
+  color: #fff;
 }
 </style>

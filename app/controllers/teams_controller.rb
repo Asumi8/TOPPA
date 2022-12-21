@@ -55,7 +55,7 @@ class TeamsController < ApplicationController
     completed_users = @team.tasks.where(status: true).pluck(:user_id)
     @completed_count = completed_users.group_by(&:itself).map { |key, value| [User.find(key).name, value.count] }.to_h
     max_value = @completed_count.values.max
-    bests = @completed_count.select{|k,v| v == max_value}
+    bests = @completed_count.select { |k, v| v == max_value }
     @maximum_completed_user = bests.keys
   end
 

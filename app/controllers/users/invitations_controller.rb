@@ -64,6 +64,7 @@ class Users::InvitationsController < Devise::InvitationsController
   end
 
   private
+
   def prohibit_access_by_other_teams
     unless current_user.assigns.pluck(:team_id).any?(params[:team].to_i)
       flash[:notice] = "アクセス権限がありません。"

@@ -12,7 +12,7 @@ RSpec.describe 'チーム管理機能', type: :model do
     end
     context 'カテゴリー名、タスク名、期限のいずれかの情報が正しく入力されていない場合' do
       it 'バリデーションにひっかかる' do
-        task1 = Task.new(category_id: "", name: 'プレゼン用の資料作成', expired_at: '2022-12-31', team_id: 1, user_id: 1)
+        task1 = Task.new(category_id: '', name: 'プレゼン用の資料作成', expired_at: '2022-12-31', team_id: 1, user_id: 1)
         task2 = Task.new(category_id: 1, name: '', expired_at: '2022-12-31', team_id: 1, user_id: 1)
         task3 = Task.new(category_id: 1, name: 'プレゼン用の資料作成', expired_at: '', team_id: 1, user_id: 1)
         expect(task1).not_to be_valid

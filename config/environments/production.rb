@@ -53,7 +53,7 @@ Rails.application.configure do
   config.log_level = :info
 
   # Prepend all log lines with the following tags.
-  config.log_tags = [ :request_id ]
+  config.log_tags = [:request_id]
 
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
@@ -69,7 +69,7 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     address: 'smtp.gmail.com',
     port: 587,
-    domain:'gmail.com',
+    domain: 'gmail.com',
     user_name: ENV['SEND_MAIL'],
     password: ENV['GMAIL_SPECIFIC_PASSWORD'],
     authentication: 'plain',
