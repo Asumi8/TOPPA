@@ -31,11 +31,14 @@
               <button class="btn btn-success">
                 <%= link_to edit_team_path(@team) do %><i class="bi bi-pencil-square"></i>チームを編集<% end %>
               </button>
-              <button class = "btn btn-secondary">
-                <%= link_to new_user_invitation_path(id: current_user.id, team: @team.id) do %><i class="bi bi-people-fill"></i>チームにメンバーを招待する<% end %>
+              <button class = "btn btn-primary">
+                <%= link_to new_user_invitation_path(id: current_user.id, team: @team.id) do %><i class="bi bi-people-fill"></i>メンバーを招待する<% end %>
               </button>
               <button class = "btn btn-dark">
                 <%= link_to assign_delete_team_path(@team), method: :delete, data: { confirm: '削除して良いですか？' } do %><i class="bi bi-box-arrow-right"></i>チームを抜ける<% end %>
+              </button>
+              <button class="btn btn-secondary">
+                <%= link_to team_tasks_path(@team.id) do %><i class="bi bi-list-task"></i>チームのタスク<% end %>
               </button>
             </div>
           </div>
