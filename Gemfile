@@ -56,6 +56,10 @@ group :development do
   gem 'listen', '~> 3.3'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'letter_opener_web' # 追加
+  gem 'rubocop', require: false # 追加
+  gem 'rubocop-performance', require: false # 追加
+  gem 'rubocop-rails', require: false # 追加
+  gem 'rubocop-rspec' # 追加
 end
 
 group :test do
