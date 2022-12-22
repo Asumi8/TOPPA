@@ -6,7 +6,7 @@ class TaskMailer < ApplicationMailer
   #   en.task_mailer.task_notification.subject
   #
   def task_notification(team)
-    @today = Date.today
+    @today = Date.current
     @team = team
     team.tasks.each do |task|
       if task.status == false && (task.expired_at - @today).to_i < 14

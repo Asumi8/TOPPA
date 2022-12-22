@@ -4,14 +4,7 @@ class User < ApplicationRecord
   devise :invitable, :database_authenticatable, :registerable,
         :recoverable, :rememberable, :validatable, validate_on_invite: true
 
-  #validates :name, presence: true, length: { maximum: 30 }, unless: :valid_invitation?
-  # with_options unless: -> {  :valid_invitation? }  do
-  #   validates :name, presence: true, length: { maximum: 30 }
-  # end
-  #validates :name, presence: true, length: { maximum: 30 }, if: :accepting_invitation?
-  #validates :name, presence: true, length: { maximum: 30 }, unless: :invited_to_sign_up?
   validates :name, presence: true, length: { maximum: 30 }, unless: -> { invited_by_team_id.present? }
-  #validates :name, presence: true, length: { maximum: 30 }, unless: :invitation_taken?
   validates :email, presence: true, length: { maximum: 255 }, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
 
   has_many :assigns, dependent: :destroy
