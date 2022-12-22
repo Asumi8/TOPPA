@@ -19,8 +19,8 @@ class Users::InvitationsController < Devise::InvitationsController
       end
     else
       new_email = params[:user][:email]
-      team_id = params[:user][:team_id]
-      if User.invite!(email: new_email, invited_by_team_id: team_id).valid?
+      @team_id = params[:user][:team_id]
+      if User.invite!(email: new_email, invited_by_team_id: @team_id).valid?
         redirect_to teams_path(current_user), notice: "招待メールが#{new_email}に送信されました。"
       else
         flash[:notice] = 'メールアドレスを正しく入力してください。'
