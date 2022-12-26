@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row justify-content-center">
-    <div class="col-12">
+    <div class="col-lg-12 col-md-12">
       <div class = "card">
         <div class="card-body">
           <h1>My Team</h1>
@@ -27,7 +27,7 @@
                 </td>
               </tr>
             </table>
-            <div class="link-box d-flex justify-content-center col-lg-10">
+            <div class="link-box d-flex justify-content-center col-lg-12 col-mdー12">
               <button class="btn btn-success">
                 <%= link_to edit_team_path(@team) do %><i class="bi bi-pencil-square"></i>チームを編集<% end %>
               </button>
@@ -86,6 +86,9 @@
 .text-green{
   color:#4E889A;
   font-weight:bold;
+}
+.btn{
+  /* width:100%; */
 }
 .btn a{
   color:white;
