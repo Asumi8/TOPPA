@@ -19,7 +19,9 @@
 					<div class="box">
 						<h1>MVP</h1>
 						<p class="col-lg-12 title">- チームに最も貢献した方 -</p>
+						<div class="row">
 						<h1 class="congrats">🎉Congratulations!!🎉</h1>
+						</div>
 						<p>
 							おつかれさまでした！<br>
 							<% @maximum_completed_user.each do|user| %>
@@ -83,6 +85,11 @@ html,body{
 }
 .delete-btn{
 	margin-top:150px;
+}
+@media (max-width: 991.98px) {
+	.congrats{
+	font-size:40px;
+}
 }
 </style>
 
