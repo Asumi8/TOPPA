@@ -27,7 +27,7 @@
                 </td>
               </tr>
             </table>
-            <div class="link-box d-flex justify-content-center col-lg-12 col-mdー12">
+            <div class="link-box d-lg-flex d-md-flex justify-content-center col-lg-12 col-mdー12">
               <button class="btn btn-success">
                 <%= link_to edit_team_path(@team) do %><i class="bi bi-pencil-square"></i>チームを編集<% end %>
               </button>
@@ -126,5 +126,11 @@ td{
 }
 .btn{
   margin-right:10px;
+}
+@media (max-width: 767.98px) {
+  .btn{
+    width:100%;
+    margin:5px 0;
+  }
 }
 </style>

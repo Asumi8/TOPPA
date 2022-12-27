@@ -2,17 +2,14 @@
   <div class = "card">
     <div class = "card-body">
       <div class="container-fluid">
+        <h1>My Team / My Task</h1>
+        <p class="col-lg-12 title">- 所属しているチームとタスクの一覧 -</p>
+        <div class="row justify-content-center">
+          <button class="btn btn-red col-5">
+            <%= link_to new_team_path, id:'rspec-team-new' do %><i class="bi bi-person-square"></i>新しいチームを作成<% end %>
+          </button>
+        </div>
         <div class="row">
-          <h1>My Team / My Task</h1>
-          <p class="col-lg-12 title">- 所属しているチームとタスクの一覧 -</p>
-
-          <div class="row justify-content-center">
-            <button class="btn btn-red col-5">
-
-              <%= link_to new_team_path, id:'rspec-team-new' do %><i class="bi bi-person-square"></i>新しいチームを作成<% end %>
-            </button>
-          </div>
-
           <% current_user.team_members.each do |team| %>
             <div class="col-lg-6 col-md-12">
               <div class="card-team">
@@ -30,8 +27,7 @@
                   </div>
                 </div>
               </div>
-            <% end %>
-          </div>
+          <% end %>
         </div>
       </div>
     </div>
@@ -98,6 +94,9 @@
 }
 @media (max-width: 575.98px) {
   .card-body{
+    padding:0;
+  }
+  .container-fluid{
     padding:0;
   }
 }
