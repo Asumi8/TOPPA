@@ -8,9 +8,9 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: %i[name team_id])
-    devise_parameter_sanitizer.permit(:account_update, keys: %i[name team_id icon])
-    devise_parameter_sanitizer.permit(:invite, keys: %i[team_ids:[] email name team_id])
-    devise_parameter_sanitizer.permit(:accept_invitation) { |u| u.permit(:password, :password_confirmation, :invitation_token, :name, :team_id) }
+    devise_parameter_sanitizer.permit(:sign_up, keys: %i[name]) # team_idの削除
+    devise_parameter_sanitizer.permit(:account_update, keys: %i[name icon]) # team_idの削除
+    devise_parameter_sanitizer.permit(:invite, keys: %i[email]) # team_id, nameの削除
+    devise_parameter_sanitizer.permit(:accept_invitation, keys: %i[password password_confirmation invitation_token name]) # team_idの削除
   end
 end
