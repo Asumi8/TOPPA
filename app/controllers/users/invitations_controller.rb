@@ -4,24 +4,19 @@ class Users::InvitationsController < Devise::InvitationsController
   def create
     @user = User.new
     user_email = params[:user][:email]
-    @team_id = params[:user][:team_id]
+    team_id = params[:user][:team_id]
     if User.find_by(email: user_email.downcase).present?
       user_id = User.where(email: user_email).pluck(:id)
       user = User.find(user_id[0])
-      if user.valid?
-        user.invite!(current_user)
-        user.invited_by_team_id = @team_id
-        user.save
-        redirect_to teams_path(current_user), notice: "招待メールが#{user_email}に送信されました。"
-      end
+      user.invite!(current_user)
+      user.invited_by_team_id = team_id
+      user.save
+      redirect_to teams_path(current_user), notice: "招待メールが#{user_email}に送信されました。"
+    elsif User.invite!(email: user_email, invited_by_team_id: team_id).valid?
+      redirect_to teams_path(current_user), notice: "招待メールが#{user_email}に送信されました。"
     else
-      if User.invite!(email: user_email, invited_by_team_id: @team_id).valid?
-        session['team_id'] = nil if session['team_id']
-        redirect_to teams_path(current_user), notice: "招待メールが#{user_email}に送信されました。"
-      else
-        flash[:notice] = 'メールアドレスを正しく入力してください。'
-        render 'new', locals: { team: @team_id }
-      end
+      flash[:notice] = 'メールアドレスを正しく入力してください。'
+      render 'new', locals: { team: team_id }
     end
   end
 
@@ -29,7 +24,7 @@ class Users::InvitationsController < Devise::InvitationsController
     raw_invitation_token = update_resource_params[:invitation_token]
     self.resource = accept_resource
 
-    user_id = self.resource.id
+    user_id = resource.id
     user = User.find(user_id)
     user_assigned_teams = Assign.where(user_id: user_id).pluck(:team_id)
     new_team_assign = []
